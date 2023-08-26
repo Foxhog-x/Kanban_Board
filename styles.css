@@ -1,0 +1,103 @@
+.kanban{
+   text-align: center;
+   display: block;
+   padding: 2%;
+}
+ 
+
+
+.list-todo{
+    display: inline-block;
+    text-align: auto;
+    width: 33%;
+    text-align: center;
+    margin: auto;
+    border: 1px solid black;
+    
+}
+
+.item-list-todo{
+ 
+   
+   
+  width: 33%;
+  border: 1px solid gray;
+  text-align: auto;
+   
+
+}
+
+.item-list {
+ 
+     
+     
+    width: 33%;
+     
+    text-align: auto;
+     padding: 14px;
+     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 14px;
+  }
+  
+
+  .item-list-doing{
+    width: 33%;
+    border: 1px solid gray;
+    text-align: auto;
+  }
+.content{
+    display: flex;
+    gap: 14px;
+    margin-top: 20px;
+}
+.board-content{
+    display: flex;
+}
+ 
+
+@media only screen and (max-width: 420px) {
+    p {
+      font-size: 14px;
+    }
+     h1{
+        font-size: 14px;
+    }
+  }
+
+
+.doing {
+    padding: 14px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 14px;
+    margin-top: 10px;
+}
+   
+.todo{
+    
+  padding: 14px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 14px;
+  margin-top: 10px;
+  cursor: move;
+    
+}
+ 
+
+
+.done{
+  padding: 14px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 14px;
+  margin-top: 10px;
+   
+}  
+
+.dragging{
+  opacity: 0.5;
+}
+/* .draggable{
+  padding: 14px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 14px;
+  margin-top: 10px;
+} */
