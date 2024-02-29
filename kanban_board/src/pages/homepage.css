@@ -1,0 +1,75 @@
+ 
+
+.main_container{
+
+    max-width: 1950px;
+    margin: 35px;
+    padding: 25px;
+    gap: 1rem;
+    border-radius: 10px;
+    justify-content: center;
+    display: flex;
+    min-height: 100vh;
+   
+   
+  }
+  .todo{
+    width:  350px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: aliceblue;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .doing{
+   width:  350px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: aliceblue;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .review{
+      width:  350px;
+       text-align: center;
+       border: 1px solid black;
+       border-radius: 10px;
+       background-color: aliceblue;
+       padding: 20px;
+       display: flex;
+       flex-direction: column;
+       gap: 10px;
+     
+  }
+  
+  .done{
+    width:  350px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: aliceblue;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .todo_create_Button{
+    display: flex;
+    justify-content: flex-end;
+    gap: 150px;
+    color : black;
+   
+  }
+  .doing_create_Button{
+    display: flex;
+    justify-content: flex-end;
+    gap: 150px;
+   
+  }

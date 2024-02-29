@@ -1,49 +1,16 @@
-import "./App.css";
-import { Cards } from "./Components/Cards";
-import { FlatAddIcon } from "./Components/FlatAddIcon";
-// import { DrawerMenu } from "./Components/DrawerMenu";
-import { MenuAppBar } from "./Components/MenuAppBar";
+import { Homepage } from "./pages/Homepage";
+
+import { CreateModal } from "./Components/CreateModal";
+import { useState } from "react";
 
 function App() {
+  // eslint-disable-next-line no-undef
+  const [open, setOpen] = useState({ boolean: false, list_type: "" });
+  console.log(open);
   return (
     <>
-      <div>
-        <MenuAppBar />
-      </div>
-
-      <div className="main_container">
-        <div className="todo">
-          <div className="todo_create_Button">
-            <h2>TODO</h2>
-            <FlatAddIcon />
-          </div>
-          <Cards />
-        </div>
-        <div className="doing">
-          <div className="todo_create_Button">
-            <h2>Doing</h2>
-            <FlatAddIcon />
-          </div>
-          <Cards />
-          <Cards />
-        </div>
-        <div className="review">
-          <div className="todo_create_Button">
-            <h2>Review</h2>
-            <FlatAddIcon />
-          </div>
-
-          <Cards />
-        </div>
-        <div className="done">
-          <div className="todo_create_Button">
-            <h2>Done</h2>
-            <FlatAddIcon />
-          </div>
-
-          <Cards />
-        </div>
-      </div>
+      <Homepage setOpen={setOpen} />
+      <CreateModal open={open} setOpen={setOpen} />
     </>
   );
 }
