@@ -1,0 +1,38 @@
+.cards_size {
+  height: 100px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.top_left_card {
+  display: flex;
+  justify-content: space-between;
+  align-items: last baseline;
+}
+small {
+  padding: 2px;
+  margin: 2px;
+}
+span {
+  padding: 3px;
+  margin: 3px;
+  font-size: 18px;
+}
+#basic-button {
+  width: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.top_right_avatars {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+.card_center_content {
+  display: flex;
+  margin: 2px;
+  padding: 2px;
+  line-height: 0;
+}

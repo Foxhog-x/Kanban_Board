@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-
+import "../App.css";
 const style = {
   position: "absolute",
   top: "50%",
@@ -20,7 +20,10 @@ export const CreateModal = ({ open, setOpen }) => {
     setOpen((prev) => {
       return { ...prev, boolean: false, list_type: "" };
     });
-
+  const toUpperCaseFunction = (list_name) => {
+    return list_name.charAt(0).toUpperCase() + list_name.slice(1);
+  };
+  // const list_name = open.list_type;
   return (
     <div>
       <Modal
@@ -41,11 +44,10 @@ export const CreateModal = ({ open, setOpen }) => {
           }}
         >
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            <h2>{toUpperCaseFunction(open.list_type)}</h2>
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <Typography>Add Task</Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
         </Box>
       </Modal>
     </div>
