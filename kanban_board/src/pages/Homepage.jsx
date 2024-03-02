@@ -1,4 +1,3 @@
-import { BlankCard } from "../Components/BlankCard";
 import { Cards } from "../Components/Cards";
 import { FlatAddIcon } from "../Components/FlatAddIcon";
 import { MenuAppBar } from "../Components/MenuAppBar";

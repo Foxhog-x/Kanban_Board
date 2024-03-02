@@ -2,7 +2,6 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import ellipsis from "../assets/more.png";
 import { Users_avatar } from "./Users_avatar";
 export const MuiMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -41,9 +40,9 @@ export const MuiMenu = () => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>{"Move->>"}</MenuItem>
+        <MenuItem onClick={handleClose}>Delete</MenuItem>
+        <MenuItem onClick={handleClose}>Edit</MenuItem>
       </Menu>
     </div>
   );

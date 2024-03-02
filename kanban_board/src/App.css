@@ -3,11 +3,26 @@
   padding: 5px;
   border-radius: 5px;
 }
+.empty_card{
+  height: 35px;
+   display: flex;
+  align-items:last baseline;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+}
 
 .top_left_card {
   display: flex;
   justify-content: space-between;
   align-items: last baseline;
+}
+.card_center_content{
+  line-height: 1;
+  display: flex;
+  padding: 2px;
+  margin: 2px;
+  align-items: flex-start;
 }
 small {
   padding: 2px;
@@ -30,9 +45,9 @@ span {
   align-items: baseline;
 }
 
-.card_center_content {
-  display: flex;
-  margin: 2px;
-  padding: 2px;
-  line-height: 0;
+ 
+.menu_Drawer{
+  padding: 5px;
+  margin:5px;
+   
 }

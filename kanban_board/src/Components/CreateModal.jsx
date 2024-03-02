@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import "../App.css";
+import { TextFieldFormProps } from "./TextFieldFormProps";
 const style = {
   position: "absolute",
   top: "50%",
@@ -37,16 +39,19 @@ export const CreateModal = ({ open, setOpen }) => {
           sx={{
             ...style,
             width: 450,
-            height: 600,
+            height: 400,
             border: "none",
-            borderRadius: 10,
             color: "black",
           }}
         >
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            <h2>{toUpperCaseFunction(open.list_type)}</h2>
+            {/* <h2>{toUpperCaseFunction(open.list_type)}</h2> */}
+            <Box sx={{ textTransform: "capitalize", m: 2 }}>
+              {open.list_type}
+            </Box>
           </Typography>
-          <Typography>Add Task</Typography>
+          <Typography></Typography>
+          <TextFieldFormProps />
           <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
         </Box>
       </Modal>

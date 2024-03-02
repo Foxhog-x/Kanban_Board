@@ -21,7 +21,12 @@ export const DrawerMenu = () => {
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        <div className="menu_Drawer">
+          <h3>Public Board</h3>
+          <hr />
+        </div>
+
+        {[].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -32,9 +37,13 @@ export const DrawerMenu = () => {
           </ListItem>
         ))}
       </List>
-      <Divider />
+
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        <div className="menu_Drawer">
+          <h3>Private Board</h3>
+          <Divider />
+        </div>
+        {[].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>

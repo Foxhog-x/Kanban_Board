@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -7,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import { CheckBox } from "./CheckBox";
 import { MuiMenu } from "./MuiMenu";
 
-export const Cards = () => {
+export const Cards = ({ department, task_title, user_id }) => {
   const bull = (
     <Box
       component="span"
@@ -26,8 +28,21 @@ export const Cards = () => {
         </div>
       </div>
       <div className="card_center_content">
-        <h5>TASK </h5>
+        <Typography
+          sx={{
+            display: "inline-block",
+            width: " 350px",
+            whiteSpace: "nowrap",
+            overflow: " hidden !important",
+            textOverflow: "ellipsis",
+            fontWeight: "bold",
+            textAlign: "left",
+          }}
+        >
+          Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet consectetur.
+        </Typography>
       </div>
+      <div className="card_bottom_content"></div>
     </div>
   );
   return (
