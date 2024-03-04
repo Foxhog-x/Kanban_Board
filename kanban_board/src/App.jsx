@@ -7,6 +7,7 @@ function App() {
   // eslint-disable-next-line no-undef
   const [open, setOpen] = useState({ boolean: false, list_type: "" });
   console.log(open);
+
   return (
     <>
       <Homepage setOpen={setOpen} />

@@ -22,9 +22,7 @@ export const CreateModal = ({ open, setOpen }) => {
     setOpen((prev) => {
       return { ...prev, boolean: false, list_type: "" };
     });
-  const toUpperCaseFunction = (list_name) => {
-    return list_name.charAt(0).toUpperCase() + list_name.slice(1);
-  };
+
   // const list_name = open.list_type;
   return (
     <div>
