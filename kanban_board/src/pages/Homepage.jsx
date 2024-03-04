@@ -8,25 +8,7 @@ import "./homepage.css";
 // eslint-disable-next-line react/prop-types
 export const Homepage = ({ setOpen }) => {
   const [apiCardData, setApiCardData] = useState([]);
-  const fetchCardApi = async () => {
-    try {
-      const token = localStorage.getItem("authToken");
 
-      const response = await fetch(
-        "http://localhost:8000/api/boards/list_type/cards"
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-
-      const data = await response.json();
-
-      setApiCardData(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
     const fetchCardApi = async () => {
       try {
@@ -52,8 +34,26 @@ export const Homepage = ({ setOpen }) => {
     };
     fetchCardApi();
   }, []);
+  // console.log(apiCardData);
+  let todoData = apiCardData.filter((value) => {
+    return value.list_id === "todo";
+  });
+  // console.log(todoData);
+  let doingData = apiCardData.filter((value) => {
+    return value.list_id === "doing";
+  });
 
-  console.log(apiCardData);
+  let reviewData = apiCardData.filter((value) => {
+    return value.list_id === "review";
+  });
+
+  let doneData = apiCardData.filter((value) => {
+    return value.list_id === "done";
+  });
+
+  const handleCardClick = () => {
+    console.log("its works");
+  };
   return (
     <>
       <div>
@@ -61,7 +61,7 @@ export const Homepage = ({ setOpen }) => {
       </div>
       <div className="main_container">
         <div className="todo">
-          <div className="todo_create_Button">
+          <div className="create_Button">
             <h2>Todo</h2>
             <button
               className="createFlatIconBtn_todo"
@@ -74,12 +74,24 @@ export const Homepage = ({ setOpen }) => {
               <FlatAddIcon />
             </button>
           </div>
-          {apiCardData.map((value, index) => {
-            return <Cards key={index} />;
-          })}
+          <div className="card_scrollable_todo">
+            {todoData?.map((value, index) => {
+              return (
+                <Cards
+                  handleCardClick={handleCardClick}
+                  card_id={value.card_id}
+                  task_title={value.task_name}
+                  description={value.description}
+                  create_on={value.create_date}
+                  department={value.department}
+                  key={index}
+                />
+              );
+            })}
+          </div>
         </div>
         <div className="doing">
-          <div className="todo_create_Button">
+          <div className="create_Button">
             <h2>Doing</h2>
 
             <button
@@ -92,14 +104,23 @@ export const Homepage = ({ setOpen }) => {
               // onClick={() => handleCreateTask("doing")}
             >
               <FlatAddIcon />
-              <button onClick={() => fetchCardApi()}>clickhere</button>
             </button>
           </div>
-          <Cards />
-          <Cards />
+          <div className="card_scrollable_doing">
+            {doingData?.map((value, index) => (
+              <Cards
+                card_id={value.card_id}
+                task_title={value.task_name}
+                description={value.description}
+                create_on={value.create_date}
+                department={value.department}
+                key={index}
+              />
+            ))}
+          </div>
         </div>
         <div className="review">
-          <div className="todo_create_Button">
+          <div className="create_Button">
             <h2>Review</h2>
             <button
               className="createFlatIconBtn_review"
@@ -113,11 +134,21 @@ export const Homepage = ({ setOpen }) => {
               <FlatAddIcon />
             </button>
           </div>
-
-          <Cards />
+          <div className="card_scrollable_review">
+            {reviewData?.map((value, index) => (
+              <Cards
+                card_id={value.card_id}
+                task_title={value.task_name}
+                description={value.description}
+                create_on={value.create_date}
+                department={value.department}
+                key={index}
+              />
+            ))}
+          </div>
         </div>
         <div className="done">
-          <div className="todo_create_Button">
+          <div className="create_Button">
             <h2>Done</h2>
             <button
               className="createFlatIconBtn_done"
@@ -131,7 +162,18 @@ export const Homepage = ({ setOpen }) => {
               <FlatAddIcon />
             </button>
           </div>
-          <Cards />
+          <div className="card_scrollable_done">
+            {doneData?.map((value, index) => (
+              <Cards
+                card_id={value.card_id}
+                task_title={value.task_name}
+                description={value.description}
+                create_on={value.create_date}
+                department={value.department}
+                key={index}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>

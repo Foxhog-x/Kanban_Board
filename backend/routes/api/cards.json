@@ -1,0 +1,185 @@
+[
+  {
+    "card_id": 1,
+    "list_id": "todo",
+    "task_name": "Set Up IT Infrastructure",
+    "description": "Deploy servers, configure network, and establish IT systems",
+    "create_date": "3/3/2024",
+    "department": "IT"
+  },
+  {
+    "card_id": 2,
+    "list_id": "doing",
+    "task_name": "Sales Strategy Planning",
+    "description": "Develop sales strategies and plans to achieve business goals",
+    "create_date": "3/4/2024",
+    "department": "Sales"
+  },
+  {
+    "card_id": 3,
+    "list_id": "review",
+    "task_name": "Financial Analysis",
+    "description": "Analyze financial data to provide insights and recommendations",
+    "create_date": "3/5/2024",
+    "department": "Finance"
+  },
+  {
+    "card_id": 4,
+    "list_id": "done",
+    "task_name": "WordPress Website Development",
+    "description": "Design and develop a WordPress website for online presence",
+    "create_date": "3/6/2024",
+    "department": "WordPress"
+  },
+  {
+    "card_id": 5,
+    "list_id": "todo",
+    "task_name": "IT Security Enhancement",
+    "description": "Implement security measures to protect IT infrastructure and data",
+    "create_date": "3/7/2024",
+    "department": "Finance"
+  },
+  {
+    "card_id": 6,
+    "list_id": "doing",
+    "task_name": "Client Relationship Management",
+    "description": "Build and maintain relationships with clients to foster business growth",
+    "create_date": "3/8/2024",
+    "department": "Sales"
+  },
+  {
+    "card_id": 7,
+    "list_id": "todo",
+    "task_name": "Financial Planning and Budgeting",
+    "description": "Develop financial plans and budgets to guide organizational decisions",
+    "create_date": "3/9/2024",
+    "department": "HR"
+  },
+  {
+    "card_id": 8,
+    "list_id": "review",
+    "task_name": "Content Management System (CMS) Optimization",
+    "description": "Optimize the CMS platform for better website performance and user experience",
+    "create_date": "3/10/2024",
+    "department": "WordPress"
+  },
+  {
+    "card_id": 9,
+    "list_id": "doing",
+    "task_name": "Sales Campaign Execution",
+    "description": "Execute marketing and sales campaigns to attract customers",
+    "create_date": "3/11/2024",
+    "department": "Finance"
+  },
+  {
+    "card_id": 10,
+    "list_id": "done",
+    "task_name": "WordPress Theme Customization",
+    "description": "Customize WordPress themes to align with brand identity and business goals",
+    "create_date": "3/12/2024",
+    "department": "WordPress"
+  },
+  {
+    "card_id": 11,
+    "list_id": "todo",
+    "task_name": "IT System Maintenance",
+    "description": "Perform routine maintenance tasks to ensure smooth operation of IT systems",
+    "create_date": "3/13/2024",
+    "department": "Sales"
+  },
+  {
+    "card_id": 12,
+    "list_id": "review",
+    "task_name": "Financial Reporting",
+    "description": "Prepare and present financial reports to stakeholders and management",
+    "create_date": "3/14/2024",
+    "department": "Finance"
+  },
+  {
+    "card_id": 13,
+    "list_id": "done",
+    "task_name": "WordPress Plugin Development",
+    "description": "Develop custom WordPress plugins to add functionality to the website",
+    "create_date": "3/15/2024",
+    "department": "IT"
+  },
+  {
+    "card_id": 14,
+    "list_id": "todo",
+    "task_name": "IT Project Management",
+    "description": "Manage IT projects from planning to execution and delivery",
+    "create_date": "3/16/2024",
+    "department": "IT"
+  },
+  {
+    "card_id": 15,
+    "list_id": "doing",
+    "task_name": "Sales Forecasting",
+    "description": "Predict future sales trends and performance to inform business decisions",
+    "create_date": "3/17/2024",
+    "department": "Finance"
+  },
+  {
+    "card_id": 16,
+    "list_id": "done",
+    "task_name": "Finance Risk Management",
+    "description": "Identify and mitigate financial risks to protect company assets",
+    "create_date": "3/18/2024",
+    "department": "Finance"
+  },
+  {
+    "card_id": 17,
+    "list_id": "todo",
+    "task_name": "WordPress Website Maintenance",
+    "description": "Perform regular updates and maintenance tasks to keep the website running smoothly",
+    "create_date": "3/19/2024",
+    "department": "WordPress"
+  },
+  {
+    "card_id": 18,
+    "list_id": "review",
+    "task_name": "Financial Compliance",
+    "description": "Ensure compliance with financial regulations and standards",
+    "create_date": "3/20/2024",
+    "department": "Sales"
+  },
+  {
+    "card_id": 19,
+    "list_id": "doing",
+    "task_name": "Sales Training and Development",
+    "description": "Provide training and development opportunities to improve sales team performance",
+    "create_date": "3/21/2024",
+    "department": "IT"
+  },
+  {
+    "card_id": 20,
+    "list_id": "done",
+    "task_name": "WordPress Website Optimization",
+    "description": "Optimize website performance and user experience for better results",
+    "create_date": "3/22/2024",
+    "department": "WordPress"
+  },
+  {
+    "card_id": 21,
+    "list_id": "doing",
+    "task_name": "Sales Strategy Planning",
+    "description": "Develop sales strategies and plans to achieve business goals",
+    "create_date": "3/4/2024",
+    "department": "Sales"
+  },
+  {
+    "card_id": 22,
+    "list_id": "doing",
+    "task_name": "Sales Strategy Planning",
+    "description": "Develop sales strategies and plans to achieve business goals",
+    "create_date": "3/4/2024",
+    "department": "Sales"
+  },  {
+    "card_id": 22,
+    "list_id": "doing",
+    "task_name": "Sales Strategy Planning",
+    "description": "Develop sales strategies and plans to achieve business goals",
+    "create_date": "3/4/2024",
+    "department": "Sales"
+  }
+]

@@ -1,15 +1,18 @@
 const express = require("express");
 const router = express.Router();
-
-router.get("/", (req, res) => {
-  const site_user_Logindata = {
-    user_id: req.body.user_id, //pk
-    name_: req.body.name_,
-    email: req.body.email,
-    password: req.body.password,
-    created_on: req.body.created_on,
-  };
-  res.send(site_user_Logindata);
+const db_con = require("../db");
+router.post("/", (req, res) => {
+  const email = req.body.email;
+  try {
+    db_con.query(
+      `SELECT * FROM site_users WHERE email = "${email}"`,
+      (error, results) => {
+        if (error) console.log(error);
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

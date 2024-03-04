@@ -2,8 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
+const bodyParser = require("body-parser");
+const db_con = require("./db");
+
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
 app.use("/login", require("./routes/loginRoute"));
 app.use("/api/boards", require("./routes/api/boards"));

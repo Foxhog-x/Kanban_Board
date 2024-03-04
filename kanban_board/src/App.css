@@ -1,5 +1,5 @@
 .cards_size {
-  height: 100px;
+  height: 125px;
   padding: 5px;
   border-radius: 5px;
 }
@@ -19,10 +19,12 @@
 }
 .card_center_content{
   line-height: 1;
+  height: 55px;
   display: flex;
   padding: 2px;
-  margin: 2px;
+  margin: 5px;
   align-items: flex-start;
+border-bottom: 1px solid black;
 }
 small {
   padding: 2px;

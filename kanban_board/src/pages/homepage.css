@@ -1,6 +1,6 @@
 .main_container {
   max-width: 1950px;
-  margin: 35px;
+  margin: 25px;
   padding: 25px;
   gap: 1rem;
   border-radius: 10px;
@@ -8,63 +8,80 @@
   display: flex;
   min-height: 100vh;
 }
+body{
+  height: 100vh;
+  overflow-y: hidden;
+}
+ 
+/* For WebKit browsers */
+card_scrollable_doing::-webkit-scrollbar {
+  width: 3px; /* Adjust the width as needed */
+}
+
+card_scrollable_todo::-webkit-scrollbar {
+  width: 3px; /* Adjust the width as needed */
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #888; /* Ensure the same color as normal state */
+  outline: none; /* Remove any outline on hover */
+}
+ 
 .todo {
-  width: 350px;
+  width: 360px;
   text-align: center;
   border: 1px solid black;
   border-radius: 10px;
   background-color: #6495ed;
-  padding: 10px 10px;
+  padding: 10px ;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  height: 85vh;
+   
 }
 .doing {
-  width: 350px;
+  width: 360px;
   text-align: center;
   border: 1px solid black;
   border-radius: 10px;
   background-color: #ffd580;
-  padding: 10px 10px;
+  padding: 10px ;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  
+  height: 85vh;
 }
 .review {
-  width: 350px;
+  width: 360px;
   text-align: center;
   border: 1px solid black;
   border-radius: 10px;
   background-color: #c6fcff;
-  padding: 10px 10px;
+  padding: 10px ;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  height: 85vh;
 }
 
 .done {
-  width: 350px;
+  width: 360px;
   text-align: center;
   border: 1px solid black;
   border-radius: 10px;
   background-color: #9ade7b;
-  padding: 10px 10px;
+  padding: 10px  ;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+   
+  height: 85vh;
 }
 
-.todo_create_Button {
+.create_Button {
   display: flex;
   justify-content: flex-end;
-  gap: 150px;
+  gap: 200px;
   color: black;
 }
-.doing_create_Button {
-  display: flex;
-  justify-content: flex-end;
-  gap: 150px;
-}
+
 
 .createFlatIconBtn_todo {
   background-color: #6495ed;
@@ -81,4 +98,22 @@
 .createFlatIconBtn_done {
   background-color: #9ade7b;
   border: none;
+}
+
+.card_scrollable_todo{
+  padding: 0 12px;
+  overflow-y: auto;
+}
+.card_scrollable_doing{
+  padding: 0px 12px;
+  overflow-y: auto;
+}
+.card_scrollable_review{
+  padding: 0px 12px;
+  overflow-y: auto;
+}
+
+.card_scrollable_done{
+  padding: 0px 12px;
+  overflow-y: auto;
 }
