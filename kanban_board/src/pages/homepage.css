@@ -7,10 +7,13 @@
   justify-content: center;
   display: flex;
   min-height: 100vh;
+  
 }
 body{
-  height: 100vh;
+  height: 80vh;
   overflow-y: hidden;
+  background-color: #90caf9
+ 
 }
  
 /* For WebKit browsers */
@@ -29,21 +32,21 @@ card_scrollable_todo::-webkit-scrollbar {
 .todo {
   width: 360px;
   text-align: center;
-  border: 1px solid black;
-  border-radius: 10px;
-  background-color: #6495ed;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;  border-radius: 5px;
+  /* background-color: #6495ed; */
   padding: 10px ;
   display: flex;
   flex-direction: column;
   height: 85vh;
-   
+ 
 }
 .doing {
   width: 360px;
   text-align: center;
-  border: 1px solid black;
-  border-radius: 10px;
-  background-color: #ffd580;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  /* background-color: #ffd580; */
   padding: 10px ;
   display: flex;
   flex-direction: column;
@@ -53,9 +56,10 @@ card_scrollable_todo::-webkit-scrollbar {
 .review {
   width: 360px;
   text-align: center;
-  border: 1px solid black;
-  border-radius: 10px;
-  background-color: #c6fcff;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  /* background-color: #c6fcff; */
   padding: 10px ;
   display: flex;
   flex-direction: column;
@@ -65,9 +69,10 @@ card_scrollable_todo::-webkit-scrollbar {
 .done {
   width: 360px;
   text-align: center;
-  border: 1px solid black;
-  border-radius: 10px;
-  background-color: #9ade7b;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  /* background-color: #9ade7b; */
   padding: 10px  ;
   display: flex;
   flex-direction: column;
@@ -83,22 +88,11 @@ card_scrollable_todo::-webkit-scrollbar {
 }
 
 
-.createFlatIconBtn_todo {
-  background-color: #6495ed;
+.createFlatIconBtn {
+  background-color: transparent;
   border: none;
 }
-.createFlatIconBtn_doing {
-  background-color: #ffd580;
-  border: none;
-}
-.createFlatIconBtn_review {
-  background-color: #c6fcff;
-  border: none;
-}
-.createFlatIconBtn_done {
-  background-color: #9ade7b;
-  border: none;
-}
+ 
 
 .card_scrollable_todo{
   padding: 0 12px;

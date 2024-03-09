@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CheckBox } from "./CheckBox";
 import { MuiMenu } from "./MuiMenu";
+// import { Colorpalete } from "./Colorpalete";
 
 export const Cards = ({ department, task_title, user_id, handleCardClick }) => {
   const bull = (
@@ -43,12 +44,19 @@ export const Cards = ({ department, task_title, user_id, handleCardClick }) => {
           {task_title}
         </Typography>
       </div>
-      <div className="card_bottom_content"></div>
-      <div></div>
+
+      {/* <Colorpalete /> */}
     </div>
   );
   return (
-    <Box sx={{ minWidth: 200, borderRadius: "20px", marginTop: "25px" }}>
+    <Box
+      sx={{
+        minWidth: 200,
+
+        borderRadius: "20px",
+        marginTop: "25px",
+      }}
+    >
       <Card variant="outlined">{card}</Card>
     </Box>
   );

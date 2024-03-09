@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Cards } from "../Components/Cards";
 import { FlatAddIcon } from "../Components/FlatAddIcon";
-import { MenuAppBar } from "../Components/MenuAppBar";
 
 import "./homepage.css";
 
@@ -56,15 +55,12 @@ export const Homepage = ({ setOpen }) => {
   };
   return (
     <>
-      <div>
-        <MenuAppBar />
-      </div>
       <div className="main_container">
         <div className="todo">
           <div className="create_Button">
             <h2>Todo</h2>
             <button
-              className="createFlatIconBtn_todo"
+              className="createFlatIconBtn"
               onClick={() =>
                 setOpen((prev) => {
                   return { ...prev, boolean: true, list_type: "todo" };
@@ -95,7 +91,7 @@ export const Homepage = ({ setOpen }) => {
             <h2>Doing</h2>
 
             <button
-              className="createFlatIconBtn_doing"
+              className="createFlatIconBtn"
               onClick={() =>
                 setOpen((prev) => {
                   return { ...prev, boolean: true, list_type: "doing" };
@@ -123,7 +119,7 @@ export const Homepage = ({ setOpen }) => {
           <div className="create_Button">
             <h2>Review</h2>
             <button
-              className="createFlatIconBtn_review"
+              className="createFlatIconBtn"
               onClick={() =>
                 setOpen((prev) => {
                   return { ...prev, boolean: true, list_type: "review" };
@@ -151,7 +147,7 @@ export const Homepage = ({ setOpen }) => {
           <div className="create_Button">
             <h2>Done</h2>
             <button
-              className="createFlatIconBtn_done"
+              className="createFlatIconBtn"
               onClick={() =>
                 setOpen((prev) => {
                   return { ...prev, boolean: true, list_type: "done" };

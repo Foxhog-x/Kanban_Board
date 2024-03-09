@@ -1,5 +1,5 @@
 .cards_size {
-  height: 125px;
+  background-color:#e0e0e0;
   padding: 5px;
   border-radius: 5px;
 }
@@ -53,3 +53,27 @@ span {
   margin:5px;
    
 }
+
+.colorPalet_circle{
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin: "2px";
+  padding: "2px";
+   
+   
+ 
+
+}
+.Create_colorPalet_circle{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: "2px";
+  padding: "2px";
+  border: none;
+}
+ .colorPalet_circle_btn{
+  background: none;
+  background-color: transparent;
+ }

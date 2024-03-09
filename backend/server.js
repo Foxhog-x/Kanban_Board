@@ -7,7 +7,7 @@ const db_con = require("./db");
 
 app.use(cors());
 app.use(bodyParser.json());
-
+app.use("/signup", require("./routes/signupRoute"));
 app.use("/login", require("./routes/loginRoute"));
 app.use("/api/boards", require("./routes/api/boards"));
 app.use("/api/boards/list_type", require("./routes/api/list_type"));
