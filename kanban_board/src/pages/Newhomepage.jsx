@@ -19,20 +19,23 @@ export const Newhomepage = ({ setOpen }) => {
   return (
     <>
       <div
+        className="createlist_css"
         style={{
           display: "flex",
           justifyContent: "end",
           alignContent: "center",
-          backgroundColor: "background rgb(46,129,247)",
-          background:
-            "radial-gradient(circle, rgba(46,129,247,0.6965161064425771) 25%, rgba(44,160,184,0.6516981792717087) 100%)",
+
           padding: "14px",
+          /* From https://css.glass */
         }}
       >
         {" "}
         <button>Create List</button>
       </div>
-      <div style={{ overflowX: "auto" }}>
+      <div
+        className="background_color_main_conatin"
+        style={{ overflowX: "auto" }}
+      >
         <div className="main_container">
           <div className="horizontal_grid">
             {list_Col.map((value) => {

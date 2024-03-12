@@ -7,12 +7,11 @@ router.post("/", (req, res) => {
     db_con.query(
       `SELECT * FROM site_users WHERE email = "${email}"`,
       (error, results) => {
-        if (error) res.send(error);
+        if (error) console.log(error);
       }
     );
   } catch (error) {
     console.log(error);
-    res.send(error);
   }
 });
 
