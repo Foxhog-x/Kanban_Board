@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Cards } from "../Components/Cards";
-import { FlatAddIcon } from "../Components/FlatAddIcon";
 
 import "./homepage.css";
+import { FlatAddIcon } from "./kanban_board/src/Components/FlatAddIcon";
+import { Cards } from "./kanban_board/src/Components/Cards";
 
 // eslint-disable-next-line react/prop-types
 export const Homepage = ({ setOpen }) => {
@@ -33,11 +33,11 @@ export const Homepage = ({ setOpen }) => {
     };
     fetchCardApi();
   }, []);
-  // console.log(apiCardData);
+  console.log(apiCardData);
   let todoData = apiCardData.filter((value) => {
     return value.list_id === "todo";
   });
-  // console.log(todoData);
+  console.log(todoData);
   let doingData = apiCardData.filter((value) => {
     return value.list_id === "doing";
   });
@@ -97,7 +97,6 @@ export const Homepage = ({ setOpen }) => {
                   return { ...prev, boolean: true, list_type: "doing" };
                 })
               }
-              // onClick={() => handleCreateTask("doing")}
             >
               <FlatAddIcon />
             </button>
@@ -125,7 +124,6 @@ export const Homepage = ({ setOpen }) => {
                   return { ...prev, boolean: true, list_type: "review" };
                 })
               }
-              // onClick={() => handleCreateTask("review")}
             >
               <FlatAddIcon />
             </button>
@@ -153,7 +151,6 @@ export const Homepage = ({ setOpen }) => {
                   return { ...prev, boolean: true, list_type: "done" };
                 })
               }
-              // onClick={() => handleCreateTask("done")}
             >
               <FlatAddIcon />
             </button>

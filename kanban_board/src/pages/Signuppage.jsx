@@ -18,7 +18,7 @@ function Copyright(props) {
       align="center"
       {...props}
     >
-      {"Copyright © "}
+      {"Copyright © Onkar"}
       <Link color="inherit" href="https://mui.com/">
         Your Website
       </Link>{" "}
@@ -28,15 +28,13 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export const Signuppage = () => {
-  const field1Ref = useRef(null);
-  const field2Ref = useRef(null);
-  const field3Ref = useRef(null);
-  const field4Ref = useRef(null);
+  const firstNameRef = useRef(null);
+  const lastNameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
   const [userDetails, setUserDetails] = useState({
     firstName: "",
     lastName: "",
@@ -66,12 +64,10 @@ export const Signuppage = () => {
   };
 
   const clearForm = () => {
-    // Reset each form field using its ref
-    field1Ref.current.value = "";
-    field2Ref.current.value = "";
-    field3Ref.current.value = "";
-    field4Ref.current.value = "";
-    // Repeat for all fields
+    firstNameRef.current.value = "";
+    lastNameRef.current.value = "";
+    emailRef.current.value = "";
+    passwordRef.current.value = "";
   };
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -97,7 +93,7 @@ export const Signuppage = () => {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  inputRef={field1Ref}
+                  inputRef={firstNameRef}
                   autoComplete="given-name"
                   name="firstName"
                   required
@@ -110,7 +106,7 @@ export const Signuppage = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  inputRef={field2Ref}
+                  inputRef={lastNameRef}
                   required
                   fullWidth
                   id="lastName"
@@ -122,7 +118,7 @@ export const Signuppage = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  inputRef={field3Ref}
+                  inputRef={emailRef}
                   required
                   fullWidth
                   id="email"
@@ -134,7 +130,7 @@ export const Signuppage = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  inputRef={field4Ref}
+                  inputRef={passwordRef}
                   required
                   fullWidth
                   name="password"

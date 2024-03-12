@@ -1,17 +1,17 @@
 const express = require("express");
+const db_con = require("../../db");
 const router = express.Router();
-const db_con = require("../db");
+
 router.post("/", (req, res) => {
-  const email = req.body.email;
   try {
     db_con.query(
-      `SELECT * FROM site_users WHERE email = "${email}"`,
-      (error, results) => {
+      "select * from List_Column where board_id = 1",
+      (error, result) => {
         if (error) res.send(error);
+        if (result) res.send(result);
       }
     );
   } catch (error) {
-    console.log(error);
     res.send(error);
   }
 });

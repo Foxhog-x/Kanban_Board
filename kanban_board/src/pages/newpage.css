@@ -1,18 +1,18 @@
-.main_container {
+/* .main_container {
   max-width: 1950px;
-  margin: 25px;
-  padding: 25px;
-  gap: 1rem;
+  margin: 20px;
   border-radius: 10px;
   justify-content: center;
   display: flex;
   min-height: 100vh;
+
   
-}
+} */
 body{
   height: 80vh;
-  overflow-y: hidden;
-  background-color: #90caf9
+ 
+  background-color: #90caf9;
+
  
 }
  
@@ -30,7 +30,7 @@ card_scrollable_todo::-webkit-scrollbar {
 }
  
 .todo {
-  width: 360px;
+  width: 325px;
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;  border-radius: 5px;
   /* background-color: #6495ed; */
@@ -110,4 +110,15 @@ card_scrollable_todo::-webkit-scrollbar {
 .card_scrollable_done{
   padding: 0px 12px;
   overflow-y: auto;
+}
+.main_container{
+  max-width: 1920px;
+  margin-left: 20px;
+  margin-top: 5px;
+
+}
+.horizontal_grid{
+   display: flex;
+   gap: 35px;
+
 }

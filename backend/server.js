@@ -9,8 +9,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use("/signup", require("./routes/signupRoute"));
 app.use("/login", require("./routes/loginRoute"));
-app.use("/api/boards", require("./routes/api/boards"));
-app.use("/api/boards/list_type", require("./routes/api/list_type"));
-app.use("/api/boards/list_type/cards", require("./routes/api/cards"));
+app.use("/api/boards", require("./routes/api/board"));
+app.use("/api/list_column", require("./routes/api/list_column"));
+app.use("/api/cards", require("./routes/api/card"));
 
 app.listen(8000, () => console.log("port is running at 8000"));
