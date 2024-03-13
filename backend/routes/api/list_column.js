@@ -14,7 +14,6 @@ router.post("/", (req, res) => {
   } catch (error) {
     res.send(error);
   }
-  o;
 });
 
 module.exports = router;

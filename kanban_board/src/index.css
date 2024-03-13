@@ -16,10 +16,22 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: rgb(46, 49, 146);
+  background: rgb(78, 101, 255);
+  background: linear-gradient(
+    53deg,
+    rgba(78, 101, 255, 0.7707457983193278) 11%,
+    rgba(146, 239, 253, 1) 100%
+  );
+  /* background: rgb(216, 181, 255);
+  background: linear-gradient(
+    53deg,
+    rgba(216, 181, 255, 0.8435749299719888) 11%,
+    rgba(30, 174, 152, 0.8827906162464986) 100%
+  ); */
+  /* background-color: rgb(46, 49, 146);
   background: linear-gradient(
     53deg,
     rgba(46, 49, 146, 0.8015581232492998) 2%,
     rgba(27, 255, 255, 0.7791491596638656) 95%
-  );
+  ); */
 }

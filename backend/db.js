@@ -3,7 +3,7 @@ const mysql = require("mysql2");
 let db_con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "12345",
   database: "kanban",
 });
 

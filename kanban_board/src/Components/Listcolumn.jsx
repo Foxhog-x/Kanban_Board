@@ -5,7 +5,6 @@ import "../App.css";
 import { Cards } from "./Cards";
 // eslint-disable-next-line react/prop-types
 export const Listcolumn = ({ list_column_name, setOpen }) => {
-  // const [apiCardData, setApiCardData] = useState([]);
   const card = [
     {
       column_id: 1,
@@ -107,7 +106,7 @@ export const Listcolumn = ({ list_column_name, setOpen }) => {
               return (
                 // eslint-disable-next-line react/jsx-key
                 <div className="card_scrollable_todo">
-                  <Cards />
+                  <Cards cardValue={cardValue} />
                 </div>
               );
             }

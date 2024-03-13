@@ -10,7 +10,14 @@ import { CheckBox } from "./CheckBox";
 import { MuiMenu } from "./MuiMenu";
 // import { Colorpalete } from "./Colorpalete";
 
-export const Cards = ({ department, task_title, user_id, handleCardClick }) => {
+export const Cards = ({
+  cardValue,
+  department,
+  task_title,
+  user_id,
+  handleCardClick,
+}) => {
+  console.log(cardValue, "cardvalue");
   const bull = (
     <Box
       component="span"
