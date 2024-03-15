@@ -20,17 +20,12 @@ const style = {
 export const CreateListModel = ({
   createListModel,
   setCreateListModel,
-  board_id,
+  setCreateListPostApi,
+  createListPostApi,
+  handleCreateListPostapi,
+  boardId,
 }) => {
-  const [createListPostApi, setCreateListPostApi] = React.useState({
-    name: " ",
-    board_id: board_id,
-  });
   const handleClose = () => setCreateListModel(false);
-
-  const handleCreateListPostapi = () => {};
-
-  console.log(createListPostApi);
 
   return (
     <div>
@@ -55,6 +50,7 @@ export const CreateListModel = ({
               <TextFieldCreateList
                 handleCreateListPostapi={handleCreateListPostapi}
                 setCreateListPostApi={setCreateListPostApi}
+                boardId={boardId}
               />
             </Box>
           </Typography>

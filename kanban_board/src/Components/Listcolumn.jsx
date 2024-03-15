@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 // import { useEffect } from "react";
 import { FlatAddIcon } from "../Components/FlatAddIcon";
 import "../pages/newpage.css";
 import "../App.css";
 import { Cards } from "./Cards";
-import { useState } from "react";
+
 // eslint-disable-next-line react/prop-types
 export const Listcolumn = ({
   list_column_id,

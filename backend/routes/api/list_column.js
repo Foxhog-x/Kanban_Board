@@ -16,4 +16,8 @@ router.post("/", (req, res) => {
   }
 });
 
+router.post("/create", (req, res) => {
+  console.log("its workin");
+});
+
 module.exports = router;

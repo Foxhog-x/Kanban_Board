@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Signika'; 
+  src:'../public/font/Signika-Regular.ttf'; 
+}
+
 .cards_size {
   background-color:#e0e0e0;
   padding: 5px;
@@ -11,6 +16,8 @@
   margin: 5px;
   border-radius: 5px;
 }
+
+
 
 .top_left_card {
   display: flex;
@@ -77,3 +84,11 @@ span {
   background: none;
   background-color: transparent;
  }
+
+
+.card_info_font{
+  font-family: 'Signika';
+}
+li{
+  text-decoration: none;
+}

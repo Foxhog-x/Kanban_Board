@@ -7,6 +7,8 @@ import Button from "@mui/material/Button";
 export const TextFieldCreateList = ({
   handleCreateListPostapi,
   setCreateListPostApi,
+
+  boardId,
 }) => {
   return (
     <Box

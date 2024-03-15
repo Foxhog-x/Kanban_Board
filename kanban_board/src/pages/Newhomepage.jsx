@@ -12,20 +12,27 @@ export const Newhomepage = ({ open, setOpen }) => {
   const [showCardInfoInModel, setShowCardInfoModel] = useState([]);
   const [createListModel, setCreateListModel] = useState(false);
 
+  const [createListPostApi, setCreateListPostApi] = useState({
+    name: "",
+    board_id: "",
+  });
   const fetchList_Col = async () => {
     const list_Col_Data = await fetch("http://localhost:8000/api/list_column", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     });
     const convertingToJson = await list_Col_Data.json();
+    console.log({ convertingToJson });
     setList_Col(convertingToJson);
+    setCreateListPostApi({
+      name: "",
+      board_id: convertingToJson[0].board_id,
+    });
   };
   useEffect(() => {
     fetchList_Col();
   }, []);
 
-  const board_id = list_Col[0]?.board_id;
-  console.log(list_Col);
   const fetchCards = async () => {
     const list_Col_Data = await fetch("http://localhost:8000/api/cards", {
       method: "POST",
@@ -33,24 +40,26 @@ export const Newhomepage = ({ open, setOpen }) => {
     });
     const convertingToJson = await list_Col_Data.json();
     setCards(convertingToJson);
-    console.log(convertingToJson, "cards");
   };
   useEffect(() => {
     fetchCards();
   }, []);
 
   const handleCardClick = (cardInfovalue) => {
-    console.log(cardInfovalue, "value of card in model");
     setBasicModelOpen(!basicModelOpen);
     setShowCardInfoModel(cardInfovalue);
   };
-
+  const handleCreateListPostapi = () => {
+    console.log(createListPostApi);
+  };
   return (
     <>
       <CreateListModel
-        board_id={board_id}
         createListModel={createListModel}
         setCreateListModel={setCreateListModel}
+        setCreateListPostApi={setCreateListPostApi}
+        handleCreateListPostapi={handleCreateListPostapi}
+        boardId={list_Col[0]?.board_id}
       />
       <CardInfoModel
         basicModelOpen={basicModelOpen}
@@ -91,7 +100,7 @@ export const Newhomepage = ({ open, setOpen }) => {
                   cards={cards}
                   list_column_id={value.column_id}
                   list_column_name={value.name}
-                  board_id={board_id || 1}
+                  board_id={1}
                 />
               );
             })}
