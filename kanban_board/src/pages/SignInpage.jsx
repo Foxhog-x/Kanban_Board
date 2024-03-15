@@ -58,7 +58,7 @@ export const SignInpage = () => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
-  console.log(inputData);
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">

@@ -33,11 +33,11 @@ export const Homepage = ({ setOpen }) => {
     };
     fetchCardApi();
   }, []);
-  console.log(apiCardData);
+
   let todoData = apiCardData.filter((value) => {
     return value.list_id === "todo";
   });
-  console.log(todoData);
+
   let doingData = apiCardData.filter((value) => {
     return value.list_id === "doing";
   });

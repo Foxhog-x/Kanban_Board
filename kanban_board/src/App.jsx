@@ -15,7 +15,7 @@ function App() {
     list_type: "",
     column_id: "",
   });
-  console.log(open, "value");
+
   return (
     <>
       <Router>

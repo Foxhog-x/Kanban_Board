@@ -39,8 +39,6 @@ export const CreateModal = ({ open, setOpen }) => {
     status: "",
   });
 
-  console.log(cardData);
-
   const handleCreateTaskApi = (e) => {
     e.preventDefault();
     fetch("http://localhost:8000/api/cards/create", {

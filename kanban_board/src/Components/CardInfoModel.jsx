@@ -29,7 +29,7 @@ export const CardInfoModel = ({
   setBasicModelOpen,
 }) => {
   const handleClose = () => setBasicModelOpen(false);
-  console.log(showCardInfoInModel, "showing card info model");
+
   return (
     <div>
       <Modal

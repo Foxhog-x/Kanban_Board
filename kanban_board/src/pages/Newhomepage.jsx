@@ -22,7 +22,7 @@ export const Newhomepage = ({ open, setOpen }) => {
       headers: { "Content-Type": "application/json" },
     });
     const convertingToJson = await list_Col_Data.json();
-    console.log({ convertingToJson });
+
     setList_Col(convertingToJson);
     setCreateListPostApi({
       name: "",

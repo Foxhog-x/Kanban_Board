@@ -4,7 +4,6 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 export const dateTimeConverter = (card_Info_Due_Date) => {
-  console.log(card_Info_Due_Date);
   const dateTime = new Date(card_Info_Due_Date);
   const options = {
     year: "numeric",
