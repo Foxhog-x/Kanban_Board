@@ -3,6 +3,7 @@ const db_con = require("../../db");
 const router = express.Router();
 
 router.post("/", (req, res) => {
+  console.log(req.body.board_id, "req");
   try {
     db_con.query(
       `SELECT List_Column.*, Card.*
@@ -17,6 +18,10 @@ router.post("/", (req, res) => {
   } catch (error) {
     res.send(error);
   }
+});
+router.post("/create", (req, res) => {
+  console.log(req.body);
+  db_con.query("INSERT");
 });
 
 module.exports = router;

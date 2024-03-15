@@ -10,7 +10,11 @@ import { Newhomepage } from "./pages/Newhomepage";
 
 function App() {
   // eslint-disable-next-line no-undef
-  const [open, setOpen] = useState({ boolean: false, list_type: "" });
+  const [open, setOpen] = useState({
+    boolean: false,
+    list_type: "",
+    column_id: "",
+  });
   console.log(open, "value");
   return (
     <>
@@ -19,7 +23,11 @@ function App() {
         <CreateModal open={open} setOpen={setOpen} />
         <Routes>
           {/* <Route exact path="/" element={<Homepage setOpen={setOpen} />} /> */}
-          <Route exact path="/" element={<Newhomepage setOpen={setOpen} />} />
+          <Route
+            exact
+            path="/"
+            element={<Newhomepage open={open} setOpen={setOpen} />}
+          />
           <Route exact path="/signup" element={<Signuppage />}></Route>
           <Route exact path="/login" element={<SignInpage />}></Route>
         </Routes>

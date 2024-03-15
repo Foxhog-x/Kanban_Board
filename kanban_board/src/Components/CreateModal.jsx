@@ -28,28 +28,30 @@ export const CreateModal = ({ open, setOpen }) => {
   const priorityType = ["Low", "Medium", "High"];
   const colorSchemes = ["green", "yellow", "red"];
   const [cardData, setCardData] = useState({
-    card_id: "",
-    list_id: "",
+    column_id: "",
     title: "",
     description: "",
     startDate: "",
-    endDate: "",
+    due_date: "",
     priority: "",
     colorSchemes_id: "",
     department_type: "",
+    status: "",
   });
+
   console.log(cardData);
+
   const handleCreateTaskApi = (e) => {
     e.preventDefault();
-    fetch("http://localhost:8000/api/boards/list_type/cards/create", {
+    fetch("http://localhost:8000/api/cards/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         title: cardData.title,
         description: cardData.description,
-        department_type: cardData.department_type,
+        column_id: open.column_id,
         startDate: cardData.startDate,
-        endDate: cardData.endDate,
+        due_date: cardData.due_date,
         priority: cardData.priority,
       }),
     });
@@ -65,7 +67,7 @@ export const CreateModal = ({ open, setOpen }) => {
 
   const handleClose = () =>
     setOpen((prev) => {
-      return { ...prev, boolean: false, list_type: "" };
+      return { ...prev, boolean: false, list_type: "", column_id: "" };
     });
 
   // const list_name = open.list_type;
@@ -101,7 +103,7 @@ export const CreateModal = ({ open, setOpen }) => {
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <AutocompleteAssignUser />
-          </Typography>{" "}
+          </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <Typography
               sx={{

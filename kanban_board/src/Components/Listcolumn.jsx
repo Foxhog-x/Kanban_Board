@@ -3,52 +3,15 @@ import { FlatAddIcon } from "../Components/FlatAddIcon";
 import "../pages/newpage.css";
 import "../App.css";
 import { Cards } from "./Cards";
+import { useState } from "react";
 // eslint-disable-next-line react/prop-types
-export const Listcolumn = ({ list_column_name, setOpen }) => {
-  const card = [
-    {
-      column_id: 1,
-      name: "To do",
-      board_id: 1,
-      position: 1,
-      card_id: 4,
-      title: "Do a testcase on current softwere",
-      description: "start with field",
-      assignee_id: 2,
-      due_date: "2024-03-09T18:30:00.000Z",
-      priority: "Medium",
-      status: "To Do",
-    },
-    {
-      column_id: 1,
-      name: "To do",
-      board_id: 1,
-      position: 1,
-      card_id: 3,
-      title: "Do a testcase on current softwere",
-      description: "start with field",
-      assignee_id: 1,
-      due_date: "2024-04-21T18:30:00.000Z",
-      priority: "High",
-      status: "To Do",
-    },
-    {
-      column_id: 3,
-      name: "Doing",
-      board_id: 1,
-      position: 2,
-      card_id: 5,
-      title: "Do a testcase on current softwere",
-      description: "start with field",
-      assignee_id: 2,
-      due_date: "2024-03-09T18:30:00.000Z",
-      priority: "Low",
-      status: "In Progress",
-    },
-  ];
-  const handleCardClick = () => {
-    console.log("its works");
-  };
+export const Listcolumn = ({
+  list_column_id,
+  handleCardClick,
+  setOpen,
+  cards,
+  list_column_name,
+}) => {
   // useEffect(() => {
   //   const fetchCardApi = async () => {
   //     try {
@@ -92,7 +55,12 @@ export const Listcolumn = ({ list_column_name, setOpen }) => {
             className="createFlatIconBtn"
             onClick={() =>
               setOpen((prev) => {
-                return { ...prev, boolean: true, list_type: "todo" };
+                return {
+                  ...prev,
+                  boolean: true,
+                  list_type: list_column_name,
+                  column_id: list_column_id,
+                };
               })
             }
           >
@@ -100,13 +68,16 @@ export const Listcolumn = ({ list_column_name, setOpen }) => {
           </button>
         </div>
         <>
-          {card.map((cardValue) => {
+          {cards.map((cardValue) => {
             if (cardValue.name === list_column_name) {
               // eslint-disable-next-line react/jsx-key
               return (
                 // eslint-disable-next-line react/jsx-key
                 <div className="card_scrollable_todo">
-                  <Cards cardValue={cardValue} />
+                  <Cards
+                    cardValue={cardValue}
+                    handleCardClick={handleCardClick}
+                  />
                 </div>
               );
             }

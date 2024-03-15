@@ -32,7 +32,7 @@ export default function DueDate({ setCardDataDate }) {
               setCardDataDate((prev) => {
                 return {
                   ...prev,
-                  endDate: new dayjs(date.valueOf())
+                  due_date: new dayjs(date.valueOf())
                     .locale("en-gb")
                     .format("DD-MM-YYYY"),
                 };

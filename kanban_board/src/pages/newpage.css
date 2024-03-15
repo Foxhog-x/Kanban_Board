@@ -35,7 +35,7 @@ card_scrollable_todo::-webkit-scrollbar {
 }
 
 .todo {
-  width: 275px;
+  width: 345px;
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   border-radius: 5px;
