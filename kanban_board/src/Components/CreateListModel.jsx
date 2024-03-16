@@ -56,10 +56,7 @@ export const CreateListModel = ({
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
-          <Typography
-            id="modal-modal-description"
-            sx={{ mt: 2 }}
-          ></Typography>{" "}
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
         </Box>
       </Modal>
     </div>

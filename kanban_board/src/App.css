@@ -50,6 +50,7 @@ span {
 
 .top_right_avatars {
   display: flex;
+  gap: 5px;
   justify-content: space-around;
   align-items: baseline;
 }

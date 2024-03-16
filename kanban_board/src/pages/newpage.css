@@ -19,6 +19,7 @@
 body {
   overflow-y: hidden;
   height: 100vh;
+
 }
 
 /* For WebKit browsers */
@@ -35,7 +36,7 @@ card_scrollable_todo::-webkit-scrollbar {
 }
 
 .todo {
-  width: 345px;
+ max-width: 360px;
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   border-radius: 5px;
@@ -89,6 +90,19 @@ card_scrollable_todo::-webkit-scrollbar {
 .horizontal_grid {
   display: flex;
   gap: 5px;
+}
+
+@media screen and (max-width: 475px) { 
+  .horizontal_grid{
+    flex-direction: column;
+    gap: 20px
+  
+
+  }
+  body{
+    overflow-y: scroll;
+     
+  }
 }
 .createlist_css {
   /* From https://css.glass */

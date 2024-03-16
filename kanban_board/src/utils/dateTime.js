@@ -19,5 +19,5 @@ export const dateTimeConverter = (card_Info_Due_Date) => {
 };
 
 export const timeLeftFromNow = (endDueDate) => {
-  console.log(dayjs().from(dayjs(endDueDate), true));
+  return dayjs().from(dayjs(endDueDate), true);
 };
