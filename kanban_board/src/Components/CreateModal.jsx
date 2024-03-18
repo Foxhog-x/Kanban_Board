@@ -11,6 +11,7 @@ import "dayjs/locale/en-gb";
 import Button from "@mui/material/Button";
 import dayjs from "dayjs";
 import AutocompleteAssignUser from "./AutocompleteAssignUsers";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -24,15 +25,16 @@ const style = {
 };
 
 // eslint-disable-next-line react/prop-types
-export const CreateModal = ({ open, setOpen }) => {
+export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
   const priorityType = ["Low", "Medium", "High"];
   const colorSchemes = ["green", "yellow", "red"];
   const [cardData, setCardData] = useState({
     column_id: "",
     title: "",
     description: "",
-    startDate: "",
+    start_date: "",
     due_date: "",
+    assignee_id: "",
     priority: "",
     colorSchemes_id: "",
     department: "",
@@ -48,19 +50,24 @@ export const CreateModal = ({ open, setOpen }) => {
         title: cardData.title,
         description: cardData.description,
         column_id: open.column_id,
-        startDate: cardData.startDate,
+        start_date: cardData.start_date,
         due_date: cardData.due_date,
-        assignee_id: cardData.assignee_id,
+        // assignee_id: cardData.assignee_id,
+        department: cardData.department,
         priority: cardData.priority,
       }),
     });
+    setOpen(false);
+    setTimeout(() => {
+      setReRender(!reRender);
+    }, 300);
   };
-  console.log(cardData, "Card Data");
+
   useEffect(() => {
     setCardData((prev) => {
       return {
         ...prev,
-        startDate: dayjs(new Date()).locale("en-gb").format("DD-MM-YYYY"),
+        start_date: dayjs(new Date()).locale("en-gb").format("YYYY-MM-DD"),
       };
     });
   }, []);
@@ -70,11 +77,10 @@ export const CreateModal = ({ open, setOpen }) => {
       return { ...prev, boolean: false, list_type: "", column_id: "" };
     });
   console.log(cardData, "This is Card data");
-  // const list_name = open.list_type;
+
   return (
     <div>
       <Modal
-        // eslint-disable-next-line react/prop-types
         open={open.boolean}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
