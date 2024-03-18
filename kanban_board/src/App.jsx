@@ -15,18 +15,30 @@ function App() {
     list_type: "",
     column_id: "",
   });
-  console.log(open);
+  const [reRender, setReRender] = useState(false);
   return (
     <>
       <Router>
         <MenuAppBar />
-        <CreateModal open={open} setOpen={setOpen} />
+        <CreateModal
+          reRender={reRender}
+          setReRender={setReRender}
+          open={open}
+          setOpen={setOpen}
+        />
         <Routes>
           {/* <Route exact path="/" element={<Homepage setOpen={setOpen} />} /> */}
           <Route
             exact
             path="/"
-            element={<Newhomepage open={open} setOpen={setOpen} />}
+            element={
+              <Newhomepage
+                reRender={reRender}
+                setReRender={setReRender}
+                open={open}
+                setOpen={setOpen}
+              />
+            }
           />
           <Route exact path="/signup" element={<Signuppage />}></Route>
           <Route exact path="/login" element={<SignInpage />}></Route>
