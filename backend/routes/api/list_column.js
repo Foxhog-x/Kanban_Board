@@ -16,8 +16,29 @@ router.post("/", (req, res) => {
   }
 });
 
+let positionArr = [];
 router.post("/create", (req, res) => {
-  console.log("its workin");
+  const { createList_Obj } = req.body;
+  const { name, board_id } = createList_Obj;
+  console.log(name, board_id);
+  db_con.query(
+    `SELECT position From list_column where board_id = ${board_id}`,
+    (error, result) => {
+      if (error) console.log(error);
+      for (let i = 0; i < result.length; i++) {
+        const { position } = result[i];
+        positionArr.push(position);
+      }
+      let newPostionInsert = positionArr.length + 1;
+      db_con.query(
+        `INSERT INTO list_column (name, board_id, position)values("${name}", ${board_id}, ${newPostionInsert});`,
+        (error, result) => {
+          if (error) console.log(error);
+          console.log(result);
+        }
+      );
+    }
+  );
 });
 
 module.exports = router;

@@ -22,11 +22,6 @@ import Badge from "@mui/material/Badge";
 // import { Colorpalete } from "./Colorpalete";
 
 export const Cards = ({ cardValue, handleCardClick }) => {
-  const returnColor = () => {
-    if (cardValue.priority === "Low") {
-    }
-  };
-
   const bull = (
     <Box
       component="span"
@@ -65,7 +60,7 @@ export const Cards = ({ cardValue, handleCardClick }) => {
 
     //   {/* <Colorpalete /> */}
     // </div>
-    <Card variant="outlined" sx={{ maxWidth: 360 }}>
+    <Card variant="outlined" sx={{ maxWidth: 300 }}>
       <Box sx={{ p: 2 }}>
         <Stack direction="row" justifyContent="space-between">
           {" "}

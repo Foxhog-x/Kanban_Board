@@ -19,9 +19,9 @@ router.post("/", (req, res) => {
     res.send(error);
   }
 });
+
 router.post("/create", (req, res) => {
   console.log(req.body);
-  db_con.query("INSERT");
 });
 
 module.exports = router;

@@ -54,7 +54,7 @@ export const TextFieldFormProps = ({ setCardData }) => {
           style={{ width: "100%", fontSize: "18px", marginTop: "12px" }}
           onChange={(e) =>
             setCardData((prev) => {
-              return { ...prev, department_type: e.target.value };
+              return { ...prev, department: e.target.value };
             })
           }
         />

@@ -106,7 +106,6 @@ export const Signuppage = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  inputRef={lastNameRef}
                   required
                   fullWidth
                   id="lastName"

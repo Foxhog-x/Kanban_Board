@@ -36,7 +36,7 @@ card_scrollable_todo::-webkit-scrollbar {
 }
 
 .todo {
- max-width: 360px;
+  min-width: 300px;
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   border-radius: 5px;
@@ -44,13 +44,16 @@ card_scrollable_todo::-webkit-scrollbar {
   /* From https://css.glass */
   /* From https://css.glass */
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
+  border-radius: 8px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2.6px);
   -webkit-backdrop-filter: blur(2.6px);
   border: 1px solid rgba(255, 255, 255, 0.19);
   display: flex;
   flex-direction: column;
+  overflow-y:auto ;
+  
+  padding: 10px;
   height: 82vh;
 }
 
@@ -66,10 +69,7 @@ card_scrollable_todo::-webkit-scrollbar {
   border: none;
 }
 
-.card_scrollable_todo {
-  padding: 0 12px;
-  overflow-y: auto;
-}
+ 
 .card_scrollable_doing {
   padding: 0px 12px;
   overflow-y: auto;
@@ -95,8 +95,8 @@ card_scrollable_todo::-webkit-scrollbar {
 @media screen and (max-width: 475px) { 
   .horizontal_grid{
     flex-direction: column;
-    gap: 20px
-  
+    gap: 20px;
+    align-items: center;
 
   }
   body{

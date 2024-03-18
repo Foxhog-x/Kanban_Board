@@ -70,7 +70,7 @@ export const Listcolumn = ({
         </div>
         <>
           {cards.map((cardValue) => {
-            if (cardValue.name === list_column_name) {
+            if (cardValue.column_id === list_column_id) {
               // eslint-disable-next-line react/jsx-key
               return (
                 // eslint-disable-next-line react/jsx-key

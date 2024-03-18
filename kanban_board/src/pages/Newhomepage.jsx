@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Listcolumn } from "../Components/Listcolumn";
 import "./newpage.css";
 import { CardInfoModel } from "../Components/CardInfoModel";
@@ -11,7 +11,7 @@ export const Newhomepage = ({ open, setOpen }) => {
   const [basicModelOpen, setBasicModelOpen] = useState(false);
   const [showCardInfoInModel, setShowCardInfoModel] = useState([]);
   const [createListModel, setCreateListModel] = useState(false);
-
+  const addListTextFieldRef = useRef(null);
   const [createListPostApi, setCreateListPostApi] = useState({
     name: "",
     board_id: "",
@@ -44,13 +44,34 @@ export const Newhomepage = ({ open, setOpen }) => {
   useEffect(() => {
     fetchCards();
   }, []);
-
+  console.log(open, "open");
   const handleCardClick = (cardInfovalue) => {
     setBasicModelOpen(!basicModelOpen);
     setShowCardInfoModel(cardInfovalue);
   };
-  const handleCreateListPostapi = () => {
-    console.log(createListPostApi);
+  const handleCreateListPostapi = (e) => {
+    e.preventDefault;
+    if (addListTextFieldRef.current.value === "") {
+      alert("Please fill something");
+    } else {
+      fetch("http://localhost:8000/api/list_column/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          createList_Obj: createListPostApi,
+        }),
+      });
+    }
+    clearForm();
+    setCreateListModel(false);
+
+    setTimeout(() => {
+      fetchList_Col();
+    }, 300);
+  };
+
+  const clearForm = () => {
+    addListTextFieldRef.current.value = "";
   };
   return (
     <>
@@ -59,7 +80,8 @@ export const Newhomepage = ({ open, setOpen }) => {
         setCreateListModel={setCreateListModel}
         setCreateListPostApi={setCreateListPostApi}
         handleCreateListPostapi={handleCreateListPostapi}
-        boardId={list_Col[0]?.board_id}
+        boardId={list_Col?.[0]?.board_id}
+        addListTextFieldRef={addListTextFieldRef}
       />
       <CardInfoModel
         basicModelOpen={basicModelOpen}

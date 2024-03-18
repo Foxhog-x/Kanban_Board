@@ -18,6 +18,7 @@ const style = {
 };
 
 export const CreateListModel = ({
+  addListTextFieldRef,
   createListModel,
   setCreateListModel,
   setCreateListPostApi,
@@ -50,7 +51,7 @@ export const CreateListModel = ({
               <TextFieldCreateList
                 handleCreateListPostapi={handleCreateListPostapi}
                 setCreateListPostApi={setCreateListPostApi}
-                boardId={boardId}
+                addListTextFieldRef={addListTextFieldRef}
               />
             </Box>
           </Typography>

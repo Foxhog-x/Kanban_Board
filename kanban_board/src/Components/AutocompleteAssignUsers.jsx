@@ -1,16 +1,31 @@
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
+import { useEffect, useState } from "react";
 
-export default function AutocompleteAssignUser() {
+export default function AutocompleteAssignUser({ setCardDataAssign }) {
+  const [assign, setAssign] = useState(null);
+
+  // const setDefaultOption = () => {
+  //   setAssign((prev) => {
+  //     return { ...prev, title: "onkar" };
+  //   });
+  // };
+  // useEffect(() => {
+  //   setDefaultOption();
+  // }, []);
+  // console.log(assign);
+  console.log(assign);
   return (
     <Stack spacing={3} sx={{ width: 450 }}>
       <Autocomplete
         multiple
+        onChange={(e, value) => {
+          setAssign(value);
+        }}
         id="tags-outlined"
         options={users_List}
         getOptionLabel={(option) => option.title}
-        defaultValue={[users_List[0]]}
         filterSelectedOptions
         renderInput={(params) => (
           <TextField

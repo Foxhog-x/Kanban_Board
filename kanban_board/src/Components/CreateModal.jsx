@@ -35,7 +35,7 @@ export const CreateModal = ({ open, setOpen }) => {
     due_date: "",
     priority: "",
     colorSchemes_id: "",
-    department_type: "",
+    department: "",
     status: "",
   });
 
@@ -50,10 +50,12 @@ export const CreateModal = ({ open, setOpen }) => {
         column_id: open.column_id,
         startDate: cardData.startDate,
         due_date: cardData.due_date,
+        assignee_id: cardData.assignee_id,
         priority: cardData.priority,
       }),
     });
   };
+  console.log(cardData, "Card Data");
   useEffect(() => {
     setCardData((prev) => {
       return {
@@ -67,7 +69,7 @@ export const CreateModal = ({ open, setOpen }) => {
     setOpen((prev) => {
       return { ...prev, boolean: false, list_type: "", column_id: "" };
     });
-
+  console.log(cardData, "This is Card data");
   // const list_name = open.list_type;
   return (
     <div>
@@ -100,7 +102,7 @@ export const CreateModal = ({ open, setOpen }) => {
             <DueDate setCardDataDate={setCardData} />
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <AutocompleteAssignUser />
+            <AutocompleteAssignUser setCardDataAssign={setCardData} />
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <Typography

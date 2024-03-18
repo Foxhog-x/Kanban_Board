@@ -7,8 +7,7 @@ import Button from "@mui/material/Button";
 export const TextFieldCreateList = ({
   handleCreateListPostapi,
   setCreateListPostApi,
-
-  boardId,
+  addListTextFieldRef,
 }) => {
   return (
     <Box
@@ -23,6 +22,7 @@ export const TextFieldCreateList = ({
       <div>
         <TextField
           required
+          inputRef={addListTextFieldRef}
           variant="outlined"
           id="outlined-required"
           label="Add New Column"

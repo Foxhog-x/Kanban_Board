@@ -27,24 +27,15 @@ export default function DueDate({ setCardDataDate }) {
         />
         <DatePicker
           label="Last Date"
-          onChange={
-            (date) =>
-              setCardDataDate((prev) => {
-                return {
-                  ...prev,
-                  due_date: new dayjs(date.valueOf())
-                    .locale("en-gb")
-                    .format("DD-MM-YYYY"),
-                };
-              })
-            // setStartAndEndDate((prev) => {
-            //   return {
-            //     ...prev,
-            //     endDate: new dayjs(date.valueOf())
-            //       .locale("en-gb")
-            //       .format("DD-MM-YYYY"),
-            //   };
-            // })
+          onChange={(date) =>
+            setCardDataDate((prev) => {
+              return {
+                ...prev,
+                due_date: new dayjs(date.valueOf())
+                  .locale("en-gb")
+                  .format("DD-MM-YYYY"),
+              };
+            })
           }
         />
       </DemoContainer>
