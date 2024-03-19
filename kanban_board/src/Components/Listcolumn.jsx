@@ -69,20 +69,22 @@ export const Listcolumn = ({
           </button>
         </div>
         <>
-          {cards.map((cardValue) => {
-            if (cardValue.column_id === list_column_id) {
-              // eslint-disable-next-line react/jsx-key
-              return (
+          <div className="overflow">
+            {cards.map((cardValue) => {
+              if (cardValue.column_id === list_column_id) {
                 // eslint-disable-next-line react/jsx-key
-                <div className="card_scrollable_todo">
-                  <Cards
-                    cardValue={cardValue}
-                    handleCardClick={handleCardClick}
-                  />
-                </div>
-              );
-            }
-          })}
+                return (
+                  // eslint-disable-next-line react/jsx-key
+                  <div className="card_scrollable_todo">
+                    <Cards
+                      cardValue={cardValue}
+                      handleCardClick={handleCardClick}
+                    />
+                  </div>
+                );
+              }
+            })}
+          </div>
         </>
       </div>
     </div>

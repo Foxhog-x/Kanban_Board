@@ -51,7 +51,7 @@ card_scrollable_todo::-webkit-scrollbar {
   border: 1px solid rgba(255, 255, 255, 0.19);
   display: flex;
   flex-direction: column;
-  overflow-y:auto ;
+   
   
   padding: 10px;
   height: 82vh;
