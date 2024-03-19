@@ -1,31 +1,21 @@
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function AutocompleteAssignUser({ setCardDataAssign }) {
-  const [assign, setAssign] = useState(null);
-
-  // const setDefaultOption = () => {
-  //   setAssign((prev) => {
-  //     return { ...prev, title: "onkar" };
-  //   });
-  // };
-  // useEffect(() => {
-  //   setDefaultOption();
-  // }, []);
-  // console.log(assign);
-  console.log(assign);
   return (
     <Stack spacing={3} sx={{ width: 450 }}>
       <Autocomplete
         multiple
         onChange={(e, value) => {
-          setAssign(value);
+          setCardDataAssign((prev) => {
+            return { ...prev, assignee_id: value };
+          });
         }}
         id="tags-outlined"
         options={users_List}
-        getOptionLabel={(option) => option.title}
+        getOptionLabel={(option) => option.username}
         filterSelectedOptions
         renderInput={(params) => (
           <TextField
@@ -40,4 +30,8 @@ export default function AutocompleteAssignUser({ setCardDataAssign }) {
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const users_List = [{ title: "onkar" }, { title: "swapanil" }];
+const users_List = [
+  { user_id: 1, username: "black_mamba" },
+  { user_id: 2, username: "test_user" },
+  { user_id: 3, username: "see_me" },
+];

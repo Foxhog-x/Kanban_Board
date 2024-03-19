@@ -5,7 +5,7 @@ import { CardInfoModel } from "../Components/CardInfoModel";
 import { CreateListModel } from "../Components/CreateListModel";
 
 // eslint-disable-next-line react/prop-types
-export const Newhomepage = ({ open, setOpen }) => {
+export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   const [list_Col, setList_Col] = useState([]);
   const [cards, setCards] = useState([]);
   const [basicModelOpen, setBasicModelOpen] = useState(false);
@@ -31,7 +31,7 @@ export const Newhomepage = ({ open, setOpen }) => {
   };
   useEffect(() => {
     fetchList_Col();
-  }, []);
+  }, [reRender]);
 
   const fetchCards = async () => {
     const list_Col_Data = await fetch("http://localhost:8000/api/cards", {
@@ -43,12 +43,14 @@ export const Newhomepage = ({ open, setOpen }) => {
   };
   useEffect(() => {
     fetchCards();
-  }, []);
+  }, [reRender]);
   console.log(open, "open");
+
   const handleCardClick = (cardInfovalue) => {
     setBasicModelOpen(!basicModelOpen);
     setShowCardInfoModel(cardInfovalue);
   };
+
   const handleCreateListPostapi = (e) => {
     e.preventDefault;
     if (addListTextFieldRef.current.value === "") {
@@ -66,7 +68,7 @@ export const Newhomepage = ({ open, setOpen }) => {
     setCreateListModel(false);
 
     setTimeout(() => {
-      fetchList_Col();
+      setReRender(!reRender);
     }, 300);
   };
 
@@ -122,7 +124,6 @@ export const Newhomepage = ({ open, setOpen }) => {
                   cards={cards}
                   list_column_id={value.column_id}
                   list_column_name={value.name}
-                  board_id={1}
                 />
               );
             })}

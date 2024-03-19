@@ -83,7 +83,7 @@ export const Cards = ({ cardValue, handleCardClick }) => {
         </Stack>
         <Stack direction="row" justifyContent="start">
           <Typography color="text.secondary" align="left" variant="h6">
-            Create node api for client and create a database
+            {cardValue.title}
           </Typography>
         </Stack>
       </Box>
