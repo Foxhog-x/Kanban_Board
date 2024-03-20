@@ -3,6 +3,7 @@ import { Listcolumn } from "../Components/Listcolumn";
 import "./newpage.css";
 import { CardInfoModel } from "../Components/CardInfoModel";
 import { CreateListModel } from "../Components/CreateListModel";
+import { RightsideDrawer } from "../Components/RightsideDrawer";
 
 // eslint-disable-next-line react/prop-types
 export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
@@ -44,11 +45,10 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   useEffect(() => {
     fetchCards();
   }, [reRender]);
-  console.log(open, "open");
 
   const handleCardClick = (cardInfovalue) => {
-    setBasicModelOpen(!basicModelOpen);
-    setShowCardInfoModel(cardInfovalue);
+    <RightsideDrawer>{CardInfoModel}</RightsideDrawer>;
+    console.log(cardInfovalue, " cardINFO VALUE");
   };
 
   const handleCreateListPostapi = (e) => {
@@ -85,6 +85,7 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
         boardId={list_Col?.[0]?.board_id}
         addListTextFieldRef={addListTextFieldRef}
       />
+
       <CardInfoModel
         basicModelOpen={basicModelOpen}
         setBasicModelOpen={setBasicModelOpen}

@@ -40,53 +40,55 @@ export const Listcolumn = ({
   // }, []);
 
   return (
-    <div className="main_container">
-      <div className="todo">
-        <div className="create_Button"></div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            gap: "20px",
-          }}
-        >
-          <h2> {list_column_name}</h2>
-          <button
-            className="createFlatIconBtn"
-            onClick={() =>
-              setOpen((prev) => {
-                return {
-                  ...prev,
-                  boolean: true,
-                  list_type: list_column_name,
-                  column_id: list_column_id,
-                };
-              })
-            }
+    <>
+      <div className="main_container">
+        <div className="todo">
+          <div className="create_Button"></div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "center",
+              gap: "20px",
+            }}
           >
-            <FlatAddIcon />
-          </button>
-        </div>
-        <>
-          <div className="overflow">
-            {cards.map((cardValue) => {
-              if (cardValue.column_id === list_column_id) {
-                // eslint-disable-next-line react/jsx-key
-                return (
-                  // eslint-disable-next-line react/jsx-key
-                  <div className="card_scrollable_todo">
-                    <Cards
-                      cardValue={cardValue}
-                      handleCardClick={handleCardClick}
-                    />
-                  </div>
-                );
+            <h2> {list_column_name}</h2>
+            <button
+              className="createFlatIconBtn"
+              onClick={() =>
+                setOpen((prev) => {
+                  return {
+                    ...prev,
+                    boolean: true,
+                    list_type: list_column_name,
+                    column_id: list_column_id,
+                  };
+                })
               }
-            })}
+            >
+              <FlatAddIcon />
+            </button>
           </div>
-        </>
+          <>
+            <div className="overflow">
+              {cards.map((cardValue) => {
+                if (cardValue.column_id === list_column_id) {
+                  // eslint-disable-next-line react/jsx-key
+                  return (
+                    // eslint-disable-next-line react/jsx-key
+                    <div className="card_scrollable_todo">
+                      <Cards
+                        cardValue={cardValue}
+                        handleCardClick={handleCardClick}
+                      />
+                    </div>
+                  );
+                }
+              })}
+            </div>
+          </>
+        </div>
       </div>
-    </div>
+    </>
   );
 };

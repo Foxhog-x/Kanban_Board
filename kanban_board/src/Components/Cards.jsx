@@ -18,6 +18,7 @@ import { useState } from "react";
 import { timeLeftFromNow } from "../utils/dateTime";
 import { priorityColor } from "../utils/priorityColor";
 import Badge from "@mui/material/Badge";
+import { RightsideDrawer } from "./RightsideDrawer";
 
 // import { Colorpalete } from "./Colorpalete";
 
@@ -28,7 +29,6 @@ export const Cards = ({ cardValue, handleCardClick }) => {
       sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
     ></Box>
   );
-  console.log(cardValue, "cardvalue");
   const card = (
     // <div className="cards_size">
     //   <div className="card_top_content">
@@ -81,7 +81,11 @@ export const Cards = ({ cardValue, handleCardClick }) => {
             <MuiMenu />
           </Typography>
         </Stack>
-        <Stack direction="row" justifyContent="start">
+        <Stack
+          onClick={() => handleCardClick(cardValue)}
+          direction="row"
+          justifyContent="start"
+        >
           <Typography color="text.secondary" align="left" variant="h6">
             {cardValue.title}
           </Typography>

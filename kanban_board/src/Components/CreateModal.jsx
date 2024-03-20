@@ -76,7 +76,6 @@ export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
     setOpen((prev) => {
       return { ...prev, boolean: false, list_type: "", column_id: "" };
     });
-  console.log(cardData, "This is Card data");
 
   return (
     <div>
