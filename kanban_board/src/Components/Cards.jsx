@@ -6,6 +6,7 @@ import AttachFileIcon from "@mui/icons-material/AttachFile";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
+import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -18,10 +19,18 @@ import { useState } from "react";
 import { timeLeftFromNow } from "../utils/dateTime";
 import { priorityColor } from "../utils/priorityColor";
 import Badge from "@mui/material/Badge";
-import { RightsideDrawer } from "./RightsideDrawer";
 
+import { styled } from "@mui/material/styles";
 // import { Colorpalete } from "./Colorpalete";
+const StyledChip = styled(Chip)(({ theme }) => ({
+  borderRadius: theme.shape.borderRadius - 2, // Use theme's default (4px)
+  fontSize: theme.typography.fontSize - 2, // Adjust font size (optional)
+  padding: theme.spacing(0.5, 1),
+}));
 
+const StyledCardContent = styled(CardContent)(({ theme }) => ({
+  padding: 6, // Remove all padding
+}));
 export const Cards = ({ cardValue, handleCardClick }) => {
   const bull = (
     <Box
@@ -60,11 +69,11 @@ export const Cards = ({ cardValue, handleCardClick }) => {
 
     //   {/* <Colorpalete /> */}
     // </div>
+
     <Card variant="outlined" sx={{ maxWidth: 300 }}>
-      <Box sx={{ p: 2 }}>
-        <Stack direction="row" justifyContent="space-between">
-          {" "}
-          <Chip
+      <StyledCardContent>
+        <Stack direction="row" justifyContent={"space-between"} padding={"4px"}>
+          <StyledChip
             size="small"
             color={
               cardValue?.priority === "Low"
@@ -77,22 +86,22 @@ export const Cards = ({ cardValue, handleCardClick }) => {
             }
             label={cardValue?.priority}
           />
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography>
             <MuiMenu />
           </Typography>
         </Stack>
-        <Stack
-          onClick={() => handleCardClick(cardValue)}
-          direction="row"
-          justifyContent="start"
-        >
-          <Typography color="text.secondary" align="left" variant="h6">
-            {cardValue.title}
-          </Typography>
-        </Stack>
-      </Box>
+        <Box onClick={() => handleCardClick()}>
+          <Stack direction="row" justifyContent="start">
+            <CardActionArea>
+              <Typography color="text.secondary" align="left" variant="h6">
+                {cardValue.title}
+              </Typography>
+            </CardActionArea>
+          </Stack>
+        </Box>
+      </StyledCardContent>
       <Divider />
-      <Box sx={{ p: 2 }}>
+      <Box sx={{ p: 1 }}>
         <Stack
           direction="row"
           alignItems={"center"}

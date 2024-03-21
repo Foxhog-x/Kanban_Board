@@ -4,6 +4,7 @@ import { FlatAddIcon } from "../Components/FlatAddIcon";
 import "../pages/newpage.css";
 import "../App.css";
 import { Cards } from "./Cards";
+import { Box } from "@mui/system";
 
 // eslint-disable-next-line react/prop-types
 export const Listcolumn = ({
@@ -42,33 +43,38 @@ export const Listcolumn = ({
   return (
     <>
       <div className="main_container">
+        <div
+          style={{
+            display: "flex",
+
+            justifyContent: "center",
+          }}
+        >
+          <Box>
+            <div className="list_column_names">
+              <h2 style={{ marginLeft: "15px", marginRight: "15px" }}>
+                {list_column_name}
+              </h2>
+              <button
+                className="createFlatIconBtn"
+                onClick={() =>
+                  setOpen((prev) => {
+                    return {
+                      ...prev,
+                      boolean: true,
+                      list_type: list_column_name,
+                      column_id: list_column_id,
+                    };
+                  })
+                }
+              >
+                <FlatAddIcon />
+              </button>
+            </div>
+          </Box>
+        </div>
+
         <div className="todo">
-          <div className="create_Button"></div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-              alignItems: "center",
-              gap: "20px",
-            }}
-          >
-            <h2> {list_column_name}</h2>
-            <button
-              className="createFlatIconBtn"
-              onClick={() =>
-                setOpen((prev) => {
-                  return {
-                    ...prev,
-                    boolean: true,
-                    list_type: list_column_name,
-                    column_id: list_column_id,
-                  };
-                })
-              }
-            >
-              <FlatAddIcon />
-            </button>
-          </div>
           <>
             <div className="overflow">
               {cards.map((cardValue) => {

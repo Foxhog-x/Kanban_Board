@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: black;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,13 +16,12 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: rgb(78, 101, 255);
-  background: linear-gradient(
+  /* background: linear-gradient(
     53deg,
     rgba(78, 101, 255, 0.7707457983193278) 11%,
     rgba(146, 239, 253, 1) 100%
-  );
-  background-attachment: fixed;
+  ); */
+   
   /* background: rgb(216, 181, 255);
   background: linear-gradient(
     53deg,

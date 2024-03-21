@@ -38,23 +38,23 @@ card_scrollable_todo::-webkit-scrollbar {
 .todo {
   min-width: 300px;
   text-align: center;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
   border-radius: 5px;
-  /* background-color: #6495ed; */
+  /* background-color: whitesmoke; */
   /* From https://css.glass */
   /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.05);
+  /* background: rgba(255, 255, 255, 0.05); */
   border-radius: 8px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(2.6px);
-  -webkit-backdrop-filter: blur(2.6px);
-  border: 1px solid rgba(255, 255, 255, 0.19);
+  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+  /* backdrop-filter: blur(2.6px); */
+  /* -webkit-backdrop-filter: blur(2.6px); */
+  /* border: 1px solid rgba(255, 255, 255, 0.19); */
   display: flex;
   flex-direction: column;
-   
+  height: 78vh;
   
   padding: 10px;
-  height: 82vh;
+ 
 }
 
 .create_Button {
@@ -85,14 +85,23 @@ card_scrollable_todo::-webkit-scrollbar {
 }
 .main_container {
   max-width: 1920px;
-  margin: 10px 8px;
+  margin: 10px 5px;
+ 
+   
 }
+
 .horizontal_grid {
   display: flex;
-  gap: 5px;
+  overflow-x: auto;
+  
+ 
+  
 }
 
 @media screen and (max-width: 475px) { 
+  .todo{
+    height: 100vh;
+  }
   .horizontal_grid{
     flex-direction: column;
     gap: 20px;
@@ -104,13 +113,14 @@ card_scrollable_todo::-webkit-scrollbar {
      
   }
 }
-.createlist_css {
-  /* From https://css.glass */
-  /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.05);
-
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(2.6px);
-  -webkit-backdrop-filter: blur(2.6px);
-  border: 1px solid rgba(255, 255, 255, 0.19);
+ 
+.list_column_names{
+  width: 290px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 7px;
+  line-height: 0.5;
+  margin-bottom: -12px;
 }

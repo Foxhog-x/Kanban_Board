@@ -1,18 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { Listcolumn } from "../Components/Listcolumn";
 import "./newpage.css";
-import { CardInfoModel } from "../Components/CardInfoModel";
 import { CreateListModel } from "../Components/CreateListModel";
-import { RightsideDrawer } from "../Components/RightsideDrawer";
 
+import React from "react";
+import Rightsidecardinfo from "../Components/Rightsidecardinfo";
 // eslint-disable-next-line react/prop-types
 export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   const [list_Col, setList_Col] = useState([]);
   const [cards, setCards] = useState([]);
-  const [basicModelOpen, setBasicModelOpen] = useState(false);
-  const [showCardInfoInModel, setShowCardInfoModel] = useState([]);
   const [createListModel, setCreateListModel] = useState(false);
+  const [infoRightCard, setInfoRightCard] = useState([]);
   const addListTextFieldRef = useRef(null);
+  const [state, setState] = React.useState({
+    right: false,
+  });
   const [createListPostApi, setCreateListPostApi] = useState({
     name: "",
     board_id: "",
@@ -47,8 +49,11 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   }, [reRender]);
 
   const handleCardClick = (cardInfovalue) => {
-    <RightsideDrawer>{CardInfoModel}</RightsideDrawer>;
-    console.log(cardInfovalue, " cardINFO VALUE");
+    setState((prev) => {
+      return { ...prev, right: true };
+    });
+    setInfoRightCard(cardInfovalue);
+    console.log("its works");
   };
 
   const handleCreateListPostapi = (e) => {
@@ -85,11 +90,10 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
         boardId={list_Col?.[0]?.board_id}
         addListTextFieldRef={addListTextFieldRef}
       />
-
-      <CardInfoModel
-        basicModelOpen={basicModelOpen}
-        setBasicModelOpen={setBasicModelOpen}
-        showCardInfoInModel={showCardInfoInModel}
+      <Rightsidecardinfo
+        infoRightCard={infoRightCard}
+        state={state}
+        setState={setState}
       />
       <div
         className="createlist_css"
@@ -117,8 +121,6 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
                 // eslint-disable-next-line react/jsx-key
                 <Listcolumn
                   handleCardClick={handleCardClick}
-                  setBasicModelOpen={setBasicModelOpen}
-                  basicModelOpen={basicModelOpen}
                   setOpen={setOpen}
                   open={open}
                   key={value.name}
