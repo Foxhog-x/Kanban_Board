@@ -90,6 +90,8 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   const clearForm = () => {
     addListTextFieldRef.current.value = "";
   };
+
+  const contentHeight = list_Col.length === 0 ? "100vh" : "";
   return (
     <>
       <CreateListModel
@@ -121,7 +123,12 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
       </div>
       <div
         className="background_color_main_conatin"
-        style={{ overflowX: "auto" }}
+        style={{
+          overflowX: "auto",
+          height: list_Col.length === 0 ? "88vh" : "",
+          display: list_Col.length === 0 ? "grid" : "",
+          placeContent: "center",
+        }}
       >
         <div className="main_container">
           <div className="horizontal_grid">

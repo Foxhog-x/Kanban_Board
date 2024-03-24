@@ -76,7 +76,7 @@ export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
     setOpen((prev) => {
       return { ...prev, boolean: false, list_type: "", column_id: "" };
     });
-
+  console.log(cardData, "card data");
   return (
     <div>
       <Modal
@@ -181,7 +181,11 @@ export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
             </Typography>
           </Typography>
           <Typography sx={{ textAlign: "end" }}>
-            <Button onClick={(e) => handleCreateTaskApi(e)} variant="contained">
+            <Button
+              type="submit"
+              onClick={(e) => handleCreateTaskApi(e)}
+              variant="contained"
+            >
               Create
             </Button>
           </Typography>

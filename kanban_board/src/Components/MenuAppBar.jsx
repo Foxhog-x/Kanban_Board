@@ -12,18 +12,19 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import Stack from "@mui/material/Stack";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import { DrawerMenu } from "./DrawerMenu";
 
 export const MenuAppBar = ({ children, setSwitchTheme }) => {
   // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const [changeDarkIcon, setChangeDarkIcon] = React.useState(false);
   const handleChecked = (event) => {
     setSwitchTheme(event.target.checked);
+    setChangeDarkIcon(event.target.checked);
+    return event.target.checked;
   };
-  // const handleChange = (event) => {
-  //   setAuth(event.target.checked);
-  // };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -61,50 +62,46 @@ export const MenuAppBar = ({ children, setSwitchTheme }) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Kanban-Board
           </Typography>
-          <div>
-            <FormControlLabel
-              control={
-                <Switch
-                  defaultChecked
-                  onChange={handleChecked}
-                  style={{ display: "flex", alignItems: "center" }}
-                />
-              }
+
+          <Stack spacing={2} direction="row">
+            <Switch
+              defaultChecked
+              onChange={handleChecked}
+              style={{ display: "flex", alignItems: "center" }}
             />
-          </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+              {changeDarkIcon ? <DarkModeIcon /> : <WbSunnyIcon />}
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-            <DarkModeIcon />
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>{" "}
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-            </Menu>
-          </div>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>{" "}
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+              </Menu>
+            </div>
+          </Stack>
         </Toolbar>
       </AppBar>
     </Box>

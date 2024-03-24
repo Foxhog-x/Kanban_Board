@@ -35,7 +35,11 @@ export const TextFieldCreateList = ({
             })
           }
         />
-        <Button onClick={(e) => handleCreateListPostapi(e)} variant="contained">
+        <Button
+          type="submit"
+          onClick={(e) => handleCreateListPostapi(e)}
+          variant="contained"
+        >
           Done
         </Button>
       </div>
