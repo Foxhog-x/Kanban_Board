@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Listcolumn } from "../Components/Listcolumn";
 import "./newpage.css";
 import { CreateListModel } from "../Components/CreateListModel";
-
+import Paper from "@mui/material/Paper";
 import React from "react";
 import Rightsidecardinfo from "../Components/Rightsidecardinfo";
+import { grid, height } from "@mui/system";
+
 // eslint-disable-next-line react/prop-types
 export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   const [list_Col, setList_Col] = useState([]);
@@ -27,11 +29,19 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
     const convertingToJson = await list_Col_Data.json();
 
     setList_Col(convertingToJson);
+    if (convertingToJson.length == 0) {
+      setCreateListPostApi({
+        name: "",
+        board_id: 1,
+      });
+    }
     setCreateListPostApi({
       name: "",
       board_id: convertingToJson[0].board_id,
     });
   };
+
+  console.log(createListPostApi, "create list api");
   useEffect(() => {
     fetchList_Col();
   }, [reRender]);
@@ -115,21 +125,29 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
       >
         <div className="main_container">
           <div className="horizontal_grid">
-            {list_Col?.map((value) => {
-              // eslint-disable-next-line react/jsx-key
-              return (
+            {list_Col.length !== 0 ? (
+              list_Col?.map((value) => {
                 // eslint-disable-next-line react/jsx-key
-                <Listcolumn
-                  handleCardClick={handleCardClick}
-                  setOpen={setOpen}
-                  open={open}
-                  key={value.name}
-                  cards={cards}
-                  list_column_id={value.column_id}
-                  list_column_name={value.name}
-                />
-              );
-            })}
+                return (
+                  // eslint-disable-next-line react/jsx-key
+                  <Listcolumn
+                    handleCardClick={handleCardClick}
+                    setOpen={setOpen}
+                    open={open}
+                    key={value.name}
+                    cards={cards}
+                    list_column_id={value.column_id}
+                    list_column_name={value.name}
+                    setReRender={setReRender}
+                    reRender={reRender}
+                  />
+                );
+              })
+            ) : (
+              <div className="horizontal_grid">
+                <div>There is No list to show</div>{" "}
+              </div>
+            )}
           </div>
         </div>
         {/* <Listcolumn value={value} setOpen={setOpen} /> */}

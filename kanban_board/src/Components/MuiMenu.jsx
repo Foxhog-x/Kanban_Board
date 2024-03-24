@@ -2,8 +2,8 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Users_avatar } from "./Users_avatar";
-export const MuiMenu = () => {
+
+export const MuiMenu = ({ list_column_id, reRender, setReRender }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -12,10 +12,26 @@ export const MuiMenu = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  console.log(list_column_id, "col");
+  const handleDeleteApi = () => {
+    fetch("http://localhost:8000/api/list_column/delete", {
+      method: "POST",
+      headers: { "Content-Type": "Application/json" },
+      body: JSON.stringify({
+        column_id: list_column_id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success === true) {
+          setReRender(!reRender);
+        }
+      });
+    setAnchorEl(null);
+  };
 
   return (
     <div className="top_right_avatars">
-      <Users_avatar />
       <Button
         id="basic-button"
         style={{
@@ -41,7 +57,7 @@ export const MuiMenu = () => {
         }}
       >
         <MenuItem onClick={handleClose}>{"Move->>"}</MenuItem>
-        <MenuItem onClick={handleClose}>Delete</MenuItem>
+        <MenuItem onClick={handleDeleteApi}>Delete</MenuItem>
         <MenuItem onClick={handleClose}>Edit</MenuItem>
       </Menu>
     </div>

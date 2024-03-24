@@ -96,8 +96,10 @@ card_scrollable_todo::-webkit-scrollbar {
   
  
   
+ 
+  
 }
-
+ 
 @media screen and (max-width: 475px) { 
   .todo{
     height: 100vh;

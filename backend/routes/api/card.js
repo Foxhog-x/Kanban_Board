@@ -30,8 +30,9 @@ router.post("/create", (req, res) => {
     department,
     priority,
   } = req.body;
+  console.log(req.body);
   db_con.query(
-    `INSERT INTO card(title, description, column_id, start_date, due_date, priority) values("${title}","${description}", "${column_id}", "${start_date}", "${due_date}", "${department}" "${priority}")`,
+    `INSERT INTO card(title, description, column_id, start_date, due_date, department, priority) values("${title}","${description}", "${column_id}", "${start_date}", "${due_date}", "${department}" ,"${priority}")`,
     (error, result) => {
       if (error) console.log(error);
       if (result) {
