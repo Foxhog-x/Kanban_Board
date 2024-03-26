@@ -1,6 +1,7 @@
-import fs from "fs";
+const data = [
+  { user_id: 3, username: "see_me" },
+  { user_id: 5, username: "see_me" },
+];
 
-fs.readFile("./log.txt", (error, data) => {
-  if (error) throw error;
-  console.log(data);
-});
+const mapdata = data.map((assignee) => [assignee.user_id]);
+console.log(mapdata);

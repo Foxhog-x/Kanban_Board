@@ -52,7 +52,7 @@ export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
         column_id: open.column_id,
         start_date: cardData.start_date,
         due_date: cardData.due_date,
-        // assignee_id: cardData.assignee_id,
+        assignee_id: cardData.assignee_id,
         department: cardData.department,
         priority: cardData.priority,
       }),

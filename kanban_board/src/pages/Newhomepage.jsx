@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Listcolumn } from "../Components/Listcolumn";
 import "./newpage.css";
 import { CreateListModel } from "../Components/CreateListModel";
-import Paper from "@mui/material/Paper";
+
 import React from "react";
 import Rightsidecardinfo from "../Components/Rightsidecardinfo";
-import { grid, height } from "@mui/system";
+
+import Button from "@mui/material/Button";
 
 // eslint-disable-next-line react/prop-types
 export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
@@ -91,7 +92,6 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
     addListTextFieldRef.current.value = "";
   };
 
-  const contentHeight = list_Col.length === 0 ? "100vh" : "";
   return (
     <>
       <CreateListModel
@@ -117,9 +117,12 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
         }}
       >
         {" "}
-        <button onClick={() => setCreateListModel(!createListModel)}>
+        <Button
+          variant="contained"
+          onClick={() => setCreateListModel(!createListModel)}
+        >
           Create List
-        </button>
+        </Button>
       </div>
       <div
         className="background_color_main_conatin"

@@ -38,6 +38,7 @@ export const Cards = ({ cardValue, handleCardClick }) => {
       sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
     ></Box>
   );
+  console.log(cardValue);
   const card = (
     // <div className="cards_size">
     //   <div className="card_top_content">

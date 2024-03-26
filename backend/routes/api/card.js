@@ -29,16 +29,32 @@ router.post("/create", (req, res) => {
     due_date,
     department,
     priority,
+    assignee_id,
   } = req.body;
   console.log(req.body);
+
+  const query = `INSERT INTO assignee_members(card_id, user_id, username) values ?`;
+
   db_con.query(
     `INSERT INTO card(title, description, column_id, start_date, due_date, department, priority) values("${title}","${description}", "${column_id}", "${start_date}", "${due_date}", "${department}" ,"${priority}")`,
     (error, result) => {
       if (error) console.log(error);
-      if (result) {
-        console.log(result);
-        console.log("data save successfully");
-      }
+      db_con.query("select last_insert_id()", (error, result) => {
+        if (error) throw error;
+        const assigneeData = assignee_id.map((assignee) => [
+          result[0]["last_insert_id()"],
+          assignee.user_id,
+          assignee.username,
+        ]);
+        console.log(assigneeData);
+        db_con.query(query, [assigneeData], (error, results, fields) => {
+          if (error) {
+            console.error("Error inserting data: " + error.message);
+            return;
+          }
+          console.log("Rows inserted: " + results.affectedRows);
+        });
+      });
     }
   );
 });

@@ -29,8 +29,9 @@ export default function AutocompleteAssignUser({ setCardDataAssign }) {
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const users_List = [
-  { user_id: 1, username: "black_mamba" },
-  { user_id: 2, username: "test_user" },
-  { user_id: 3, username: "see_me" },
-];
+// const users_List = [
+//   { user_id: 1, username: "black_mamba" },
+//   { user_id: 2, username: "test_user" },
+//   { user_id: 3, username: "see_me" },
+// ];
+const users_List = JSON.parse(localStorage.getItem("userData"));
