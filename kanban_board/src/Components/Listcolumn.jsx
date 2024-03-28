@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 // import { useEffect } from "react";
-import { FlatAddIcon } from "../Components/FlatAddIcon";
 import IconButton from "@mui/material/IconButton";
 
 import "../pages/newpage.css";
@@ -9,7 +8,6 @@ import { Cards } from "./Cards";
 import { Box } from "@mui/system";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { MuiMenu } from "./MuiMenu";
-import Paper from "@mui/material/Paper";
 // eslint-disable-next-line react/prop-types
 export const Listcolumn = ({
   list_column_id,
@@ -119,6 +117,8 @@ export const Listcolumn = ({
                     // eslint-disable-next-line react/jsx-key
                     <div className="card_scrollable_todo">
                       <Cards
+                        reRender={reRender}
+                        setReRender={setReRender}
                         cardValue={cardValue}
                         handleCardClick={handleCardClick}
                       />

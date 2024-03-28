@@ -21,6 +21,7 @@ import { priorityColor } from "../utils/priorityColor";
 import Badge from "@mui/material/Badge";
 
 import { styled } from "@mui/material/styles";
+import { MuiMenuCard } from "./MuiMenuCard";
 // import { Colorpalete } from "./Colorpalete";
 const StyledChip = styled(Chip)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius - 2, // Use theme's default (4px)
@@ -31,7 +32,12 @@ const StyledChip = styled(Chip)(({ theme }) => ({
 const StyledCardContent = styled(CardContent)(({ theme }) => ({
   padding: 6, // Remove all padding
 }));
-export const Cards = ({ cardValue, handleCardClick }) => {
+export const Cards = ({
+  cardValue,
+  handleCardClick,
+  reRender,
+  setReRender,
+}) => {
   const bull = (
     <Box
       component="span"
@@ -88,10 +94,15 @@ export const Cards = ({ cardValue, handleCardClick }) => {
             label={cardValue?.priority}
           />
           <Typography>
-            <MuiMenu />
+            {/* <MuiMenu card_id={cardValue.card_id} /> */}
+            <MuiMenuCard
+              card_id={cardValue.card_id}
+              reRender={reRender}
+              setReRender={setReRender}
+            />
           </Typography>
         </Stack>
-        <Box onClick={() => handleCardClick()}>
+        <Box onClick={() => handleCardClick(cardValue)}>
           <Stack direction="row" justifyContent="start">
             <CardActionArea>
               <Typography color="text.secondary" align="left" variant="h6">

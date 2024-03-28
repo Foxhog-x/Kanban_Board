@@ -34,4 +34,6 @@ export default function AutocompleteAssignUser({ setCardDataAssign }) {
 //   { user_id: 2, username: "test_user" },
 //   { user_id: 3, username: "see_me" },
 // ];
-const users_List = JSON.parse(localStorage.getItem("userData"));
+const userdata = JSON.parse(localStorage.getItem("userData"));
+
+const users_List = userdata ? userdata : [{}];

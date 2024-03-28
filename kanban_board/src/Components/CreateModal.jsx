@@ -96,7 +96,7 @@ export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
         >
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {/* <h2>{toUpperCaseFunction(open.list_type)}</h2> */}
-            <Box sx={{ textTransform: "capitalize", m: 2 }}>
+            <Box sx={{ color: "white", textTransform: "capitalize", m: 2 }}>
               {open.list_type}
             </Box>
           </Typography>

@@ -38,7 +38,7 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
     }
     setCreateListPostApi({
       name: "",
-      board_id: convertingToJson[0].board_id,
+      board_id: convertingToJson[0]?.board_id,
     });
   };
 
@@ -66,7 +66,7 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
     setInfoRightCard(cardInfovalue);
     console.log("its works");
   };
-
+  console.log(infoRightCard, "infocardvalue");
   const handleCreateListPostapi = (e) => {
     e.preventDefault;
     if (addListTextFieldRef.current.value === "") {
