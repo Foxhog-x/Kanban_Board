@@ -17,19 +17,26 @@
   );
 } */
 
-.background_color_main_conatin{
+/* .background_color_main_conatin{
+  margin-left: 20px;
+  margin-right: 20px;
   /* From https://css.glass */
-background: rgba(255, 255, 255, 0.23);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5.3px);
--webkit-backdrop-filter: blur(5.3px);
-border: 1px solid rgba(255, 255, 255, 0.11);
-}
+ 
 body {
   overflow-y: hidden;
   height: 100vh;
 
+}
+.background_color_main_conatin{
+/* From https://css.glass */
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.04);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(2.4px);
+-webkit-backdrop-filter: blur(2.4px);
+ margin: 0  12px 0 12px;
+ 
 }
 
 /* For WebKit browsers */
@@ -68,9 +75,11 @@ border: 1px solid rgba(255, 255, 255, 0.17);
   /* border: 1px solid rgba(255, 255, 255, 0.19); */
   display: flex;
   flex-direction: column;
-  height: 76vh;
+  height: 71vh;
   margin-top: 20px;
+   margin-right: 5px;
   padding: 10px;
+  overflow-y: hidden;
  
 }
 
@@ -103,6 +112,12 @@ border: 1px solid rgba(255, 255, 255, 0.17);
 .main_container {
   max-width: 1920px;
   margin: 10px 5px;
+  height: 100vh;
+ 
+  /* From https://css.glass */
+/* From https://css.glass */
+ 
+ 
  
    
 }
@@ -119,7 +134,7 @@ border: 1px solid rgba(255, 255, 255, 0.17);
  
 @media screen and (max-width: 475px) { 
   .todo{
-    height: 100vh;
+    height: 90vh;
   }
   .horizontal_grid{
     flex-direction: column;
@@ -132,6 +147,25 @@ border: 1px solid rgba(255, 255, 255, 0.17);
      
   }
 }
+ 
+@media screen and (min-width: 1650px) { 
+  .todo{
+    height: 74vh;
+  }
+}
+@media screen and (min-width: 2048px) { 
+  .todo{
+    height: 80vh;
+  }
+}
+@media screen and (min-width: 2560px) { 
+  .todo{
+    height: 84vh;
+  }
+}
+ 
+ 
+ 
  
 .list_column_names{
   width: 290px;

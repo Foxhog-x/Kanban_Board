@@ -138,6 +138,7 @@ export const Cards = ({
         minWidth: 200,
         borderRadius: "20px",
         marginTop: "5px",
+        marginRight: "10px",
       }}
     >
       <Card variant="outlined">{card}</Card>
