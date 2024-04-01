@@ -13,6 +13,7 @@ import { darkTheme, whiteTheme } from "./utils/themeMode";
 
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
+import { ComponentA } from "./Components/ComponentA";
 
 function App() {
   // eslint-disable-next-line no-undef
@@ -40,6 +41,7 @@ function App() {
             />
             <Routes>
               {/* <Route exact path="/" element={<Homepage setOpen={setOpen} />} /> */}
+              <Route exact path="/context" element={<ComponentA />} />
               <Route
                 exact
                 path="/"

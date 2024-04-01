@@ -2,9 +2,11 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { CardContext } from "../context/CardContext";
 
-export const MuiMenuCard = ({ card_id, reRender, setReRender }) => {
+export const MuiMenuCard = ({ reRender, setReRender }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { card_id } = React.useContext(CardContext);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

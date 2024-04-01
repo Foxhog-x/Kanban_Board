@@ -21,6 +21,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { MuiMenuCard } from "./MuiMenuCard";
+import { dateTimeConverter } from "../utils/dateTime";
 export default function Rightsidecardinfo({ infoRightCard, state, setState }) {
   const StyledChip = styled(Chip)(({ theme }) => ({
     borderRadius: theme.shape.borderRadius - 2, // Use theme's default (4px)
@@ -86,7 +87,7 @@ export default function Rightsidecardinfo({ infoRightCard, state, setState }) {
             <AdjustIcon />
             <Typography>Status</Typography>
           </Stack>
-          <Stack direction={"row"} spacing={3} alignItems={"center"}>
+          <Stack direction={"row"} spacing={2} alignItems={"center"}>
             <LensOutlinedIcon fontSize="small" />
             <Typography>On Progress</Typography>
           </Stack>
@@ -97,7 +98,7 @@ export default function Rightsidecardinfo({ infoRightCard, state, setState }) {
             <Typography>Due Date</Typography>
           </Stack>
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
-            <Typography>5 March 2024</Typography>
+            <Typography>{dateTimeConverter(infoRightCard.due_date)}</Typography>
           </Stack>
         </Stack>
         <Stack direction={"row"} spacing={10} alignItems={"center"}>
@@ -143,17 +144,17 @@ export default function Rightsidecardinfo({ infoRightCard, state, setState }) {
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
             <StyledChip
               size="small"
-              // color={
-              //   cardValue?.priority === "Low"
-              //     ? "success"
-              //     : cardValue?.priority === "Medium"
-              //     ? "warning"
-              //     : cardValue?.priority === "High"
-              //     ? "error"
-              //     : "default"
-              // }
+              color={
+                infoRightCard?.priority === "Low"
+                  ? "success"
+                  : infoRightCard?.priority === "Medium"
+                  ? "warning"
+                  : infoRightCard?.priority === "High"
+                  ? "error"
+                  : "default"
+              }
               // label={cardValue?.priority}
-              label={"High"}
+              label={infoRightCard.priority}
             />
           </Stack>
         </Stack>
@@ -172,15 +173,7 @@ export default function Rightsidecardinfo({ infoRightCard, state, setState }) {
         >
           <div>
             <Typography pl={1} pr={1}>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero
-              iusto nam inventore doloribus veritatis quas quo vitae, dicta
-              voluptas dolore ratione itaque? Lorem ipsum dolor sit amet Lorem
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni
-              repudiandae quae eveniet ipsum, vero exercitationem obcaecati
-              molestiae incidunt distinctio modi natus rem explicabo accusamus
-              reprehenderit alias itaque labore maxime, mollitia non recusandae
-              debitis maiores. Dolorum rem autem quo, aperiam pariatur
-              doloremque molestias temporibus. Rerum!
+              {infoRightCard.description}
             </Typography>
           </div>
         </Box>

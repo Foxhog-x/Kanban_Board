@@ -15,13 +15,18 @@ import { MuiMenu } from "./MuiMenu";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { timeLeftFromNow } from "../utils/dateTime";
 import { priorityColor } from "../utils/priorityColor";
 import Badge from "@mui/material/Badge";
 
 import { styled } from "@mui/material/styles";
 import { MuiMenuCard } from "./MuiMenuCard";
+import {
+  CardConsumer,
+  CardContext,
+  CardProvider,
+} from "../context/CardContext";
 // import { Colorpalete } from "./Colorpalete";
 const StyledChip = styled(Chip)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius - 2, // Use theme's default (4px)
@@ -32,19 +37,15 @@ const StyledChip = styled(Chip)(({ theme }) => ({
 const StyledCardContent = styled(CardContent)(({ theme }) => ({
   padding: 6, // Remove all padding
 }));
-export const Cards = ({
-  cardValue,
-  handleCardClick,
-  reRender,
-  setReRender,
-}) => {
+export const Cards = ({ handleCardClick, reRender, setReRender }) => {
   const bull = (
     <Box
       component="span"
       sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
     ></Box>
   );
-  console.log(cardValue);
+  const cardValues = useContext(CardContext);
+
   const card = (
     // <div className="cards_size">
     //   <div className="card_top_content">
@@ -57,7 +58,7 @@ export const Cards = ({
     //   </div>
     //   <div
     //     className="card_center_content"
-    //     onClick={() => handleCardClick(cardValue)}
+    //     onClick={() => handleCardClick(cardValues)}
     //   >
     //     <Typography
     //       sx={{
@@ -70,67 +71,73 @@ export const Cards = ({
     //         textAlign: "left",
     //       }}
     //     >
-    //       {cardValue.title}
+    //       {cardValues.title}
     //     </Typography>
     //   </div>
 
     //   {/* <Colorpalete /> */}
     // </div>
 
-    <Card variant="outlined" sx={{ maxWidth: 300 }}>
-      <StyledCardContent>
-        <Stack direction="row" justifyContent={"space-between"} padding={"4px"}>
-          <StyledChip
-            size="small"
-            color={
-              cardValue?.priority === "Low"
-                ? "success"
-                : cardValue?.priority === "Medium"
-                ? "warning"
-                : cardValue?.priority === "High"
-                ? "error"
-                : "default"
-            }
-            label={cardValue?.priority}
-          />
-          <Typography>
-            {/* <MuiMenu card_id={cardValue.card_id} /> */}
-            <MuiMenuCard
-              card_id={cardValue.card_id}
-              reRender={reRender}
-              setReRender={setReRender}
+    <>
+      <Card variant="outlined" sx={{ maxWidth: 300 }}>
+        <StyledCardContent>
+          <Stack
+            direction="row"
+            justifyContent={"space-between"}
+            padding={"4px"}
+          >
+            <StyledChip
+              size="small"
+              color={
+                cardValues?.priority === "Low"
+                  ? "success"
+                  : cardValues?.priority === "Medium"
+                  ? "warning"
+                  : cardValues?.priority === "High"
+                  ? "error"
+                  : "default"
+              }
+              label={cardValues?.priority}
             />
-          </Typography>
-        </Stack>
-        <Box onClick={() => handleCardClick(cardValue)}>
-          <Stack direction="row" justifyContent="start">
-            <CardActionArea>
-              <Typography color="text.secondary" align="left" variant="h6">
-                {cardValue.title}
-              </Typography>
-            </CardActionArea>
+            <Typography>
+              {/* <MuiMenu card_id={cardValues.card_id} /> */}
+              <MuiMenuCard reRender={reRender} setReRender={setReRender} />
+            </Typography>
+          </Stack>
+          <Box onClick={() => handleCardClick(cardValues)}>
+            <Stack direction="row" justifyContent="start">
+              <CardActionArea>
+                <Typography color="text.secondary" align="left" variant="h6">
+                  {cardValues.title}
+                </Typography>
+              </CardActionArea>
+            </Stack>
+          </Box>
+        </StyledCardContent>
+        <Divider />
+        <Box sx={{ p: 1 }}>
+          <Stack
+            direction="row"
+            alignItems={"center"}
+            justifyContent={"end"}
+            spacing={1.5}
+          >
+            <Badge badgeContent={0}>
+              <AttachFileIcon fontSize="small" />
+            </Badge>
+
+            <Stack
+              direction={"row"}
+              justifyContent={"end"}
+              alignItems={"center"}
+            >
+              <AccessTimeOutlinedIcon fontSize="small" />
+              <small>{timeLeftFromNow(cardValues.due_date)}</small>
+            </Stack>
           </Stack>
         </Box>
-      </StyledCardContent>
-      <Divider />
-      <Box sx={{ p: 1 }}>
-        <Stack
-          direction="row"
-          alignItems={"center"}
-          justifyContent={"end"}
-          spacing={1.5}
-        >
-          <Badge badgeContent={0}>
-            <AttachFileIcon fontSize="small" />
-          </Badge>
-
-          <Stack direction={"row"} justifyContent={"end"} alignItems={"center"}>
-            <AccessTimeOutlinedIcon fontSize="small" />
-            <small>{timeLeftFromNow(cardValue.due_date)}</small>
-          </Stack>
-        </Stack>
-      </Box>
-    </Card>
+      </Card>
+    </>
   );
   return (
     <Box

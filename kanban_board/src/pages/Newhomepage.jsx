@@ -69,8 +69,11 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   console.log(infoRightCard, "infocardvalue");
   const handleCreateListPostapi = (e) => {
     e.preventDefault;
+    console.log(addListTextFieldRef.current.value.length, "refess value");
     if (addListTextFieldRef.current.value === "") {
       alert("Please fill something");
+    } else if (addListTextFieldRef.current.value.length >= 18) {
+      alert("please enter less than 18 characters");
     } else {
       fetch("http://localhost:8000/api/list_column/create", {
         method: "POST",
@@ -80,12 +83,11 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
         }),
       });
     }
-    clearForm();
-    setCreateListModel(false);
-
     setTimeout(() => {
       setReRender(!reRender);
     }, 300);
+    clearForm();
+    setCreateListModel(false);
   };
 
   const clearForm = () => {
@@ -127,7 +129,6 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
       <div
         className="background_color_main_conatin"
         style={{
-          overflowX: "auto",
           height: list_Col.length === 0 ? "88vh" : "",
           display: list_Col.length === 0 ? "grid" : "",
           placeContent: "center",

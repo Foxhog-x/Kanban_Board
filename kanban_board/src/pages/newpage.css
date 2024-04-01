@@ -24,14 +24,14 @@
  
 body {
   overflow-y: hidden;
-  height: 100vh;
+ 
 
 }
 .background_color_main_conatin{
 /* From https://css.glass */
 /* From https://css.glass */
 background: rgba(255, 255, 255, 0.04);
-border-radius: 16px;
+ overflow-x: auto;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(2.4px);
 -webkit-backdrop-filter: blur(2.4px);
@@ -53,7 +53,7 @@ card_scrollable_todo::-webkit-scrollbar {
 }
 
 .todo {
-  min-width: 300px;
+  min-width: 275px;
   text-align: center;
   /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
   border-radius: 5px;
@@ -79,7 +79,7 @@ border: 1px solid rgba(255, 255, 255, 0.17);
   margin-top: 20px;
    margin-right: 5px;
   padding: 10px;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
  
 }
 
@@ -96,19 +96,8 @@ border: 1px solid rgba(255, 255, 255, 0.17);
 }
 
  
-.card_scrollable_doing {
-  padding: 0px 12px;
-  overflow-y: auto;
-}
-.card_scrollable_review {
-  padding: 0px 12px;
-  overflow-y: auto;
-}
-
-.card_scrollable_done {
-  padding: 0px 12px;
-  overflow-y: auto;
-}
+ 
+ 
 .main_container {
   max-width: 1920px;
   margin: 10px 5px;
@@ -124,7 +113,7 @@ border: 1px solid rgba(255, 255, 255, 0.17);
 
 .horizontal_grid {
   display: flex;
-  overflow-x: auto;
+   
   
  
   
@@ -168,12 +157,12 @@ border: 1px solid rgba(255, 255, 255, 0.17);
  
  
 .list_column_names{
-  width: 290px;
+  width: 300PX;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 7px;
-  line-height: 0.5;
-  margin-bottom: -12px;
+ 
+ 
 }

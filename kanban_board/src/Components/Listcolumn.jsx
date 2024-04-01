@@ -8,7 +8,9 @@ import { Cards } from "./Cards";
 import { Box } from "@mui/system";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { MuiMenu } from "./MuiMenu";
+import { CardProvider } from "../context/CardContext";
 // eslint-disable-next-line react/prop-types
+
 export const Listcolumn = ({
   list_column_id,
   setReRender,
@@ -56,9 +58,15 @@ export const Listcolumn = ({
           <Box>
             <div className="list_column_names">
               <div>
-                <h2 style={{ marginLeft: "15px", marginRight: "15px" }}>
+                <p
+                  style={{
+                    marginLeft: "15px",
+                    marginRight: "15px",
+                    overflow: "hidden",
+                  }}
+                >
                   {list_column_name}
-                </h2>
+                </p>
               </div>
               <div
                 style={{
@@ -106,7 +114,6 @@ export const Listcolumn = ({
             </div>
           </Box>
         </div>
-
         <div className="todo">
           <>
             <div className="overflow">
@@ -116,12 +123,13 @@ export const Listcolumn = ({
                   return (
                     // eslint-disable-next-line react/jsx-key
                     <div className="card_scrollable_todo">
-                      <Cards
-                        reRender={reRender}
-                        setReRender={setReRender}
-                        cardValue={cardValue}
-                        handleCardClick={handleCardClick}
-                      />
+                      <CardProvider value={cardValue}>
+                        <Cards
+                          reRender={reRender}
+                          setReRender={setReRender}
+                          handleCardClick={handleCardClick}
+                        />
+                      </CardProvider>
                     </div>
                   );
                 }
