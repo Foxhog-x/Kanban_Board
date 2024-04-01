@@ -137,7 +137,7 @@ export const Cards = ({
       sx={{
         minWidth: 200,
         borderRadius: "20px",
-        marginTop: "25px",
+        marginTop: "5px",
       }}
     >
       <Card variant="outlined">{card}</Card>

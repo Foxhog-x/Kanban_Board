@@ -16,6 +16,16 @@
     rgba(27, 255, 255, 0.7791491596638656) 95%
   );
 } */
+
+.background_color_main_conatin{
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.23);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.3px);
+-webkit-backdrop-filter: blur(5.3px);
+border: 1px solid rgba(255, 255, 255, 0.11);
+}
 body {
   overflow-y: hidden;
   height: 100vh;
@@ -40,6 +50,13 @@ card_scrollable_todo::-webkit-scrollbar {
   text-align: center;
   /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
   border-radius: 5px;
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.9px);
+-webkit-backdrop-filter: blur(3.9px);
+border: 1px solid rgba(255, 255, 255, 0.17);
   /* background-color: whitesmoke; */
   /* From https://css.glass */
   /* From https://css.glass */
@@ -51,8 +68,8 @@ card_scrollable_todo::-webkit-scrollbar {
   /* border: 1px solid rgba(255, 255, 255, 0.19); */
   display: flex;
   flex-direction: column;
-  height: 78vh;
-  
+  height: 76vh;
+  margin-top: 20px;
   padding: 10px;
  
 }
