@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Listcolumn } from "../Components/Listcolumn";
 import "./newpage.css";
 import { CreateListModel } from "../Components/CreateListModel";
@@ -8,17 +8,21 @@ import Rightsidecardinfo from "../Components/Rightsidecardinfo";
 
 import Button from "@mui/material/Button";
 import { useFetchList_Col } from "../hooks/useFetchList_Col";
+import { useFetchCards } from "../hooks/useFetchCards";
+import { useCreateList } from "../hooks/useCreateList";
+import { useHandleClick } from "../hooks/useHandleClick";
 
 // eslint-disable-next-line react/prop-types
 export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   // const [list_Col, setList_Col] = useState([]);
-  const [cards, setCards] = useState([]);
-  const [createListModel, setCreateListModel] = useState(false);
-  const [infoRightCard, setInfoRightCard] = useState([]);
-  const addListTextFieldRef = useRef(null);
-  const [state, setState] = React.useState({
-    right: false,
-  });
+  // const [cards, setCards] = useState([]);
+  // const [createListModel, setCreateListModel] = useState(false);
+  // const [infoRightCard, setInfoRightCard] = useState([]);
+  // const addListTextFieldRef = useRef(null);
+
+  // const [state, setState] = React.useState({
+  //   right: false,
+  // });
   // const [createListPostApi, setCreateListPostApi] = useState({
   //   name: "",
   //   board_id: "",
@@ -52,55 +56,66 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   const [list_Col, createListPostApi, setCreateListPostApi] =
     useFetchList_Col(reRender);
 
-  const fetchCards = async () => {
-    const list_Col_Data = await fetch("http://localhost:8000/api/cards", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-    });
-    const convertingToJson = await list_Col_Data.json();
-    setCards(convertingToJson);
-  };
+  const [cards] = useFetchCards(reRender);
 
-  useEffect(() => {
-    fetchCards();
-  }, [reRender]);
+  // const fetchCards = async () => {
+  //   const list_Col_Data = await fetch("http://localhost:8000/api/cards", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //   });
+  //   const convertingToJson = await list_Col_Data.json();
+  //   setCards(convertingToJson);
+  // };
 
-  const handleCardClick = (cardInfovalue) => {
-    setState((prev) => {
-      return { ...prev, right: true };
-    });
-    setInfoRightCard(cardInfovalue);
-    console.log("its works");
-  };
-  console.log(infoRightCard, "infocardvalue");
-  const handleCreateListPostapi = (e) => {
-    e.preventDefault;
-    console.log(addListTextFieldRef.current.value.length, "refess value");
-    if (addListTextFieldRef.current.value === "") {
-      alert("Please fill something");
-    } else if (addListTextFieldRef.current.value.length >= 18) {
-      alert("please enter less than 18 characters");
-    } else {
-      fetch("http://localhost:8000/api/list_column/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          createList_Obj: createListPostApi,
-        }),
-      }).then((response) => {
-        console.log(response.json(), "consoling json response");
-      });
-    }
-    setTimeout(() => {
-      setReRender(!reRender);
-    }, 300);
-    clearForm();
-    setCreateListModel(false);
-  };
+  // useEffect(() => {
+  //   fetchCards();
+  // }, [reRender]);
 
-  const clearForm = () => {
-    addListTextFieldRef.current.value = "";
-  };
+  const { handleCardClick, infoRightCard, state, setState } = useHandleClick();
+
+  // const handleCardClick = (cardInfovalue) => {
+  //   setState((prev) => {
+  //     return { ...prev, right: true };
+  //   });
+  //   setInfoRightCard(cardInfovalue);
+  //   console.log("its works");
+  // };
+
+  const {
+    handleCreateListPostapi,
+    addListTextFieldRef,
+    createListModel,
+    setCreateListModel,
+  } = useCreateList(reRender, setReRender, createListPostApi);
+
+  // const handleCreateListPostapi = (e) => {
+  //   e.preventDefault;
+  //   console.log(addListTextFieldRef.current.value.length, "refess value");
+  //   if (addListTextFieldRef.current.value === "") {
+  //     alert("Please fill something");
+  //   } else if (addListTextFieldRef.current.value.length >= 18) {
+  //     alert("please enter less than 18 characters");
+  //   } else {
+  //     fetch("http://localhost:8000/api/list_column/create", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         createList_Obj: createListPostApi,
+  //       }),
+  //     }).then((response) => {
+  //       console.log(response.json(), "consoling json response");
+  //     });
+  //   }
+  //   setTimeout(() => {
+  //     setReRender(!reRender);
+  //   }, 300);
+  //   clearForm();
+  //   setCreateListModel(false);
+  // };
+
+  // const clearForm = () => {
+  //   addListTextFieldRef.current.value = "";
+  // };
 
   return (
     <>

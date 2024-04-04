@@ -1,4 +1,3 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 
 import Typography from "@mui/material/Typography";
@@ -25,6 +24,7 @@ export const CreateListModel = ({
   createListPostApi,
   handleCreateListPostapi,
   boardId,
+  handlehook,
 }) => {
   const handleClose = () => setCreateListModel(false);
 
@@ -49,7 +49,7 @@ export const CreateListModel = ({
             {/* <h2>{toUpperCaseFunction(open.list_type)}</h2> */}
             <Box sx={{ textTransform: "capitalize", m: 2 }}>
               <TextFieldCreateList
-                handleCreateListPostapi={handleCreateListPostapi}
+                handleCreateListPostapi={(e) => handleCreateListPostapi(e)}
                 setCreateListPostApi={setCreateListPostApi}
                 addListTextFieldRef={addListTextFieldRef}
               />
@@ -58,6 +58,7 @@ export const CreateListModel = ({
           <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
+          <button onClick={(e) => handlehook(e)}>clickhere</button>
         </Box>
       </Modal>
     </div>
