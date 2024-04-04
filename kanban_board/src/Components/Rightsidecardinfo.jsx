@@ -11,6 +11,8 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
 import EditIcon from "@mui/icons-material/Edit";
+import IconButton from "@mui/material/IconButton";
+
 import Edit from "@mui/icons-material/Edit";
 import AdjustIcon from "@mui/icons-material/Adjust";
 import LensOutlinedIcon from "@mui/icons-material/LensOutlined";
@@ -22,6 +24,7 @@ import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { MuiMenuCard } from "./MuiMenuCard";
 import { dateTimeConverter } from "../utils/dateTime";
+
 export default function Rightsidecardinfo({ infoRightCard, state, setState }) {
   const StyledChip = styled(Chip)(({ theme }) => ({
     borderRadius: theme.shape.borderRadius - 2, // Use theme's default (4px)
@@ -72,7 +75,10 @@ export default function Rightsidecardinfo({ infoRightCard, state, setState }) {
           padding={3}
         >
           <Divider />
-          <EditIcon />
+          <IconButton>
+            <EditIcon />
+          </IconButton>
+
           <DeleteForeverIcon />
         </Stack>
       </Stack>

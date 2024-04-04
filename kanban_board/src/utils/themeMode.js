@@ -28,7 +28,7 @@ export const darkTheme = createTheme({
   palette: {
     mode: "dark", // Set the base mode to dark
     primary: {
-      main: "#3f51b5", // Adjust colors for dark theme
+      main: "#2196F3", // Adjust colors for dark theme
     },
     secondary: {
       main: "#f57c00",

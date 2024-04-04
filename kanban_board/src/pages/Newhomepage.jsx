@@ -7,10 +7,11 @@ import React from "react";
 import Rightsidecardinfo from "../Components/Rightsidecardinfo";
 
 import Button from "@mui/material/Button";
+import { useFetchList_Col } from "../hooks/useFetchList_Col";
 
 // eslint-disable-next-line react/prop-types
 export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
-  const [list_Col, setList_Col] = useState([]);
+  // const [list_Col, setList_Col] = useState([]);
   const [cards, setCards] = useState([]);
   const [createListModel, setCreateListModel] = useState(false);
   const [infoRightCard, setInfoRightCard] = useState([]);
@@ -18,34 +19,38 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   const [state, setState] = React.useState({
     right: false,
   });
-  const [createListPostApi, setCreateListPostApi] = useState({
-    name: "",
-    board_id: "",
-  });
-  const fetchList_Col = async () => {
-    const list_Col_Data = await fetch("http://localhost:8000/api/list_column", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-    });
-    const convertingToJson = await list_Col_Data.json();
+  // const [createListPostApi, setCreateListPostApi] = useState({
+  //   name: "",
+  //   board_id: "",
+  // });
 
-    setList_Col(convertingToJson);
-    if (convertingToJson.length == 0) {
-      setCreateListPostApi({
-        name: "",
-        board_id: 1,
-      });
-    }
-    setCreateListPostApi({
-      name: "",
-      board_id: convertingToJson[0]?.board_id,
-    });
-  };
+  // const fetchList_Col = async () => {
+  //   const list_Col_Data = await fetch("http://localhost:8000/api/list_column", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //   });
+  //   const convertingToJson = await list_Col_Data.json();
 
-  console.log(createListPostApi, "create list api");
-  useEffect(() => {
-    fetchList_Col();
-  }, [reRender]);
+  //   setList_Col(convertingToJson);
+  //   if (convertingToJson.length == 0) {
+  //     setCreateListPostApi({
+  //       name: "",
+  //       board_id: 1,
+  //     });
+  //   }
+  //   setCreateListPostApi({
+  //     name: "",
+  //     board_id: convertingToJson[0]?.board_id,
+  //   });
+  // };
+
+  // console.log(createListPostApi, "create list api");
+  // useEffect(() => {
+  //   fetchList_Col();
+  // }, [reRender]);
+
+  const [list_Col, createListPostApi, setCreateListPostApi] =
+    useFetchList_Col(reRender);
 
   const fetchCards = async () => {
     const list_Col_Data = await fetch("http://localhost:8000/api/cards", {
@@ -55,6 +60,7 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
     const convertingToJson = await list_Col_Data.json();
     setCards(convertingToJson);
   };
+
   useEffect(() => {
     fetchCards();
   }, [reRender]);
@@ -81,6 +87,8 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
         body: JSON.stringify({
           createList_Obj: createListPostApi,
         }),
+      }).then((response) => {
+        console.log(response.json(), "consoling json response");
       });
     }
     setTimeout(() => {

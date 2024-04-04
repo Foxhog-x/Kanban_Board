@@ -136,7 +136,11 @@ border: 1px solid rgba(255, 255, 255, 0.17);
      
   }
 }
- 
+@media screen and (min-width: 1440px) { 
+  .todo{
+    height: 68vh;
+  }
+}
 @media screen and (min-width: 1650px) { 
   .todo{
     height: 74vh;

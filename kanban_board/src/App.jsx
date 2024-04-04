@@ -11,9 +11,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { darkTheme, whiteTheme } from "./utils/themeMode";
 
-import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
-import { ComponentA } from "./Components/ComponentA";
+// import MenuItem from "@mui/material/MenuItem";
+// import Typography from "@mui/material/Typography";
 
 function App() {
   // eslint-disable-next-line no-undef
@@ -41,7 +40,6 @@ function App() {
             />
             <Routes>
               {/* <Route exact path="/" element={<Homepage setOpen={setOpen} />} /> */}
-              <Route exact path="/context" element={<ComponentA />} />
               <Route
                 exact
                 path="/"
