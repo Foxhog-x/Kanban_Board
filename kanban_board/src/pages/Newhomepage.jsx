@@ -1,9 +1,7 @@
-import { useRef, useState } from "react";
 import { Listcolumn } from "../Components/Listcolumn";
 import "./newpage.css";
 import { CreateListModel } from "../Components/CreateListModel";
 
-import React from "react";
 import Rightsidecardinfo from "../Components/Rightsidecardinfo";
 
 import Button from "@mui/material/Button";
