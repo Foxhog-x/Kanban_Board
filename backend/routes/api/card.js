@@ -6,13 +6,22 @@ router.post("/", (req, res) => {
   console.log(req.body.board_id);
   try {
     db_con.query(
-      `SELECT List_Column.*, Card.*
-        FROM List_Column
-        LEFT JOIN Card ON List_Column.column_id = Card.column_id
-        WHERE List_Column.board_id = 1`,
+      // `SELECT List_Column.*, Card.*
+      //   FROM List_Column
+      //   LEFT JOIN Card ON List_Column.column_id = Card.column_id
+      //   WHERE List_Column.board_id = 1`,
+      // `SELECT card.*, GROUP_CONCAT(assignee_members.username) as usernames
+      // FROM list_column
+      // LEFT JOIN card ON list_column.column_id = card.column_id
+      // LEFT JOIN assignee_members ON card.card_id = assignee_members.card_id
+      // GROUP BY assignee_members.card_id`,
+
+      `select card.*, GROUP_CONCAT(assignee_members.username) from card right join assignee_members ON assignee_members.card_id = card.card_id group by assignee_members.card_id`,
       (error, result) => {
         if (error) res.send(error);
-        if (result) res.send(result);
+        if (result) {
+          res.send(result);
+        }
       }
     );
   } catch (error) {

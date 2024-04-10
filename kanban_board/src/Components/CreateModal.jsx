@@ -277,9 +277,6 @@ export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
     setOpen((prev) => {
       return { ...prev, boolean: false, list_type: "", column_id: "" };
     });
-  const handlePickColor = () => {
-    setPickColor(true);
-  };
 
   const handleAddLableButton = () => {
     if (labelArray.length !== 0) {
@@ -293,6 +290,7 @@ export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
         setLableArray((prev) => {
           return [...prev, selectLabel];
         });
+        3;
       }
     } else {
       selectLabel !== ""

@@ -9,11 +9,9 @@ router.get("/", (req, res) => {
   try {
     db_con.query(" select username, user_id from User", (error, result) => {
       if (error) console.log(error);
-      let jsonObj = JSON.stringify(result);
-      fs.writeFile(pathname, jsonObj, "utf8", (err, data) => {
-        if (err) res.send(err);
-        res.send(data);
-      });
+      if (result) {
+        res.send(result);
+      }
     });
   } catch (error) {
     console.log(error);
