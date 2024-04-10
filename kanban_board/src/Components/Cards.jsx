@@ -27,6 +27,7 @@ import {
   CardContext,
   CardProvider,
 } from "../context/CardContext";
+import { GroupAvatars } from "./Groupavatars";
 // import { Colorpalete } from "./Colorpalete";
 const StyledChip = styled(Chip)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius - 2, // Use theme's default (4px)
@@ -46,6 +47,7 @@ export const Cards = ({ handleCardClick, reRender, setReRender }) => {
   );
   const cardValues = useContext(CardContext);
 
+  console.log(cardValues, "consoling the card values");
   const card = (
     // <div className="cards_size">
     //   <div className="card_top_content">
@@ -118,19 +120,22 @@ export const Cards = ({ handleCardClick, reRender, setReRender }) => {
         <Box sx={{ p: 1 }}>
           <Stack
             direction="row"
+            justifyContent={"space-between"}
             alignItems={"center"}
-            justifyContent={"end"}
             spacing={1.5}
           >
-            <Badge badgeContent={0}>
-              <AttachFileIcon fontSize="small" />
-            </Badge>
-
+            <Stack direction={"row"}>
+              <GroupAvatars />
+            </Stack>
             <Stack
               direction={"row"}
               justifyContent={"end"}
               alignItems={"center"}
+              gap={1}
             >
+              <Badge badgeContent={0}>
+                <AttachFileIcon fontSize="small" />
+              </Badge>
               <AccessTimeOutlinedIcon fontSize="small" />
               <small>{timeLeftFromNow(cardValues.due_date)}</small>
             </Stack>

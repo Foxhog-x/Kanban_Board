@@ -53,9 +53,10 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
 
   const [list_Col, createListPostApi, setCreateListPostApi] =
     useFetchList_Col(reRender);
+  console.log(list_Col, "ksutsdkjfskfdhksdfkshdf");
 
   const [cards] = useFetchCards(reRender);
-
+  console.log(cards, "all the cards are fetcg");
   // const fetchCards = async () => {
   //   const list_Col_Data = await fetch("http://localhost:8000/api/cards", {
   //     method: "POST",

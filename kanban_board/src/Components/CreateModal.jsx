@@ -205,7 +205,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Priority } from "./Priority";
-import { TwitterPicker } from "react-color";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { useRef } from "react";
@@ -347,7 +346,7 @@ export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
           </Box>
           <Stack direction={"row"} mt={2} justifyContent={"flex-start"} gap={5}>
             <Box width={100}>
-              <Priority />
+              <Priority setCardData={setCardData} />
             </Box>
             <TextField
               error={errorLable}

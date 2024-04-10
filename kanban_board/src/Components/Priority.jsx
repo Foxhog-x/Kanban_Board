@@ -6,7 +6,10 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 export const Priority = ({ setCardData }) => {
+  const [pvalue, setPValue] = React.useState("");
   const handleChange = (event) => {
+    const value = event.target.value;
+    setPValue(value);
     setCardData((prev) => {
       return { ...prev, priority: event.target.value };
     });
@@ -21,6 +24,7 @@ export const Priority = ({ setCardData }) => {
           id="demo-simple-select"
           label="Priority"
           onChange={handleChange}
+          value={pvalue}
         >
           <MenuItem value={"Low"}>Low</MenuItem>
           <MenuItem value={"Medium"}>Medium</MenuItem>
