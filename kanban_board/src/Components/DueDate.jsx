@@ -18,7 +18,7 @@ export default function DueDate({ setCardDataDate }) {
             setCardDataDate((prev) => {
               return {
                 ...prev,
-                start_date: new dayjs(date.valueOf())
+                start_date: new dayjs(date?.valueOf())
                   .locale("en-gb")
                   .format("YYYY-MM-dd"),
               };
@@ -31,7 +31,7 @@ export default function DueDate({ setCardDataDate }) {
             setCardDataDate((prev) => {
               return {
                 ...prev,
-                due_date: new dayjs(date.valueOf())
+                due_date: new dayjs(date?.valueOf())
                   .locale("en-gb")
                   .format("YYYY-MM-DD"),
               };

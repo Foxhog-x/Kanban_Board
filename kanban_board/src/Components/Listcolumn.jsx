@@ -118,6 +118,7 @@ export const Listcolumn = ({
           <>
             <div className="overflow">
               {cards.map((cardValue) => {
+                console.log(cardValue, "cardValue");
                 if (cardValue.column_id === list_column_id) {
                   // eslint-disable-next-line react/jsx-key
                   return (

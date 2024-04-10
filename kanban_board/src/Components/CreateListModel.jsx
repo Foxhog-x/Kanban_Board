@@ -58,7 +58,6 @@ export const CreateListModel = ({
           <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
-          <button onClick={(e) => handlehook(e)}>clickhere</button>
         </Box>
       </Modal>
     </div>

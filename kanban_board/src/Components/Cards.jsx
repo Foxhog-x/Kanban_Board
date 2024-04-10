@@ -79,7 +79,7 @@ export const Cards = ({ handleCardClick, reRender, setReRender }) => {
     // </div>
 
     <>
-      <Card variant="outlined" sx={{ maxWidth: 300 }}>
+      <Card variant="outlined" sx={{ maxWidth: 318 }}>
         <StyledCardContent>
           <Stack
             direction="row"
@@ -142,7 +142,7 @@ export const Cards = ({ handleCardClick, reRender, setReRender }) => {
   return (
     <Box
       sx={{
-        minWidth: 200,
+        minWidth: 318,
         borderRadius: "20px",
         marginTop: "5px",
         marginRight: "10px",

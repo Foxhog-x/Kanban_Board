@@ -4,27 +4,23 @@ import Stack from "@mui/material/Stack";
 
 export default function AutocompleteAssignUser({ setCardDataAssign }) {
   return (
-    <Stack spacing={3} sx={{ width: 450 }}>
-      <Autocomplete
-        multiple
-        onChange={(e, value) => {
-          setCardDataAssign((prev) => {
-            return { ...prev, assignee_id: value };
-          });
-        }}
-        id="tags-outlined"
-        options={users_List}
-        getOptionLabel={(option) => option.username}
-        filterSelectedOptions
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Assign_Team_Members"
-            placeholder="name"
-          />
-        )}
-      />
-    </Stack>
+    // <Stack  spacing={3} sx={{ minWidth: 250 }}>
+    <Autocomplete
+      multiple
+      onChange={(e, value) => {
+        setCardDataAssign((prev) => {
+          return { ...prev, assignee_id: value };
+        });
+      }}
+      id="tags-outlined"
+      options={users_List}
+      getOptionLabel={(option) => option.username}
+      filterSelectedOptions
+      renderInput={(params) => (
+        <TextField {...params} label="Assign_Team_Members" placeholder="name" />
+      )}
+    />
+    // </Stack>
   );
 }
 
