@@ -123,7 +123,10 @@ export const Listcolumn = ({
                   // eslint-disable-next-line react/jsx-key
                   return (
                     // eslint-disable-next-line react/jsx-key
-                    <div className="card_scrollable_todo">
+                    <div
+                      key={cardValue.card_card_id}
+                      className="card_scrollable_todo"
+                    >
                       <CardProvider value={cardValue}>
                         <Cards
                           reRender={reRender}

@@ -290,7 +290,6 @@ export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
         setLableArray((prev) => {
           return [...prev, selectLabel];
         });
-        3;
       }
     } else {
       selectLabel !== ""

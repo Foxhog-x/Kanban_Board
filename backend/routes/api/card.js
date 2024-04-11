@@ -16,7 +16,7 @@ router.post("/", (req, res) => {
       // LEFT JOIN assignee_members ON card.card_id = assignee_members.card_id
       // GROUP BY assignee_members.card_id`,
 
-      `select card.*, GROUP_CONCAT(assignee_members.username) from card right join assignee_members ON assignee_members.card_id = card.card_id group by assignee_members.card_id`,
+      `select card.*, GROUP_CONCAT(assignee_members.username) as assign_users  from card right join assignee_members ON assignee_members.card_id = card.card_id group by assignee_members.card_id;`,
       (error, result) => {
         if (error) res.send(error);
         if (result) {

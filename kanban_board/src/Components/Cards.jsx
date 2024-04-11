@@ -19,7 +19,6 @@ import { useContext, useState } from "react";
 import { timeLeftFromNow } from "../utils/dateTime";
 import { priorityColor } from "../utils/priorityColor";
 import Badge from "@mui/material/Badge";
-
 import { styled } from "@mui/material/styles";
 import { MuiMenuCard } from "./MuiMenuCard";
 import {
@@ -27,16 +26,16 @@ import {
   CardContext,
   CardProvider,
 } from "../context/CardContext";
-import { GroupAvatars } from "./Groupavatars";
-// import { Colorpalete } from "./Colorpalete";
+import { MemoizedMyComponent } from "./Groupavatars";
+
 const StyledChip = styled(Chip)(({ theme }) => ({
-  borderRadius: theme.shape.borderRadius - 2, // Use theme's default (4px)
-  fontSize: theme.typography.fontSize - 2, // Adjust font size (optional)
+  borderRadius: theme.shape.borderRadius - 2,
+  fontSize: theme.typography.fontSize - 2,
   padding: theme.spacing(0.5, 1),
 }));
 
 const StyledCardContent = styled(CardContent)(({ theme }) => ({
-  padding: 6, // Remove all padding
+  padding: 6,
 }));
 export const Cards = ({ handleCardClick, reRender, setReRender }) => {
   const bull = (
@@ -125,7 +124,7 @@ export const Cards = ({ handleCardClick, reRender, setReRender }) => {
             spacing={1.5}
           >
             <Stack direction={"row"}>
-              <GroupAvatars />
+              <MemoizedMyComponent cardValue={cardValues} />
             </Stack>
             <Stack
               direction={"row"}

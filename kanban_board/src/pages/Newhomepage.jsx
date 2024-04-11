@@ -159,15 +159,15 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
         <div className="main_container">
           <div className="horizontal_grid">
             {list_Col.length !== 0 ? (
-              list_Col?.map((value) => {
+              list_Col?.map((value, i) => {
                 // eslint-disable-next-line react/jsx-key
                 return (
                   // eslint-disable-next-line react/jsx-key
                   <Listcolumn
+                    key={i}
                     handleCardClick={handleCardClick}
                     setOpen={setOpen}
                     open={open}
-                    key={value.name}
                     cards={cards}
                     list_column_id={value.column_id}
                     list_column_name={value.name}
