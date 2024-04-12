@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 // import "../App.css";
 import { TextFieldFormProps } from "./TextFieldFormProps";
 // import { useEffect, useState } from "react";
-import DueDate from "./DueDate";
+import { DueDate } from "./DueDate";
 import "dayjs/locale/en-gb";
 // // import { useEffect, useState } from "react";
 // import Button from "@mui/material/Button";
@@ -219,7 +219,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
+const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
   const priorityType = ["Low", "Medium", "High"];
   const colorSchemes = ["green", "yellow", "red"];
   const [pickColor, setPickColor] = useState(false);
@@ -263,7 +263,7 @@ export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
       setReRender(!reRender);
     }, 300);
   };
-  console.log(cardData);
+  // console.log(cardData);
   useEffect(() => {
     setCardData((prev) => {
       return {
@@ -312,8 +312,8 @@ export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
     setErrorLable(false);
     setHelperText("");
   };
-  console.log(selectLabel, "its select label");
-  console.log(labelArray, " this is label array");
+  // console.log(selectLabel, "its select label");
+  // console.log(labelArray, " this is label array");
   return (
     <React.Fragment>
       <BootstrapDialog
@@ -390,3 +390,4 @@ export const CreateModal = ({ open, setOpen, setReRender, reRender }) => {
     </React.Fragment>
   );
 };
+export const CreateModal = React.memo(CreateModals);

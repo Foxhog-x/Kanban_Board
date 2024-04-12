@@ -5,9 +5,10 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import "dayjs/locale/en-gb";
 // import { useEffect, useState } from "react";
 import dayjs from "dayjs";
+import React from "react";
 
 // eslint-disable-next-line react/prop-types
-export default function DueDate({ setCardDataDate }) {
+const DueDates = ({ setCardDataDate }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
       <DemoContainer components={["DatePicker"]}>
@@ -41,4 +42,5 @@ export default function DueDate({ setCardDataDate }) {
       </DemoContainer>
     </LocalizationProvider>
   );
-}
+};
+export const DueDate = React.memo(DueDates);

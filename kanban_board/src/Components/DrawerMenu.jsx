@@ -57,13 +57,15 @@ export const DrawerMenu = () => {
     </Box>
   );
   return (
-    <div>
+    <>
       <Button onClick={toggleDrawer(true)}>
         <MenuIcon style={{ color: "black" }} />
       </Button>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
-        {DrawerList}
-      </Drawer>
-    </div>
+      <>
+        <Drawer open={open} onClose={toggleDrawer(false)}>
+          {DrawerList}
+        </Drawer>
+      </>
+    </>
   );
 };

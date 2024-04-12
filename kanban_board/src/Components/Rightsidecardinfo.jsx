@@ -24,7 +24,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import { MuiMenuCard } from "./MuiMenuCard";
 import { dateTimeConverter } from "../utils/dateTime";
 
-export default function Rightsidecardinfo({ infoRightCard, state, setState }) {
+const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
   const StyledChip = styled(Chip)(({ theme }) => ({
     borderRadius: theme.shape.borderRadius - 2, // Use theme's default (4px)
     fontSize: theme.typography.fontSize - 2, // Adjust font size (optional)
@@ -219,4 +219,5 @@ export default function Rightsidecardinfo({ infoRightCard, state, setState }) {
       ))}
     </div>
   );
-}
+};
+export const Rightsidecardinfo = React.memo(Rightsidecardinfos);

@@ -12,7 +12,7 @@ export const MuiMenu = ({ list_column_id, reRender, setReRender }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  console.log(list_column_id, "col");
+  // console.log(list_column_id, "col");
   const handleDeleteApi = () => {
     fetch("http://localhost:8000/api/list_column/delete", {
       method: "POST",

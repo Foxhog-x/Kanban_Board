@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
 // eslint-disable-next-line react/prop-types
-export const TextFieldFormProps = ({ setCardData }) => {
+const TextFieldFormPropss = ({ setCardData }) => {
   return (
     <Box
       component="form"
@@ -62,3 +62,4 @@ export const TextFieldFormProps = ({ setCardData }) => {
     </Box>
   );
 };
+export const TextFieldFormProps = React.memo(TextFieldFormPropss);

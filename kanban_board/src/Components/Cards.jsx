@@ -26,7 +26,7 @@ import {
   CardContext,
   CardProvider,
 } from "../context/CardContext";
-import { MemoizedMyComponent } from "./Groupavatars";
+import { MemoGroupavatar } from "./Groupavatars";
 
 const StyledChip = styled(Chip)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius - 2,
@@ -46,7 +46,7 @@ export const Cards = ({ handleCardClick, reRender, setReRender }) => {
   );
   const cardValues = useContext(CardContext);
 
-  console.log(cardValues, "consoling the card values");
+  // console.log(cardValues, "consoling the card values");
   const card = (
     // <div className="cards_size">
     //   <div className="card_top_content">
@@ -124,7 +124,7 @@ export const Cards = ({ handleCardClick, reRender, setReRender }) => {
             spacing={1.5}
           >
             <Stack direction={"row"}>
-              <MemoizedMyComponent cardValue={cardValues} />
+              <MemoGroupavatar cardValue={cardValues} />
             </Stack>
             <Stack
               direction={"row"}

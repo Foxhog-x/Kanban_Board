@@ -1,16 +1,14 @@
 import Avatar from "@mui/material/Avatar";
 import AvatarGroup from "@mui/material/AvatarGroup";
 import { avatarBackgrounColor } from "../utils/avatarBackgrounColor";
-import { useCallback, useMemo } from "react";
 import React from "react";
 
 const GroupAvatars = ({ cardValue }) => {
   const userAvatar = cardValue.assign_users.split(",");
-  const countDependency = userAvatar.length;
 
   return (
     <AvatarGroup size max={4}>
-      {userAvatar?.map((value, i) => {
+      {userAvatar?.map((value) => {
         return (
           <Avatar
             key={value}
@@ -27,4 +25,4 @@ const GroupAvatars = ({ cardValue }) => {
     </AvatarGroup>
   );
 };
-export const MemoizedMyComponent = React.memo(GroupAvatars);
+export const MemoGroupavatar = React.memo(GroupAvatars);

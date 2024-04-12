@@ -9,9 +9,10 @@ import { Box } from "@mui/system";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { MuiMenu } from "./MuiMenu";
 import { CardProvider } from "../context/CardContext";
+import React from "react";
 // eslint-disable-next-line react/prop-types
 
-export const Listcolumn = ({
+const Listcolumns = ({
   list_column_id,
   setReRender,
   reRender,
@@ -118,7 +119,7 @@ export const Listcolumn = ({
           <>
             <div className="overflow">
               {cards.map((cardValue) => {
-                console.log(cardValue, "cardValue");
+                // console.log(cardValue, "cardValue");
                 if (cardValue.column_id === list_column_id) {
                   // eslint-disable-next-line react/jsx-key
                   return (
@@ -145,3 +146,5 @@ export const Listcolumn = ({
     </>
   );
 };
+
+export const Listcolumn = React.memo(Listcolumns);
