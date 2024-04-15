@@ -12,7 +12,6 @@ import { styled } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
-
 import AdjustIcon from "@mui/icons-material/Adjust";
 import LensOutlinedIcon from "@mui/icons-material/LensOutlined";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -40,7 +39,8 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
 
     setState({ ...state, [anchor]: open });
   };
-
+  const userAvatar =
+    infoRightCard?.assign_users && infoRightCard?.assign_users.split(",");
   const list = (anchor) => (
     <Box
       sx={{ maxWidth: 600 }}
@@ -106,41 +106,32 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
             <Typography>{dateTimeConverter(infoRightCard.due_date)}</Typography>
           </Stack>
         </Stack>
-        <Stack direction={"row"} spacing={10} alignItems={"center"}>
+        <Stack direction={"row"} spacing={10}>
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
             <AssignmentIndIcon />
             <Typography>Assignee</Typography>
           </Stack>
-          <Box sx={{ maxWidth: 500, overflow: "auto" }}>
-            <Stack direction={"row"} alignItems={"baseline"} spacing={1}>
-              {/* Place your Assignee content here */}
-              <Avatar
-                sx={{ width: 20, height: 20 }}
-                alt="Cindy Baker"
-                src="/static/images/avatar/3.jpg"
-              />
-              <Typography>CindyBaker</Typography>
-              <Avatar
-                sx={{ width: 20, height: 20 }}
-                alt="Cindy Baker"
-                src="/static/images/avatar/3.jpg"
-              />
-              <Typography>CindyBaker</Typography>
-              <Avatar
-                sx={{ width: 20, height: 20 }}
-                alt="Cindy Baker"
-                src="/static/images/avatar/3.jpg"
-              />
-              <Typography>CindyBaker</Typography>
-            </Stack>
-          </Box>
-          <Button sx={{}}>
+          <Stack direction={"row"}>
+            {userAvatar?.map((value) => {
+              console.log(value);
+              return (
+                <>
+                  <Stack direction={"row"} spacing={2} alignItems={"center"}>
+                    <Typography gap={2}>{value}</Typography>
+                  </Stack>
+                </>
+              );
+            })}
+          </Stack>
+        </Stack>
+        {/* <Box sx={{ maxWidth: 500, overflow: "auto" }}>avatar code</Box> */}
+        {/* <Button sx={{}}>
             <Typography display={"flex"} gap={1} alignItems={"center"}>
               <PersonAddIcon />
               Invite
             </Typography>
-          </Button>
-        </Stack>
+          </Button> */}
+
         <Stack direction={"row"} spacing={10} gap={2}>
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
             <PriorityHighIcon />
@@ -170,11 +161,10 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
           </Stack>
         </Stack>
         <Box
+          className="description_rightsidecard"
           width={550}
           height={100}
           overflow={"auto"}
-          border={1}
-          borderRadius={3}
         >
           <div>
             <Typography pl={1} pr={1}>
@@ -194,7 +184,7 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
           width={550}
           height={75}
           overflow={"auto"}
-          border={1}
+          className="description_rightsidecard"
           borderRadius={3}
         >
           <div></div>

@@ -11,6 +11,7 @@ import { MuiMenu } from "./MuiMenu";
 import { CardProvider } from "../context/CardContext";
 import React from "react";
 // eslint-disable-next-line react/prop-types
+import Typography from "@mui/material/Typography";
 
 const Listcolumns = ({
   list_column_id,
@@ -58,17 +59,7 @@ const Listcolumns = ({
         >
           <Box>
             <div className="list_column_names">
-              <div>
-                <p
-                  style={{
-                    marginLeft: "15px",
-                    marginRight: "15px",
-                    overflow: "hidden",
-                  }}
-                >
-                  {list_column_name}
-                </p>
-              </div>
+              <Typography m={1}>{list_column_name}</Typography>
               <div
                 style={{
                   display: "flex",

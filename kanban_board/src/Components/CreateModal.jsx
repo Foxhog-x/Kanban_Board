@@ -312,8 +312,8 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
     setErrorLable(false);
     setHelperText("");
   };
-  // console.log(selectLabel, "its select label");
-  // console.log(labelArray, " this is label array");
+  console.log(selectLabel, "its select label");
+  console.log(labelArray, " this is label array");
   return (
     <React.Fragment>
       <BootstrapDialog
@@ -360,7 +360,13 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
               <Button onClick={handleAddLableButton}>Add</Button>
             </Box>
           </Stack>
-          <Stack maxWidth={300} mt={2} gap={1} direction={"row"}>
+          <Stack
+            maxWidth={300}
+            mt={2}
+            gap={1}
+            direction={"row"}
+            overflowWrap="break-word"
+          >
             {labelArray.map((value, i) => {
               return (
                 <Chip

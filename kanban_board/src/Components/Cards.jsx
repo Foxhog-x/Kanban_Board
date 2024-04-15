@@ -27,15 +27,22 @@ import {
   CardProvider,
 } from "../context/CardContext";
 import { MemoGroupavatar } from "./Groupavatars";
+import { labelChipArrayString } from "../utils/labelChipArrayString";
 
 const StyledChip = styled(Chip)(({ theme }) => ({
-  borderRadius: theme.shape.borderRadius - 2,
+  borderRadius: theme.shape.borderRadius - 4,
   fontSize: theme.typography.fontSize - 2,
   padding: theme.spacing(0.5, 1),
 }));
 
 const StyledCardContent = styled(CardContent)(({ theme }) => ({
   padding: 6,
+}));
+
+const StylelabelStyleChip = styled(Chip)(({ theme }) => ({
+  borderRadius: theme.shape.borderRadius - 4,
+  fontSize: theme.typography.fontSize - 2,
+  margin: 2,
 }));
 export const Cards = ({ handleCardClick, reRender, setReRender }) => {
   const bull = (
@@ -45,8 +52,9 @@ export const Cards = ({ handleCardClick, reRender, setReRender }) => {
     ></Box>
   );
   const cardValues = useContext(CardContext);
+  const labelChip =
+    cardValues?.labels_name && cardValues?.labels_name.split(",");
 
-  // console.log(cardValues, "consoling the card values");
   const card = (
     // <div className="cards_size">
     //   <div className="card_top_content">
@@ -84,8 +92,8 @@ export const Cards = ({ handleCardClick, reRender, setReRender }) => {
         <StyledCardContent>
           <Stack
             direction="row"
-            justifyContent={"space-between"}
             padding={"4px"}
+            justifyContent={"space-between"}
           >
             <StyledChip
               size="small"
@@ -100,15 +108,41 @@ export const Cards = ({ handleCardClick, reRender, setReRender }) => {
               }
               label={cardValues?.priority}
             />
-            <Typography>
-              {/* <MuiMenu card_id={cardValues.card_id} /> */}
-              <MuiMenuCard reRender={reRender} setReRender={setReRender} />
-            </Typography>
+
+            {/* <MuiMenu card_id={cardValues.card_id} /> */}
+            <MuiMenuCard reRender={reRender} setReRender={setReRender} />
           </Stack>
+          <Box
+            ml={1}
+            display={"flex"}
+            justifyContent={"start"}
+            flexWrap={"wrap"}
+            mb={2}
+          >
+            <>
+              {labelChip &&
+                labelChip.map((value) => {
+                  return (
+                    <StylelabelStyleChip
+                      variant="outlined"
+                      size="small"
+                      key={value}
+                      label={<small>{value}</small>}
+                    />
+                  );
+                })}
+            </>
+          </Box>
+
           <Box onClick={() => handleCardClick(cardValues)}>
-            <Stack direction="row" justifyContent="start">
+            <Stack>
               <CardActionArea>
-                <Typography color="text.secondary" align="left" variant="h6">
+                <Typography
+                  color="text.secondary"
+                  align="left"
+                  variant="h6"
+                  mb={2}
+                >
                   {cardValues.title}
                 </Typography>
               </CardActionArea>

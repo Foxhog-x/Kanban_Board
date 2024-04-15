@@ -4,10 +4,11 @@ import { avatarBackgrounColor } from "../utils/avatarBackgrounColor";
 import React from "react";
 
 const GroupAvatars = ({ cardValue }) => {
-  const userAvatar = cardValue.assign_users.split(",");
+  const userAvatar =
+    cardValue?.assign_users && cardValue?.assign_users.split(",");
 
   return (
-    <AvatarGroup size max={4}>
+    <AvatarGroup max={4}>
       {userAvatar?.map((value) => {
         return (
           <Avatar
