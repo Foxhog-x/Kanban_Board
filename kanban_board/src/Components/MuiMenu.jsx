@@ -44,9 +44,7 @@ export const MuiMenu = ({ list_column_id, reRender, setReRender }) => {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-      >
-        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-      </Button>
+      ></Button>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}

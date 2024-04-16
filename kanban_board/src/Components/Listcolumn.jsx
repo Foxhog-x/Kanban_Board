@@ -109,18 +109,19 @@ const Listcolumns = ({
         <div className="todo">
           <>
             <div className="overflow">
-              {cards.map((cardValue) => {
+              {cards.map((cardValue, i) => {
                 // console.log(cardValue, "cardValue");
                 if (cardValue.column_id === list_column_id) {
                   // eslint-disable-next-line react/jsx-key
                   return (
                     // eslint-disable-next-line react/jsx-key
-                    <div
-                      key={cardValue.card_card_id}
-                      className="card_scrollable_todo"
-                    >
-                      <CardProvider value={cardValue}>
+                    <div key={i} className="card_scrollable_todo">
+                      <CardProvider
+                        key={cardValue.card_card_id}
+                        value={cardValue}
+                      >
                         <Cards
+                          key={cardValue.card_id}
                           reRender={reRender}
                           setReRender={setReRender}
                           handleCardClick={handleCardClick}

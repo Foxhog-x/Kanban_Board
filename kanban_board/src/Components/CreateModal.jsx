@@ -240,7 +240,7 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
     department: "",
     status: "",
   });
-
+  console.log(open.column_id, " this is open");
   const handleCreateTaskApi = (e) => {
     e.preventDefault();
     fetch("http://localhost:8000/api/cards/create", {

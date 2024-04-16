@@ -1,9 +1,7 @@
 import { Listcolumn } from "../Components/Listcolumn";
 import "./newpage.css";
 import { CreateListModel } from "../Components/CreateListModel";
-
 import { Rightsidecardinfo } from "../Components/Rightsidecardinfo";
-
 import Button from "@mui/material/Button";
 import { useFetchList_Col } from "../hooks/useFetchList_Col";
 import { useFetchCards } from "../hooks/useFetchCards";

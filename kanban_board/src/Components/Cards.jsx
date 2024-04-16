@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import Box from "@mui/material/Box";
@@ -137,6 +136,12 @@ export const Cards = ({ handleCardClick, reRender, setReRender }) => {
           <Box onClick={() => handleCardClick(cardValues)}>
             <Stack>
               <CardActionArea>
+                {/* <img
+                  src={"/light_grey_dots_background.jpg"}
+                  alt="image"
+                  width={300}
+                  height={125}
+                /> */}
                 <Typography
                   color="text.secondary"
                   align="left"

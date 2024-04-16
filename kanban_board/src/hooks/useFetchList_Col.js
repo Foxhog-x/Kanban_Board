@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import { Board_idContext } from "../context/Board_idContext";
 
 export const useFetchList_Col = (reRender) => {
   const [list_Col, setList_Col] = useState([]);
@@ -7,11 +9,15 @@ export const useFetchList_Col = (reRender) => {
     name: "",
     board_id: "",
   });
+  const board_id = useContext(Board_idContext);
 
   const fetchList_Col = async () => {
     const list_Col_Data = await fetch("http://localhost:8000/api/list_column", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        board_id: board_id,
+      }),
     });
 
     const list_Col_Json = await list_Col_Data.json();
@@ -21,18 +27,18 @@ export const useFetchList_Col = (reRender) => {
     if (list_Col_Json.length == 0) {
       setCreateListPostApi({
         name: "",
-        board_id: 1,
+        board_id: board_id,
       });
     }
     setCreateListPostApi({
       name: "",
-      board_id: list_Col_Json[0]?.board_id,
+      board_id: board_id,
     });
   };
-  console.log(createListPostApi, "create list api");
+
   useEffect(() => {
     fetchList_Col();
-  }, [reRender]);
-
+  }, [reRender, board_id]);
+  console.log(createListPostApi, "createpostlist api");
   return [list_Col, createListPostApi, setCreateListPostApi];
 };
