@@ -11,6 +11,7 @@ const path = require("path");
 router.post("/", async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
   const username = firstName + "_" + lastName;
+
   const salt = await bcrypt.genSalt(10);
   const secretPassword = await bcrypt.hash(password, salt);
 

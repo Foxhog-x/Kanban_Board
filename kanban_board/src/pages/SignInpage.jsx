@@ -12,7 +12,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme } from "@mui/material/styles";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Copyright(props) {
   return (
@@ -36,9 +36,10 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export const SignInpage = () => {
+export const SignInpage = ({ loginData, setLoginData }) => {
   const [inputData, setInputData] = useState({ email: "", password: "" });
-  const handlesubmitData = () => {
+  const handlesubmitData = (e) => {
+    e.preventDefault();
     try {
       fetch("http://localhost:8000/login", {
         method: "POST",
@@ -47,11 +48,16 @@ export const SignInpage = () => {
           email: inputData.email,
           password: inputData.password,
         }),
-      });
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setLoginData(data);
+        });
     } catch (error) {
       console.log(error);
     }
   };
+  localStorage.setItem("authToken", loginData?.authToken);
 
   const handleInputData = (e) => {
     setInputData((prev) => {
@@ -110,7 +116,7 @@ export const SignInpage = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={() => handlesubmitData()}
+            onClick={(e) => handlesubmitData(e)}
           >
             Sign In
           </Button>

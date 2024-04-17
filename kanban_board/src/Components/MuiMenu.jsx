@@ -1,8 +1,9 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 export const MuiMenu = ({ list_column_id, reRender, setReRender }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -32,19 +33,15 @@ export const MuiMenu = ({ list_column_id, reRender, setReRender }) => {
 
   return (
     <div className="top_right_avatars">
-      <Button
+      <IconButton
         id="basic-button"
-        style={{
-          maxWidth: "30px",
-          maxHeight: "30px",
-          minWidth: "30px",
-          minHeight: "30px",
-        }}
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-      ></Button>
+      >
+        <MoreVertIcon />
+      </IconButton>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}

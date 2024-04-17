@@ -1,6 +1,10 @@
 const express = require("express");
 const db_con = require("../../db");
+const user_idMiddlewere = require("../../user_idMiddlewere");
+// const { route } = require("./card");
 const router = express.Router();
+const secret = "mysecret";
+var jwt = require("jsonwebtoken");
 
 router.post("/", (req, res) => {
   try {
@@ -15,4 +19,8 @@ router.post("/", (req, res) => {
   }
 });
 
+router.post("/create", user_idMiddlewere, (req, res) => {
+  console.log(req.body);
+  console.log(req.user_id);
+});
 module.exports = router;

@@ -10,9 +10,11 @@ import { Newhomepage } from "./pages/Newhomepage";
 import { ThemeProvider } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { darkTheme, whiteTheme } from "./utils/themeMode";
-import { BoardContext, BoardProvider } from "./context/BoardContext";
+import { BoardProvider } from "./context/BoardContext";
 import React from "react";
 import { Board_idProvider } from "./context/Board_idContext";
+import FormDialog from "./Components/FormDialog";
+
 // import MenuItem from "@mui/material/MenuItem";
 // import Typography from "@mui/material/Typography";
 
@@ -23,10 +25,20 @@ const Apps = () => {
     list_type: "",
     column_id: "",
   });
+
+  const [loginData, setLoginData] = useState([]);
+  const [openFormDialogBoard, setOpenFormDialogBoard] = React.useState({
+    bool: false,
+    board_Type: "",
+    board_name: "",
+  });
   const [settingBoard_id, setSettingBoard_id] = React.useState(1);
   const [reRender, setReRender] = useState(false);
   const [switchTheme, setSwitchTheme] = useState(true);
   const [board, setBoard] = useState([]);
+  if (localStorage.getItem("authToken") === "undefined") {
+    localStorage.setItem("authToken", loginData.authToken);
+  }
 
   useEffect(() => {
     const fetchBoard = async () => {
@@ -44,23 +56,49 @@ const Apps = () => {
 
     fetchBoard();
   }, []);
-
-  console.log(board);
+  const authToken = localStorage.getItem("authToken");
 
   const handleBoardClick = (board_id) => {
     setSettingBoard_id(board_id);
   };
+  const handleCreateBoard = (board_Type) => {
+    setOpenFormDialogBoard((prev) => {
+      return { ...prev, bool: true, board_Type: board_Type };
+    });
+  };
+
+  const handleCreateBoardApi = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:8000/api/boards/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        board_name: openFormDialogBoard.board_name,
+        board_Type: openFormDialogBoard.board_Type,
+        creator_id: authToken,
+      }),
+    });
+
+    setOpenFormDialogBoard((prev) => {
+      return { ...prev, bool: false };
+    });
+  };
 
   return (
     <>
-      {" "}
       <ThemeProvider theme={switchTheme ? darkTheme : whiteTheme}>
         <Paper>
           <Router>
+            <FormDialog
+              openFormDialogBoard={openFormDialogBoard}
+              setOpenFormDialogBoard={setOpenFormDialogBoard}
+              handleCreateBoardApi={handleCreateBoardApi}
+            />
             <BoardProvider value={board && board}>
               <MenuAppBar
                 setSwitchTheme={setSwitchTheme}
                 handleBoardClick={handleBoardClick}
+                handleCreateBoard={handleCreateBoard}
               />
             </BoardProvider>
 
@@ -87,7 +125,16 @@ const Apps = () => {
                 }
               />
               <Route exact path="/signup" element={<Signuppage />}></Route>
-              <Route exact path="/login" element={<SignInpage />}></Route>
+              <Route
+                exact
+                path="/login"
+                element={
+                  <SignInpage
+                    loginData={loginData}
+                    setLoginData={setLoginData}
+                  />
+                }
+              ></Route>
             </Routes>
           </Router>
         </Paper>

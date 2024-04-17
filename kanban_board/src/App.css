@@ -42,11 +42,11 @@ span {
   margin: 3px;
   font-size: 18px;
 }
-#basic-button {
+/* #basic-button {
   width: 10px;
   display: flex;
   justify-content: flex-end;
-}
+} */
 
 .top_right_avatars {
   display: flex;

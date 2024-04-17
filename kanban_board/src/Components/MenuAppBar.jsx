@@ -16,7 +16,12 @@ import Stack from "@mui/material/Stack";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import { DrawerMenu } from "./DrawerMenu";
 
-export const MenuAppBar = ({ children, setSwitchTheme, handleBoardClick }) => {
+export const MenuAppBar = ({
+  children,
+  setSwitchTheme,
+  handleBoardClick,
+  handleCreateBoard,
+}) => {
   // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [changeDarkIcon, setChangeDarkIcon] = React.useState(false);
@@ -57,7 +62,10 @@ export const MenuAppBar = ({ children, setSwitchTheme, handleBoardClick }) => {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <DrawerMenu handleBoardClick={handleBoardClick} />
+            <DrawerMenu
+              handleBoardClick={handleBoardClick}
+              handleCreateBoard={handleCreateBoard}
+            />
           </IconButton>
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

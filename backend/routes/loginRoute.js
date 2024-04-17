@@ -3,34 +3,44 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const db_con = require("../db");
 const secret = "mysecret";
-var jwt = require("jsonwebtoken");
+
+const jwt = require("jsonwebtoken");
 router.post("/", (req, res) => {
-  const { email } = req.body;
-  const textPassword = req.body.password;
+  let email = req.body.email;
+  const textPass = req.body.password;
+  console.log(email);
+
   try {
     db_con.query(
-      `SELECT * FROM User WHERE email = "${email}"`,
+      `select * from user where email = '${email}'`,
       (error, results) => {
         if (error) console.log(error);
-        const { user_id, password } = results[0];
-        bcrypt.compare(textPassword, password).then((result) => {
-          if (result !== false) {
-            const user = {
-              id: user_id,
-            };
-            const jwtAuthToken = jwt.sign(user, secret);
-            console.log(jwtAuthToken);
-            res.status(201).json({
-              success: true,
-              authToken: jwtAuthToken,
-              message: "Login Successfull",
-            });
-          } else {
-            res
-              .status(400)
-              .json({ success: false, message: "user does not exist" });
-          }
-        });
+        if (results) {
+          let password = results[0]?.password;
+          let user_id = results[0]?.user_id;
+
+          // Hash a password
+
+          bcrypt.compare(textPass, password).then((error, result) => {
+            if (error) console.log(error);
+            if (result !== false) {
+              const user = {
+                id: user_id,
+              };
+              const jwtAuthToken = jwt.sign(user, secret);
+              res.status(201).json({
+                success: true,
+                user_id: user_id,
+                authToken: jwtAuthToken,
+                message: "Login Successfull",
+              });
+            } else {
+              res
+                .status(400)
+                .json({ success: false, message: "user does not exist" });
+            }
+          });
+        }
       }
     );
   } catch (error) {

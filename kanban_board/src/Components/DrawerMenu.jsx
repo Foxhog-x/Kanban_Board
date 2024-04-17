@@ -15,7 +15,7 @@ import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import IconButton from "@mui/material/IconButton";
 import { BoardContext } from "../context/BoardContext";
 
-const DrawerMenus = ({ handleBoardClick }) => {
+const DrawerMenus = ({ handleBoardClick, handleCreateBoard }) => {
   const BoardArray = { public: [], private: [] };
 
   const [open, setOpen] = React.useState(false);
@@ -51,7 +51,7 @@ const DrawerMenus = ({ handleBoardClick }) => {
           }}
         >
           <Typography variant="h5">Public Board</Typography>
-          <IconButton onClick={() => handleCreatePublicBoard()}>
+          <IconButton onClick={() => handleCreateBoard("Public")}>
             <AddIcon />
           </IconButton>
         </div>
@@ -86,7 +86,7 @@ const DrawerMenus = ({ handleBoardClick }) => {
           }}
         >
           <Typography variant="h5">Private Board</Typography>
-          <IconButton>
+          <IconButton onClick={() => handleCreateBoard("Private")}>
             <AddIcon />
           </IconButton>
         </div>
