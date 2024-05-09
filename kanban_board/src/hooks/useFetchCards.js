@@ -14,6 +14,6 @@ export const useFetchCards = (reRender) => {
   useEffect(() => {
     fetchCards();
   }, [reRender]);
-
-  return [cards];
+  console.log(cards);
+  return [cards, setCards];
 };

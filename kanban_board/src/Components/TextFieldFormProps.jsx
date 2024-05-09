@@ -2,9 +2,10 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { Reactquill } from "./Reactquill";
 
 // eslint-disable-next-line react/prop-types
-const TextFieldFormPropss = ({ setCardData }) => {
+const TextFieldFormPropss = ({ open, setCardData }) => {
   return (
     <Box
       component="form"
@@ -30,8 +31,9 @@ const TextFieldFormPropss = ({ setCardData }) => {
             })
           }
         />
-
-        <TextField
+        <Reactquill open={open} setCardData={setCardData} />
+        {/* <ReactQuill setCardData={setCardData} /> */}
+        {/* <TextField
           label="Description"
           multiline
           rows={4} // Adjust the number of rows as needed
@@ -42,7 +44,7 @@ const TextFieldFormPropss = ({ setCardData }) => {
               return { ...prev, description: e.target.value };
             })
           }
-        />
+        /> */}
 
         <TextField
           required

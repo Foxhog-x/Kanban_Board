@@ -3,11 +3,9 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import { Stack, border, borderRadius, flexbox, grid, width } from "@mui/system";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import AttachFileIcon from "@mui/icons-material/AttachFile";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
-import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
 import EditIcon from "@mui/icons-material/Edit";
@@ -16,12 +14,10 @@ import AdjustIcon from "@mui/icons-material/Adjust";
 import LensOutlinedIcon from "@mui/icons-material/LensOutlined";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
-import Avatar from "@mui/material/Avatar";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 import DescriptionIcon from "@mui/icons-material/Description";
-import { MuiMenuCard } from "./MuiMenuCard";
 import { dateTimeConverter } from "../utils/dateTime";
+import { Reactquill } from "./Reactquill";
 
 const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
   const StyledChip = styled(Chip)(({ theme }) => ({
@@ -29,6 +25,7 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
     fontSize: theme.typography.fontSize - 2, // Adjust font size (optional)
     padding: theme.spacing(0.5, 1),
   }));
+  console.log(infoRightCard);
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -41,12 +38,13 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
   };
   const userAvatar =
     infoRightCard?.assign_users && infoRightCard?.assign_users.split(",");
+
   const list = (anchor) => (
     <Box
       sx={{ maxWidth: 600 }}
       role="presentation"
       // onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, true)}
     >
       <div className="coverphoto_rightsidecard"></div>
       <Stack
@@ -124,13 +122,6 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
             })}
           </Stack>
         </Stack>
-        {/* <Box sx={{ maxWidth: 500, overflow: "auto" }}>avatar code</Box> */}
-        {/* <Button sx={{}}>
-            <Typography display={"flex"} gap={1} alignItems={"center"}>
-              <PersonAddIcon />
-              Invite
-            </Typography>
-          </Button> */}
 
         <Stack direction={"row"} spacing={10} gap={2}>
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
@@ -160,45 +151,17 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
             <Typography>Description</Typography>
           </Stack>
         </Stack>
-        <Box
-          className="description_rightsidecard"
-          width={550}
-          height={100}
-          overflow={"auto"}
-        >
-          <div>
-            <Typography pl={1} pr={1}>
-              {infoRightCard.description}
-            </Typography>
-          </div>
-        </Box>
-        <Divider />
-        <Stack direction={"row"} spacing={10} gap={2}>
-          <Stack direction={"row"} spacing={2} alignItems={"center"}>
-            <AttachFileIcon />
-            <Typography>Attachement</Typography>
-          </Stack>
-        </Stack>
-
-        <Box
-          width={550}
-          height={75}
-          overflow={"auto"}
-          className="description_rightsidecard"
-          borderRadius={3}
-        >
-          <div></div>
-        </Box>
-        <Divider />
+        <Reactquill editableText={infoRightCard?.description_content} />
       </Stack>
     </Box>
   );
 
   return (
     <div>
-      {["right"].map((anchor) => (
+      {["right"].map((anchor, i) => (
         <React.Fragment key={anchor}>
           <Drawer
+            key={i}
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}

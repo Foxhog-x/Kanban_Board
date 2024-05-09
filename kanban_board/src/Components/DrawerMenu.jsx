@@ -2,8 +2,8 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
 import List from "@mui/material/List";
+import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -14,6 +14,7 @@ import AddIcon from "@mui/icons-material/Add";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import IconButton from "@mui/material/IconButton";
 import { BoardContext } from "../context/BoardContext";
+import { MeunAppWrapper } from "./helper/MeunAppWrapper";
 
 const DrawerMenus = ({ handleBoardClick, handleCreateBoard }) => {
   const BoardArray = { public: [], private: [] };
@@ -116,16 +117,12 @@ const DrawerMenus = ({ handleBoardClick, handleCreateBoard }) => {
     </Box>
   );
   return (
-    <>
-      <Button onClick={toggleDrawer(true)}>
-        <MenuIcon style={{ color: "black" }} />
-      </Button>
-      <>
-        <Drawer open={open} onClose={toggleDrawer(false)}>
-          {DrawerList}
-        </Drawer>
-      </>
-    </>
+    <MeunAppWrapper>
+      <MenuIcon onClick={console.log("hello")} />
+      <Drawer open={open} onClose={toggleDrawer(false)}>
+        {DrawerList}
+      </Drawer>
+    </MeunAppWrapper>
   );
 };
 export const DrawerMenu = React.memo(DrawerMenus);

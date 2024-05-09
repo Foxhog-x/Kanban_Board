@@ -14,8 +14,10 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 5;
   box-sizing: border-box;
+   height: 90vh;
+    
   /* background: linear-gradient(
     53deg,
     rgba(78, 101, 255, 0.7707457983193278) 11%,

@@ -8,6 +8,7 @@
   padding: 5px;
   border-radius: 5px;
 }
+
 .empty_card{
   height: 35px;
    display: flex;
@@ -17,13 +18,12 @@
   border-radius: 5px;
 }
 
-
-
 .top_left_card {
   display: flex;
   justify-content: space-between;
   align-items: last baseline;
 }
+
 .card_center_content{
   line-height: 1;
   height: 55px;
@@ -33,21 +33,18 @@
   align-items: flex-start;
 border-bottom: 1px solid black;
 }
+
 small {
   padding: 2px;
   margin: 2px;
 }
+
 span {
   padding: 3px;
   margin: 3px;
   font-size: 18px;
 }
-/* #basic-button {
-  width: 10px;
-  display: flex;
-  justify-content: flex-end;
-} */
-
+ 
 .top_right_avatars {
   display: flex;
   gap: 5px;
@@ -55,11 +52,9 @@ span {
   align-items: baseline;
 }
 
- 
 .menu_Drawer{
   padding: 5px;
-  margin:5px;
-   
+  margin:5px;   
 }
 
 .colorPalet_circle{
@@ -68,11 +63,8 @@ span {
   border-radius: 50%;
   margin: "2px";
   padding: "2px";
-   
-   
- 
-
 }
+
 .Create_colorPalet_circle{
   width: 10px;
   height: 10px;
@@ -81,7 +73,8 @@ span {
   padding: "2px";
   border: none;
 }
- .colorPalet_circle_btn{
+
+.colorPalet_circle_btn{
   background: none;
   background-color: transparent;
  }
@@ -90,15 +83,15 @@ span {
 .card_info_font{
   font-family: 'Signika';
 }
+
 li{
   text-decoration: none;
 }
 
 .overflow{
-  overflow-y: auto;
- 
-     
+  overflow-y: auto;  
 }
+
 .coverphoto_rightsidecard{
   border: 1px solid black;
   height: 100px;
@@ -107,7 +100,19 @@ li{
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .description_rightsidecard{
   border: none;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;  padding: 8px;
 }
+
+.ql-container {
+  min-height: 10rem;
+  max-width: 600px;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+ 
+ 

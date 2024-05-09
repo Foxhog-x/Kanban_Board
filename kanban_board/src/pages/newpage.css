@@ -1,86 +1,33 @@
-/* .main_container {
-  max-width: 1950px;
-  margin: 20px;
-  border-radius: 10px;
-  justify-content: center;
-  display: flex;
-  min-height: 100vh;
 
-  
-} */
-/* .background_color_main_conatin {
-  background-color: rgb(46, 49, 146);
-  background: linear-gradient(
-    53deg,
-    rgba(46, 49, 146, 0.8015581232492998) 2%,
-    rgba(27, 255, 255, 0.7791491596638656) 95%
-  );
-} */
-
-/* .background_color_main_conatin{
-  margin-left: 20px;
-  margin-right: 20px;
-  /* From https://css.glass */
- 
-body {
-  overflow-y: hidden;
- 
-
-}
 .background_color_main_conatin{
-/* From https://css.glass */
-/* From https://css.glass */
-background: rgba(255, 255, 255, 0.04);
+ background: rgba(255, 255, 255, 0.04);
  overflow-x: auto;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(2.4px);
--webkit-backdrop-filter: blur(2.4px);
+ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+ backdrop-filter: blur(2.4px);
+ -webkit-backdrop-filter: blur(2.4px);
  margin: 0  12px 0 12px;
  
-}
-
-/* For WebKit browsers */
-card_scrollable_doing::-webkit-scrollbar {
-  width: 3px; /* Adjust the width as needed */
-}
-
-card_scrollable_todo::-webkit-scrollbar {
-  width: 3px; /* Adjust the width as needed */
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: #888; /* Ensure the same color as normal state */
-  outline: none; /* Remove any outline on hover */
-}
+} 
 
 .todo {
   min-width: 275px;
-  text-align: center;
-  /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
-  border-radius: 5px;
-  /* From https://css.glass */
-background: rgba(255, 255, 255, 0.1);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(3.9px);
--webkit-backdrop-filter: blur(3.9px);
-border: 1px solid rgba(255, 255, 255, 0.17);
-  /* background-color: whitesmoke; */
-  /* From https://css.glass */
-  /* From https://css.glass */
-  /* background: rgba(255, 255, 255, 0.05); */
-  border-radius: 8px;
-  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
-  /* backdrop-filter: blur(2.6px); */
-  /* -webkit-backdrop-filter: blur(2.6px); */
-  /* border: 1px solid rgba(255, 255, 255, 0.19); */
-  display: flex;
+  min-height: 20px;
+  text-align: center; 
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 5px; 
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.17); 
+  border-radius: 8px; 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.19); 
+  display: flex; 
   flex-direction: column;
-  height: 71vh;
   margin-top: 20px;
-   margin-right: 5px;
+  margin-right: 5px;
   padding: 10px;
-  /* overflow-y: hidden; */
- 
+  
 }
 
 .create_Button {
@@ -95,30 +42,15 @@ border: 1px solid rgba(255, 255, 255, 0.17);
   border: none;
 }
 
- 
- 
- 
 .main_container {
   max-width: 1920px;
   margin: 10px 5px;
-  height: 100vh;
- 
-  /* From https://css.glass */
-/* From https://css.glass */
- 
- 
- 
-   
+  height: 87vh;
 }
 
 .horizontal_grid {
   display: flex;
-   
-  
  
-  
- 
-  
 }
  
 @media screen and (max-width: 475px) { 
@@ -129,37 +61,13 @@ border: 1px solid rgba(255, 255, 255, 0.17);
     flex-direction: column;
     gap: 20px;
     align-items: center;
-
+  
   }
   body{
-    overflow-y: scroll;
-     
+    overflow-y: scroll;   
   }
-}
-@media screen and (min-width: 1440px) { 
-  .todo{
-    height: 68vh;
-  }
-}
-@media screen and (min-width: 1650px) { 
-  .todo{
-    height: 74vh;
-  }
-}
-@media screen and (min-width: 2048px) { 
-  .todo{
-    height: 80vh;
-  }
-}
-@media screen and (min-width: 2560px) { 
-  .todo{
-    height: 84vh;
-  }
-}
- 
- 
- 
- 
+ }
+
 .list_column_names{
   width: 300PX;
   display: flex;
@@ -167,6 +75,4 @@ border: 1px solid rgba(255, 255, 255, 0.17);
   align-items: center;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 7px;
- 
- 
 }

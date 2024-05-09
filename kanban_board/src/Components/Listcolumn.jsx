@@ -12,10 +12,11 @@ import { CardProvider } from "../context/CardContext";
 import React from "react";
 // eslint-disable-next-line react/prop-types
 import Typography from "@mui/material/Typography";
-
+import { useDroppable } from "@dnd-kit/core";
 const Listcolumns = ({
   list_column_id,
   setReRender,
+  id,
   reRender,
   handleCardClick,
   setOpen,
@@ -47,7 +48,12 @@ const Listcolumns = ({
   //   };
   //   fetchCardApi();
   // }, []);
+  const { isOver, setNodeRef } = useDroppable({
+    id,
+    data: cards.position,
+  });
 
+  console.log(isOver, "isoverflskdjflsjf");
   return (
     <>
       <div className="main_container">
@@ -89,52 +95,37 @@ const Listcolumns = ({
                   list_column_id={list_column_id}
                 />
               </div>
-              {/* <button
-                className="createFlatIconBtn"
-                onClick={() =>
-                  setOpen((prev) => {
-                    return {
-                      ...prev,
-                      boolean: true,
-                      list_type: list_column_name,
-                      column_id: list_column_id,
-                    };
-                  })
-                }
-              >
-              
-              </button> */}
             </div>
           </Box>
         </div>
-        <div className="todo">
-          <>
-            <div className="overflow">
-              {cards.map((cardValue, i) => {
-                // console.log(cardValue, "cardValue");
-                if (cardValue.column_id === list_column_id) {
+
+        <>
+          <div className="todo" ref={setNodeRef}>
+            {cards.map((cardValue, i) => {
+              // console.log(cardValue, "cardValue");
+              if (cardValue.column_id === list_column_id) {
+                // eslint-disable-next-line react/jsx-key
+                return (
                   // eslint-disable-next-line react/jsx-key
-                  return (
-                    // eslint-disable-next-line react/jsx-key
-                    <div key={i} className="card_scrollable_todo">
-                      <CardProvider
-                        key={cardValue.card_card_id}
-                        value={cardValue}
-                      >
-                        <Cards
-                          key={cardValue.card_id}
-                          reRender={reRender}
-                          setReRender={setReRender}
-                          handleCardClick={handleCardClick}
-                        />
-                      </CardProvider>
-                    </div>
-                  );
-                }
-              })}
-            </div>
-          </>
-        </div>
+                  <div key={i} className="card_scrollable_todo">
+                    <CardProvider
+                      key={cardValue.card_card_id}
+                      value={cardValue}
+                    >
+                      <Cards
+                        key={cardValue?.card_id}
+                        id={cardValue?.card_id}
+                        reRender={reRender}
+                        setReRender={setReRender}
+                        handleCardClick={handleCardClick}
+                      />
+                    </CardProvider>
+                  </div>
+                );
+              }
+            })}
+          </div>
+        </>
       </div>
     </>
   );

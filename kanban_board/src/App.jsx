@@ -14,12 +14,16 @@ import { BoardProvider } from "./context/BoardContext";
 import React from "react";
 import { Board_idProvider } from "./context/Board_idContext";
 import FormDialog from "./Components/FormDialog";
-
-// import MenuItem from "@mui/material/MenuItem";
-// import Typography from "@mui/material/Typography";
+import { DndContext } from "@dnd-kit/core";
+import { Draggable_Provider } from "./context/Draggable_Context";
+import { Droppable_Provider } from "./context/Droppable_Context";
+import { IsDropped_Provider } from "./context/IsDropped_Context";
 
 const Apps = () => {
   // eslint-disable-next-line no-undef
+  const [isDropped, setIsDropped] = useState(false);
+  const [draggable_id, setDraggable_id] = useState(null);
+  const [droppable_Position_id, setDroppable_Position_id] = useState(null);
   const [open, setOpen] = useState({
     boolean: false,
     list_type: "",
@@ -83,6 +87,17 @@ const Apps = () => {
       return { ...prev, bool: false };
     });
   };
+  const handleDragFunction = (event) => {
+    const { active, over } = event;
+    if (active.data.current !== over.id) {
+      const item_id = active.id;
+      setDraggable_id(item_id);
+      const droppable_item_id = over.id;
+      setDroppable_Position_id(droppable_item_id);
+      setIsDropped(true);
+      console.log(isDropped, "dropped boolean");
+    }
+  };
 
   return (
     <>
@@ -115,12 +130,27 @@ const Apps = () => {
                 path="/"
                 element={
                   <Board_idProvider value={settingBoard_id}>
-                    <Newhomepage
-                      reRender={reRender}
-                      setReRender={setReRender}
-                      open={open}
-                      setOpen={setOpen}
-                    />
+                    <DndContext onDragEnd={handleDragFunction}>
+                      <Draggable_Provider
+                        value={[draggable_id, setDraggable_id]}
+                      >
+                        <Droppable_Provider
+                          value={[
+                            droppable_Position_id,
+                            setDroppable_Position_id,
+                          ]}
+                        >
+                          <IsDropped_Provider value={[isDropped, setIsDropped]}>
+                            <Newhomepage
+                              reRender={reRender}
+                              setReRender={setReRender}
+                              open={open}
+                              setOpen={setOpen}
+                            />
+                          </IsDropped_Provider>
+                        </Droppable_Provider>
+                      </Draggable_Provider>
+                    </DndContext>
                   </Board_idProvider>
                 }
               />

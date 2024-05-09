@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const db_con = require("./db");
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "50mb" }));
 app.use("/signup", require("./routes/signupRoute"));
 app.use("/login", require("./routes/loginRoute"));
 app.use("/api/boards", require("./routes/api/board"));

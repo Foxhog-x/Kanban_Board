@@ -20,6 +20,7 @@ import { priorityColor } from "../utils/priorityColor";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import { MuiMenuCard } from "./MuiMenuCard";
+import { useDraggable } from "@dnd-kit/core";
 import {
   CardConsumer,
   CardContext,
@@ -43,53 +44,37 @@ const StylelabelStyleChip = styled(Chip)(({ theme }) => ({
   fontSize: theme.typography.fontSize - 2,
   margin: 2,
 }));
-export const Cards = ({ handleCardClick, reRender, setReRender }) => {
+export const Cards = ({ id, handleCardClick, reRender, setReRender }) => {
+  const cardValues = useContext(CardContext);
+
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id,
+    data: cardValues?.column_id,
+  });
+  const style = transform
+    ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+        zindex: -1,
+      }
+    : undefined;
   const bull = (
     <Box
       component="span"
       sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
     ></Box>
   );
-  const cardValues = useContext(CardContext);
+
   const labelChip =
     cardValues?.labels_name && cardValues?.labels_name.split(",");
 
   const card = (
-    // <div className="cards_size">
-    //   <div className="card_top_content">
-    //     <div className="top_left_card">
-    //       <small> </small>
-    //       <div className="top_right_card">
-    //
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div
-    //     className="card_center_content"
-    //     onClick={() => handleCardClick(cardValues)}
-    //   >
-    //     <Typography
-    //       sx={{
-    //         display: "inline-block",
-    //         width: " 350px",
-    //         whiteSpace: "nowrap",
-    //         overflow: " hidden !important",
-    //         textOverflow: "ellipsis",
-    //         fontWeight: "bold",
-    //         textAlign: "left",
-    //       }}
-    //     >
-    //       {cardValues.title}
-    //     </Typography>
-    //   </div>
-
-    //   {/* <Colorpalete /> */}
-    // </div>
-
     <>
-      <Card variant="outlined" sx={{ maxWidth: 318 }}>
+      <Card variant="outlined" sx={{ maxWidth: 318, zIndex: -1 }}>
         <StyledCardContent>
           <Stack
+            ref={setNodeRef}
+            {...listeners}
+            {...attributes}
             direction="row"
             padding={"4px"}
             justifyContent={"space-between"}
@@ -191,7 +176,9 @@ export const Cards = ({ handleCardClick, reRender, setReRender }) => {
         marginRight: "10px",
       }}
     >
-      <Card variant="outlined">{card}</Card>
+      <Card style={style} variant="outlined">
+        {card}
+      </Card>
     </Box>
   );
 };

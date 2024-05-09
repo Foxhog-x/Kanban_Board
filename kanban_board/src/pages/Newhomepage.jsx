@@ -8,6 +8,7 @@ import { useFetchCards } from "../hooks/useFetchCards";
 import { useCreateList } from "../hooks/useCreateList";
 import { useHandleClick } from "../hooks/useHandleClick";
 
+import { useUpdateCards } from "../hooks/useUpdateCards.js";
 // eslint-disable-next-line react/prop-types
 export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   // const [list_Col, setList_Col] = useState([]);
@@ -53,7 +54,7 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
     useFetchList_Col(reRender);
   // console.log(list_Col, "ksutsdkjfskfdhksdfkshdf");
 
-  const [cards] = useFetchCards(reRender);
+  const [cards, setCards] = useFetchCards(reRender);
   // console.log(cards, "all the cards are fetcg");
   // const fetchCards = async () => {
   //   const list_Col_Data = await fetch("http://localhost:8000/api/cards", {
@@ -69,7 +70,9 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   // }, [reRender]);
 
   const { handleCardClick, infoRightCard, state, setState } = useHandleClick();
-
+  // console.log(isDropped, "dropping value");
+  // console.log(draggable_id, "draggable_id");
+  // console.log(droppable_Position_id, "droppable_position");
   // const handleCardClick = (cardInfovalue) => {
   //   setState((prev) => {
   //     return { ...prev, right: true };
@@ -77,7 +80,7 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
   //   setInfoRightCard(cardInfovalue);
   //   console.log("its works");
   // };
-
+  useUpdateCards(cards, setCards);
   const {
     handleCreateListPostapi,
     addListTextFieldRef,
@@ -163,6 +166,7 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
                   // eslint-disable-next-line react/jsx-key
                   <Listcolumn
                     key={i}
+                    id={value?.column_id}
                     handleCardClick={handleCardClick}
                     setOpen={setOpen}
                     open={open}
@@ -171,6 +175,7 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
                     list_column_name={value.name}
                     setReRender={setReRender}
                     reRender={reRender}
+                    setCards={setCards}
                   />
                 );
               })
