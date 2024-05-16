@@ -21,7 +21,7 @@ export const useCreateList = (reRender, setReRender, createListPostApi) => {
         .then((response) => {
           response.json();
         })
-        .then((data) => console.log(data, "this is data i am getting"));
+        .then((data) => console.log(data, "create list response"));
     }
     setTimeout(() => {
       setReRender(!reRender);

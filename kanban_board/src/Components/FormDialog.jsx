@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
+// import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 export default function FormDialog({
@@ -12,12 +12,14 @@ export default function FormDialog({
   setOpenFormDialogBoard,
   handleCreateBoardApi,
 }) {
+  const handleApiRef = React.useRef(null);
   const handleClose = () => {
     setOpenFormDialogBoard((prev) => {
       return { ...prev, bool: false, board_Type: "" };
     });
+    console.log(handleApiRef.current.value, "cureent ");
   };
-  console.log(openFormDialogBoard);
+
   return (
     <React.Fragment>
       <Dialog
@@ -38,6 +40,7 @@ export default function FormDialog({
         <DialogTitle>{openFormDialogBoard.board_Type} Board </DialogTitle>
         <DialogContent>
           <TextField
+            ref={handleApiRef}
             autoFocus
             required
             margin="dense"
@@ -56,9 +59,7 @@ export default function FormDialog({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit" onClick={(e) => handleCreateBoardApi(e)}>
-            Create
-          </Button>
+          <Button onClick={(e) => handleCreateBoardApi(e)}>Create</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

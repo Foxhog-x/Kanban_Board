@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
-import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -15,10 +14,14 @@ import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import IconButton from "@mui/material/IconButton";
 import { BoardContext } from "../context/BoardContext";
 import { MeunAppWrapper } from "./helper/MeunAppWrapper";
-
-const DrawerMenus = ({ handleBoardClick, handleCreateBoard }) => {
+import CheckIcon from "@mui/icons-material/Check";
+const DrawerMenus = ({
+  handleBoardClick,
+  handleCreateBoard,
+  settingBoard_id,
+}) => {
   const BoardArray = { public: [], private: [] };
-
+  const handleButtonRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
@@ -26,7 +29,7 @@ const DrawerMenus = ({ handleBoardClick, handleCreateBoard }) => {
   };
 
   const boardValues = React.useContext(BoardContext);
-
+  console.log(BoardArray, boardValues);
   const filterBoardType = () => {
     boardValues.map((values) => {
       values.status === 0
@@ -37,9 +40,10 @@ const DrawerMenus = ({ handleBoardClick, handleCreateBoard }) => {
     });
   };
   filterBoardType();
-  console.log(BoardArray);
+  React.useEffect(() => {}, [boardValues]);
+  console.log(settingBoard_id);
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation">
+    <Box sx={{ background: "white" }} role="presentation">
       {/* //onClick={toggleDrawer(false)} */}
       <List>
         <div
@@ -60,8 +64,10 @@ const DrawerMenus = ({ handleBoardClick, handleCreateBoard }) => {
         {BoardArray?.public?.map((text, i) => {
           if (typeof text === "string") {
             return (
-              <ListItem key={text} disablePadding>
+              <ListItem key={i} disablePadding>
                 <ListItemButton
+                  sx={{}}
+                  ref={handleButtonRef}
                   onClick={() =>
                     handleBoardClick(BoardArray.public[i + 1], "public")
                   }
@@ -70,6 +76,11 @@ const DrawerMenus = ({ handleBoardClick, handleCreateBoard }) => {
                     <SpaceDashboardIcon />
                   </ListItemIcon>
                   <ListItemText primary={text} />
+                  {settingBoard_id === BoardArray.public[i + 1] ? (
+                    <CheckIcon />
+                  ) : (
+                    ""
+                  )}
                 </ListItemButton>
               </ListItem>
             );
@@ -97,7 +108,7 @@ const DrawerMenus = ({ handleBoardClick, handleCreateBoard }) => {
         {BoardArray.private?.map((text, i) => {
           if (typeof text === "string") {
             return (
-              <ListItem key={text} disablePadding>
+              <ListItem key={i} disablePadding>
                 <ListItemButton
                   onClick={() =>
                     handleBoardClick(BoardArray.private[i + 1], "private")
@@ -107,7 +118,12 @@ const DrawerMenus = ({ handleBoardClick, handleCreateBoard }) => {
                     {/* {index % 2 === 0 ? <MailIcon /> : <InboxIcon />} */}
                     <SpaceDashboardIcon />
                   </ListItemIcon>
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text} color="green" />
+                  {settingBoard_id === BoardArray.private[i + 1] ? (
+                    <CheckIcon />
+                  ) : (
+                    ""
+                  )}
                 </ListItemButton>
               </ListItem>
             );
@@ -122,7 +138,11 @@ const DrawerMenus = ({ handleBoardClick, handleCreateBoard }) => {
         <MenuIcon />
       </span>
 
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+      <Drawer
+        open={open}
+        onClose={toggleDrawer(false)}
+        sx={{ flexDirection: "column-reverse" }}
+      >
         {DrawerList}
       </Drawer>
     </MeunAppWrapper>

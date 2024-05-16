@@ -20,7 +20,19 @@ router.post("/", (req, res) => {
 });
 
 router.post("/create", user_idMiddlewere, (req, res) => {
-  console.log(req.body);
-  console.log(req.user_id);
+  const { board_name, board_Type } = req.body;
+
+  const board_Type_checked = board_Type === "Public" ? 0 : 1;
+
+  db_con.query(
+    `Insert into board (name, creator_id, status) values ("${board_name}", "${req.user_id.id}", "${board_Type_checked}")`,
+    (error, results) => {
+      if (error) {
+        console.error("Error inserting HTML content:", error);
+        return;
+      }
+      console.log("board Rows inserted: " + results.affectedRows);
+    }
+  );
 });
 module.exports = router;

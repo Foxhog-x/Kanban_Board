@@ -39,6 +39,6 @@ export const useFetchList_Col = (reRender) => {
   useEffect(() => {
     fetchList_Col();
   }, [reRender, board_id]);
-  console.log(createListPostApi, "createpostlist api");
+
   return [list_Col, createListPostApi, setCreateListPostApi];
 };

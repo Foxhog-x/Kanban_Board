@@ -6,7 +6,7 @@ import { SnackBarContext } from "../context/SnackBarContext";
 export default function PositionedSnackbar() {
   const [state, setState] = React.useContext(SnackBarContext);
   const { vertical, horizontal, open } = state;
-  console.log(state, "this is state");
+
   const handleClose = () => {
     setState({ ...state, open: false });
   };

@@ -38,6 +38,7 @@ const defaultTheme = createTheme();
 
 export const SignInpage = ({ loginData, setLoginData }) => {
   const [inputData, setInputData] = useState({ email: "", password: "" });
+  console.log(loginData, "login auth");
   const handlesubmitData = (e) => {
     e.preventDefault();
     try {
@@ -51,13 +52,12 @@ export const SignInpage = ({ loginData, setLoginData }) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          setLoginData(data);
+          localStorage.setItem("authToken", data.authToken);
         });
     } catch (error) {
       console.log(error);
     }
   };
-  localStorage.setItem("authToken", loginData?.authToken);
 
   const handleInputData = (e) => {
     setInputData((prev) => {

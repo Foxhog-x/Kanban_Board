@@ -33,9 +33,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
-  const priorityType = ["Low", "Medium", "High"];
-  const colorSchemes = ["green", "yellow", "red"];
-  const [pickColor, setPickColor] = useState(false);
   const handleLabelInputRef = useRef(null);
   const [selectLabel, setSelectLable] = useState("");
   const [labelArray, setLableArray] = useState([]);
@@ -77,7 +74,7 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
     }, 300);
     clearCard(setCardData);
   };
-  console.log(cardData, "carddata");
+
   useEffect(() => {
     setCardData((prev) => {
       return {
@@ -115,7 +112,7 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
     setSelectLable("");
     handleLabelInputRef.current.value = "";
   };
-  console.log(cardData);
+
   const handleDeleteChip = (i) => {
     const deletedLable = labelArray[i];
     const newLableArray = labelArray.filter((value) => value !== deletedLable);

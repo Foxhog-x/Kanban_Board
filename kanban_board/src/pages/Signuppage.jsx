@@ -65,7 +65,6 @@ export const Signuppage = () => {
       .then((res) => res.json())
       .then((data) => {
         localStorage.setItem("userData", JSON.stringify(data));
-        console.log("userdata saved successfully");
       });
     clearForm();
   };

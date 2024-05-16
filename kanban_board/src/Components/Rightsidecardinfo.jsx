@@ -111,7 +111,6 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
           </Stack>
           <Stack direction={"row"}>
             {userAvatar?.map((value) => {
-              console.log(value);
               return (
                 <>
                   <Stack direction={"row"} spacing={2} alignItems={"center"}>

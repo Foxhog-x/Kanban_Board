@@ -46,7 +46,7 @@ const StylelabelStyleChip = styled(Chip)(({ theme }) => ({
 }));
 export const Cards = ({ id, handleCardClick, reRender, setReRender }) => {
   const cardValues = useContext(CardContext);
-  console.log(cardValues, "this card values");
+
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
     data: cardValues?.column_id,

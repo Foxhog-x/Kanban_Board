@@ -13,12 +13,15 @@ import Menu from "@mui/material/Menu";
 import Stack from "@mui/material/Stack";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import { DrawerMenu } from "./DrawerMenu";
+import { getContrastRatio } from "@mui/system";
 
 export const MenuAppBar = ({
   children,
   setSwitchTheme,
   handleBoardClick,
   handleCreateBoard,
+  setOpenFormDialogBoard,
+  settingBoard_id,
 }) => {
   // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -63,16 +66,18 @@ export const MenuAppBar = ({
             <DrawerMenu
               handleBoardClick={handleBoardClick}
               handleCreateBoard={handleCreateBoard}
+              setOpenFormDialogBoard={setOpenFormDialogBoard}
+              settingBoard_id={settingBoard_id}
             />
           </IconButton>
 
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Team-Board
           </Typography>
 
           <Stack spacing={2} direction="row">
             <Switch
-              defaultChecked
+              // defaultChecked
               onChange={handleChecked}
               style={{ display: "flex", alignItems: "center" }}
             />

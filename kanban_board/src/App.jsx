@@ -44,11 +44,8 @@ const Apps = () => {
   });
   const [settingBoard_id, setSettingBoard_id] = React.useState(1);
   const [reRender, setReRender] = useState(false);
-  const [switchTheme, setSwitchTheme] = useState(true);
+  const [switchTheme, setSwitchTheme] = useState(false);
   const [board, setBoard] = useState([]);
-  if (localStorage.getItem("authToken") === "undefined") {
-    localStorage.setItem("authToken", loginData.authToken);
-  }
 
   useEffect(() => {
     const fetchBoard = async () => {
@@ -67,7 +64,6 @@ const Apps = () => {
     fetchBoard();
   }, []);
   console.log(board, "this is another board values");
-  const authToken = localStorage.getItem("authToken");
 
   const handleBoardClick = (board_id) => {
     setSettingBoard_id(board_id);
@@ -79,6 +75,7 @@ const Apps = () => {
   };
 
   const handleCreateBoardApi = (e) => {
+    const authToken = localStorage.getItem("authToken");
     e.preventDefault();
     fetch("http://localhost:8000/api/boards/create", {
       method: "POST",
@@ -121,6 +118,7 @@ const Apps = () => {
                 setSwitchTheme={setSwitchTheme}
                 handleBoardClick={handleBoardClick}
                 handleCreateBoard={handleCreateBoard}
+                settingBoard_id={settingBoard_id}
               />
             </BoardProvider>
 
