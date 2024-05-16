@@ -118,7 +118,10 @@ const DrawerMenus = ({ handleBoardClick, handleCreateBoard }) => {
   );
   return (
     <MeunAppWrapper>
-      <MenuIcon onClick={console.log("hello")} />
+      <span onClick={toggleDrawer(true)}>
+        <MenuIcon />
+      </span>
+
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>

@@ -17,9 +17,11 @@ export const useCreateList = (reRender, setReRender, createListPostApi) => {
         body: JSON.stringify({
           createList_Obj: createListPostApi,
         }),
-      }).then((response) => {
-        console.log(response.json(), "consoling json response");
-      });
+      })
+        .then((response) => {
+          response.json();
+        })
+        .then((data) => console.log(data, "this is data i am getting"));
     }
     setTimeout(() => {
       setReRender(!reRender);

@@ -5,7 +5,6 @@ export const clearCard = (setCardData) => {
       column_id: "",
       title: "",
       description: "",
-      start_date: "",
       due_date: "",
       assignee_id: "",
       priority: "",

@@ -4,12 +4,17 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { SnackBarContext } from "../context/SnackBarContext";
+
 export const MuiMenu = ({ list_column_id, reRender, setReRender }) => {
+  const [state, setState] = React.useContext(SnackBarContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -26,6 +31,17 @@ export const MuiMenu = ({ list_column_id, reRender, setReRender }) => {
       .then((data) => {
         if (data.success === true) {
           setReRender(!reRender);
+
+          setState((state) => {
+            return {
+              ...state,
+              open: true,
+            };
+          });
+
+          setTimeout(() => {
+            setState({ ...state, open: false });
+          }, 3000);
         }
       });
     setAnchorEl(null);

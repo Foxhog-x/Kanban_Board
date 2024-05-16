@@ -19,7 +19,7 @@ import { timeLeftFromNow } from "../utils/dateTime";
 import { priorityColor } from "../utils/priorityColor";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
-import { MuiMenuCard } from "./MuiMenuCard";
+
 import { useDraggable } from "@dnd-kit/core";
 import {
   CardConsumer,
@@ -46,7 +46,7 @@ const StylelabelStyleChip = styled(Chip)(({ theme }) => ({
 }));
 export const Cards = ({ id, handleCardClick, reRender, setReRender }) => {
   const cardValues = useContext(CardContext);
-
+  console.log(cardValues, "this card values");
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
     data: cardValues?.column_id,
@@ -76,7 +76,7 @@ export const Cards = ({ id, handleCardClick, reRender, setReRender }) => {
             {...listeners}
             {...attributes}
             direction="row"
-            padding={"4px"}
+            padding={"2px"}
             justifyContent={"space-between"}
           >
             <StyledChip
@@ -94,7 +94,6 @@ export const Cards = ({ id, handleCardClick, reRender, setReRender }) => {
             />
 
             {/* <MuiMenu card_id={cardValues.card_id} /> */}
-            <MuiMenuCard reRender={reRender} setReRender={setReRender} />
           </Stack>
           <Box
             ml={1}

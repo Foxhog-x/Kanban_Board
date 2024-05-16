@@ -53,7 +53,6 @@ const Listcolumns = ({
     data: cards.position,
   });
 
-  console.log(isOver, "isoverflskdjflsjf");
   return (
     <>
       <div className="main_container">
@@ -101,29 +100,30 @@ const Listcolumns = ({
 
         <>
           <div className="todo" ref={setNodeRef}>
-            {cards.map((cardValue, i) => {
-              // console.log(cardValue, "cardValue");
-              if (cardValue.column_id === list_column_id) {
-                // eslint-disable-next-line react/jsx-key
-                return (
+            {cards &&
+              cards?.map((cardValue, i) => {
+                // console.log(cardValue, "cardValue");
+                if (cardValue.column_id === list_column_id) {
                   // eslint-disable-next-line react/jsx-key
-                  <div key={i} className="card_scrollable_todo">
-                    <CardProvider
-                      key={cardValue.card_card_id}
-                      value={cardValue}
-                    >
-                      <Cards
-                        key={cardValue?.card_id}
-                        id={cardValue?.card_id}
-                        reRender={reRender}
-                        setReRender={setReRender}
-                        handleCardClick={handleCardClick}
-                      />
-                    </CardProvider>
-                  </div>
-                );
-              }
-            })}
+                  return (
+                    // eslint-disable-next-line react/jsx-key
+                    <div key={i} className="card_scrollable_todo">
+                      <CardProvider
+                        key={cardValue.card_card_id}
+                        value={cardValue}
+                      >
+                        <Cards
+                          key={cardValue?.card_id}
+                          id={cardValue?.card_id}
+                          reRender={reRender}
+                          setReRender={setReRender}
+                          handleCardClick={handleCardClick}
+                        />
+                      </CardProvider>
+                    </div>
+                  );
+                }
+              })}
           </div>
         </>
       </div>

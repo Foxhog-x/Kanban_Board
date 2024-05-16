@@ -13,7 +13,6 @@ import Menu from "@mui/material/Menu";
 import Stack from "@mui/material/Stack";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import { DrawerMenu } from "./DrawerMenu";
-import { FlatAddIcon } from "./FlatAddIcon";
 
 export const MenuAppBar = ({
   children,
@@ -68,7 +67,7 @@ export const MenuAppBar = ({
           </IconButton>
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Kanban-Board
+            Team-Board
           </Typography>
 
           <Stack spacing={2} direction="row">

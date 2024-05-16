@@ -10,7 +10,7 @@ export const useUpdateCards = (cards, setCards) => {
   const [draggable_id, setDraggable_id] = useContext(Draggable_Context);
   useEffect(() => {
     if (isDropped === true && droppable_Position_id !== null) {
-      const updated_Array = cards.map((value) => {
+      const updated_Array = cards?.map((value) => {
         if (value.card_id === draggable_id) {
           return { ...value, column_id: droppable_Position_id };
         }

@@ -39,7 +39,7 @@ router.post("/create", (req, res) => {
           `INSERT INTO list_column (name, board_id, position)values("${name}", ${board_id}, ${newPostionInsert});`,
           (error, result) => {
             if (error) console.log(error);
-            console.log(result);
+            res.json({ success: true, message: "List Create Successfully" });
           }
         );
       }

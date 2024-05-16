@@ -25,7 +25,7 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
     fontSize: theme.typography.fontSize - 2, // Adjust font size (optional)
     padding: theme.spacing(0.5, 1),
   }));
-  console.log(infoRightCard);
+  console.log(infoRightCard, "inforightside card");
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -151,7 +151,7 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
             <Typography>Description</Typography>
           </Stack>
         </Stack>
-        <Reactquill editableText={infoRightCard?.description_content} />
+        <Reactquill editableText={infoRightCard?.html_content} />
       </Stack>
     </Box>
   );

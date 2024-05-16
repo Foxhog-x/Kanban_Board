@@ -18,9 +18,15 @@ import { DndContext } from "@dnd-kit/core";
 import { Draggable_Provider } from "./context/Draggable_Context";
 import { Droppable_Provider } from "./context/Droppable_Context";
 import { IsDropped_Provider } from "./context/IsDropped_Context";
+import { SnackBarProvider } from "./context/SnackBarContext";
 
 const Apps = () => {
   // eslint-disable-next-line no-undef
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: "bottom",
+    horizontal: "right",
+  });
   const [isDropped, setIsDropped] = useState(false);
   const [draggable_id, setDraggable_id] = useState(null);
   const [droppable_Position_id, setDroppable_Position_id] = useState(null);
@@ -54,12 +60,13 @@ const Apps = () => {
         }
       );
       const fetchBoardJson = await fetchBoardResponse.json();
-
+      console.log(fetchBoardJson, "this fetch board json");
       setBoard(fetchBoardJson.results);
     };
 
     fetchBoard();
   }, []);
+  console.log(board, "this is another board values");
   const authToken = localStorage.getItem("authToken");
 
   const handleBoardClick = (board_id) => {
@@ -141,12 +148,14 @@ const Apps = () => {
                           ]}
                         >
                           <IsDropped_Provider value={[isDropped, setIsDropped]}>
-                            <Newhomepage
-                              reRender={reRender}
-                              setReRender={setReRender}
-                              open={open}
-                              setOpen={setOpen}
-                            />
+                            <SnackBarProvider value={[state, setState]}>
+                              <Newhomepage
+                                reRender={reRender}
+                                setReRender={setReRender}
+                                open={open}
+                                setOpen={setOpen}
+                              />
+                            </SnackBarProvider>
                           </IsDropped_Provider>
                         </Droppable_Provider>
                       </Draggable_Provider>
