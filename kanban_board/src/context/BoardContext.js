@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-const BoardContext = createContext(1);
+const BoardContext = createContext([]);
 
 const BoardProvider = BoardContext.Provider;
 

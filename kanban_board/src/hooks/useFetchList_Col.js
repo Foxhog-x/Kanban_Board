@@ -10,7 +10,7 @@ export const useFetchList_Col = (reRender) => {
     board_id: "",
   });
   const board_id = useContext(Board_idContext);
-
+  console.log(board_id, "board_id");
   const fetchList_Col = async () => {
     const list_Col_Data = await fetch("http://localhost:8000/api/list_column", {
       method: "POST",
@@ -39,6 +39,6 @@ export const useFetchList_Col = (reRender) => {
   useEffect(() => {
     fetchList_Col();
   }, [reRender, board_id]);
-
+  console.log(list_Col);
   return [list_Col, createListPostApi, setCreateListPostApi];
 };

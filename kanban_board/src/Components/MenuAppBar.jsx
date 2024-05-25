@@ -22,6 +22,9 @@ export const MenuAppBar = ({
   handleCreateBoard,
   setOpenFormDialogBoard,
   settingBoard_id,
+  setSettingBoard_id,
+  setReRender,
+  reRender,
 }) => {
   // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -64,10 +67,13 @@ export const MenuAppBar = ({
             sx={{ mr: 2 }}
           >
             <DrawerMenu
+              setSettingBoard_id={setSettingBoard_id}
               handleBoardClick={handleBoardClick}
               handleCreateBoard={handleCreateBoard}
               setOpenFormDialogBoard={setOpenFormDialogBoard}
               settingBoard_id={settingBoard_id}
+              setReRender={setReRender}
+              reRender={reRender}
             />
           </IconButton>
 

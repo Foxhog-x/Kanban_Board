@@ -175,7 +175,7 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
             mt={2}
             gap={1}
             direction={"row"}
-            overflowWrap="break-word"
+            overflowwrap="break-word"
           >
             {labelArray.map((value, i) => {
               return (

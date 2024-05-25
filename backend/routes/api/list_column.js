@@ -5,8 +5,9 @@ const router = express.Router();
 let positionArr = [];
 
 router.post("/", (req, res) => {
-  const { board_id } = req.body;
+  let { board_id } = req.body;
   // console.log(board_id, "this is board id");
+  board_id = isNaN(board_id) ? null : board_id;
   try {
     db_con.query(
       `select * from List_Column where board_id = ${board_id}`,

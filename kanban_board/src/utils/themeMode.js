@@ -45,5 +45,4 @@ export const darkTheme = createTheme({
   typography: {
     // Customize typography as needed for dark theme
   },
-  // Other optional theme customizations (spacing, breakpoints, etc.)
 });

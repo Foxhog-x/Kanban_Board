@@ -9,7 +9,9 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme } from "@mui/material/styles";
 import logImage from "../assets/images.png";
-import { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
+import { SnackBarContext } from "../context/SnackBarContext";
+
 // eslint-disable-next-line no-undef
 
 function Copyright(props) {
@@ -37,6 +39,7 @@ export const Signuppage = () => {
   const lastNameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+
   const [userDetails, setUserDetails] = useState({
     firstName: "",
     lastName: "",
@@ -64,17 +67,19 @@ export const Signuppage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        localStorage.setItem("userData", JSON.stringify(data));
+        //this is for saving a user data for assigneeuser
+        // localStorage.setItem("userData", JSON.stringify(data));
       });
-    clearForm();
-  };
-
-  const clearForm = () => {
     firstNameRef.current.value = "";
     lastNameRef.current.value = "";
     emailRef.current.value = "";
     passwordRef.current.value = "";
+
+    setUserDetails((prev) => {
+      return { ...prev, firstName: "", lastName: "", email: "", password: "" };
+    });
   };
+
   return (
     <Container component="main" maxWidth="xs" sx={{ height: "90vh" }}>
       <CssBaseline />
@@ -111,6 +116,7 @@ export const Signuppage = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                inputRef={lastNameRef}
                 required
                 fullWidth
                 id="lastName"

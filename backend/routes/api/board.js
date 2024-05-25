@@ -31,7 +31,37 @@ router.post("/create", user_idMiddlewere, (req, res) => {
         console.error("Error inserting HTML content:", error);
         return;
       }
-      console.log("board Rows inserted: " + results.affectedRows);
+      if (results) {
+        db_con.query("select last_insert_id()", (error, result) => {
+          if (error) throw error;
+          const board_id = result[0]["last_insert_id()"];
+          console.log(board_id, "board_id got from the last insert sql");
+          console.log("board Rows inserted: " + results.affectedRows);
+
+          res.status(201).json({
+            success: true,
+            message: "successfully Created",
+            latest_board_id: board_id,
+          });
+        });
+      }
+    }
+  );
+});
+
+router.post("/delete", (req, res) => {
+  const { board_idDelete } = req.body;
+  console.log(board_idDelete, "board_id");
+  db_con.query(
+    ` delete from board where board_id = ${board_idDelete}`,
+    (error, results) => {
+      if (error) console.log(error);
+      if (results) {
+        console.log("successfully deleted");
+        res
+          .status(201)
+          .json({ success: true, message: "successfully Deleted" });
+      }
     }
   );
 });

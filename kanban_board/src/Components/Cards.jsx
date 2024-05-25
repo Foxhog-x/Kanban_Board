@@ -19,6 +19,8 @@ import { timeLeftFromNow } from "../utils/dateTime";
 import { priorityColor } from "../utils/priorityColor";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import IconButton from "@mui/material/IconButton";
 
 import { useDraggable } from "@dnd-kit/core";
 import {
@@ -44,7 +46,13 @@ const StylelabelStyleChip = styled(Chip)(({ theme }) => ({
   fontSize: theme.typography.fontSize - 2,
   margin: 2,
 }));
-export const Cards = ({ id, handleCardClick, reRender, setReRender }) => {
+export const Cards = ({
+  id,
+  handleCardClick,
+  reRender,
+  setReRender,
+  handleCardDelete,
+}) => {
   const cardValues = useContext(CardContext);
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -78,6 +86,7 @@ export const Cards = ({ id, handleCardClick, reRender, setReRender }) => {
             direction="row"
             padding={"2px"}
             justifyContent={"space-between"}
+            alignItems={"baseline"}
           >
             <StyledChip
               size="small"
@@ -95,8 +104,10 @@ export const Cards = ({ id, handleCardClick, reRender, setReRender }) => {
 
             {/* <MuiMenu card_id={cardValues.card_id} /> */}
           </Stack>
+
           <Box
             ml={1}
+            mt={1}
             display={"flex"}
             justifyContent={"start"}
             flexWrap={"wrap"}
@@ -138,6 +149,7 @@ export const Cards = ({ id, handleCardClick, reRender, setReRender }) => {
             </Stack>
           </Box>
         </StyledCardContent>
+
         <Divider />
         <Box sx={{ p: 1 }}>
           <Stack
@@ -160,6 +172,9 @@ export const Cards = ({ id, handleCardClick, reRender, setReRender }) => {
               </Badge>
               <AccessTimeOutlinedIcon fontSize="small" />
               <small>{timeLeftFromNow(cardValues.due_date)}</small>
+              <IconButton>
+                <DeleteOutlineIcon onClick={() => handleCardDelete(id)} />
+              </IconButton>
             </Stack>
           </Stack>
         </Box>

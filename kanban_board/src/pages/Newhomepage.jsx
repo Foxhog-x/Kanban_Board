@@ -11,7 +11,13 @@ import { useHandleClick } from "../hooks/useHandleClick";
 import { useUpdateCards } from "../hooks/useUpdateCards.js";
 import PositionedSnackbar from "../Components/PositionedSnackbar.jsx";
 // eslint-disable-next-line react/prop-types
-export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
+export const Newhomepage = ({
+  open,
+  setOpen,
+  reRender,
+  setReRender,
+  settingBoard_id,
+}) => {
   const [list_Col, createListPostApi, setCreateListPostApi] =
     useFetchList_Col(reRender);
 
@@ -25,7 +31,7 @@ export const Newhomepage = ({ open, setOpen, reRender, setReRender }) => {
     addListTextFieldRef,
     createListModel,
     setCreateListModel,
-  } = useCreateList(reRender, setReRender, createListPostApi);
+  } = useCreateList(reRender, setReRender, createListPostApi, settingBoard_id);
 
   return (
     <>

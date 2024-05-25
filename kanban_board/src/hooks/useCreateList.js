@@ -1,10 +1,22 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { BoardContext } from "../context/BoardContext";
 
-export const useCreateList = (reRender, setReRender, createListPostApi) => {
+export const useCreateList = (
+  reRender,
+  setReRender,
+  createListPostApi,
+  settingBoard_id
+) => {
   const [createListModel, setCreateListModel] = useState(false);
   const addListTextFieldRef = useRef(null);
+  const boards = useContext(BoardContext);
 
   const handleCreateListPostapi = (e) => {
+    if (boards.length === 0) {
+      alert("Please Create a atleast one board");
+    } else if (settingBoard_id === null) {
+      alert("You did not select any Board ");
+    }
     e.preventDefault;
     if (addListTextFieldRef.current.value === "") {
       alert("Please fill something");

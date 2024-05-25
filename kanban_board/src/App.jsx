@@ -26,6 +26,7 @@ const Apps = () => {
     open: false,
     vertical: "bottom",
     horizontal: "right",
+    message: "",
   });
   const [isDropped, setIsDropped] = useState(false);
   const [draggable_id, setDraggable_id] = useState(null);
@@ -42,7 +43,10 @@ const Apps = () => {
     board_Type: "",
     board_name: "",
   });
-  const [settingBoard_id, setSettingBoard_id] = React.useState(1);
+  const [settingBoard_id, setSettingBoard_id] = React.useState(
+    localStorage.getItem("Previous_board_id") &&
+      parseInt(localStorage.getItem("Previous_board_id") || null)
+  );
   const [reRender, setReRender] = useState(false);
   const [switchTheme, setSwitchTheme] = useState(false);
   const [board, setBoard] = useState([]);
@@ -62,12 +66,15 @@ const Apps = () => {
     };
 
     fetchBoard();
-  }, []);
-  console.log(board, "this is another board values");
+  }, [reRender]);
 
   const handleBoardClick = (board_id) => {
     setSettingBoard_id(board_id);
+    localStorage.setItem("Previous_board_id", board_id);
   };
+  board.map((val) => {
+    console.log(val.board_id);
+  });
   const handleCreateBoard = (board_Type) => {
     setOpenFormDialogBoard((prev) => {
       return { ...prev, bool: true, board_Type: board_Type };
@@ -85,7 +92,16 @@ const Apps = () => {
         board_Type: openFormDialogBoard.board_Type,
         creator_id: authToken,
       }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success === true) {
+          setSettingBoard_id(data.latest_board_id);
+          setTimeout(() => {
+            setReRender(!reRender);
+          }, [2000]);
+        }
+      });
 
     setOpenFormDialogBoard((prev) => {
       return { ...prev, bool: false };
@@ -103,6 +119,8 @@ const Apps = () => {
     }
   };
 
+  console.log(settingBoard_id, "iddsfsdfsdf");
+
   return (
     <>
       <ThemeProvider theme={switchTheme ? darkTheme : whiteTheme}>
@@ -118,7 +136,10 @@ const Apps = () => {
                 setSwitchTheme={setSwitchTheme}
                 handleBoardClick={handleBoardClick}
                 handleCreateBoard={handleCreateBoard}
+                setSettingBoard_id={setSettingBoard_id}
                 settingBoard_id={settingBoard_id}
+                setReRender={setReRender}
+                reRender={reRender}
               />
             </BoardProvider>
 
@@ -134,34 +155,48 @@ const Apps = () => {
                 exact
                 path="/"
                 element={
-                  <Board_idProvider value={settingBoard_id}>
-                    <DndContext onDragEnd={handleDragFunction}>
-                      <Draggable_Provider
-                        value={[draggable_id, setDraggable_id]}
-                      >
-                        <Droppable_Provider
-                          value={[
-                            droppable_Position_id,
-                            setDroppable_Position_id,
-                          ]}
+                  <BoardProvider value={board}>
+                    <Board_idProvider
+                      value={
+                        settingBoard_id ||
+                        localStorage.getItem("Previous_board_id")
+                      }
+                    >
+                      <DndContext onDragEnd={handleDragFunction}>
+                        <Draggable_Provider
+                          value={[draggable_id, setDraggable_id]}
                         >
-                          <IsDropped_Provider value={[isDropped, setIsDropped]}>
-                            <SnackBarProvider value={[state, setState]}>
-                              <Newhomepage
-                                reRender={reRender}
-                                setReRender={setReRender}
-                                open={open}
-                                setOpen={setOpen}
-                              />
-                            </SnackBarProvider>
-                          </IsDropped_Provider>
-                        </Droppable_Provider>
-                      </Draggable_Provider>
-                    </DndContext>
-                  </Board_idProvider>
+                          <Droppable_Provider
+                            value={[
+                              droppable_Position_id,
+                              setDroppable_Position_id,
+                            ]}
+                          >
+                            <IsDropped_Provider
+                              value={[isDropped, setIsDropped]}
+                            >
+                              <SnackBarProvider value={[state, setState]}>
+                                <Newhomepage
+                                  reRender={reRender}
+                                  setReRender={setReRender}
+                                  open={open}
+                                  setOpen={setOpen}
+                                  settingBoard_id={settingBoard_id}
+                                />
+                              </SnackBarProvider>
+                            </IsDropped_Provider>
+                          </Droppable_Provider>
+                        </Draggable_Provider>
+                      </DndContext>
+                    </Board_idProvider>
+                  </BoardProvider>
                 }
               />
-              <Route exact path="/signup" element={<Signuppage />}></Route>
+              <Route
+                exact
+                path="/signup"
+                element={<Signuppage setState={setState} />}
+              ></Route>
               <Route
                 exact
                 path="/login"

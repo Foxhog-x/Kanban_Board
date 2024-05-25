@@ -8,7 +8,7 @@ export default function PositionedSnackbar() {
   const { vertical, horizontal, open } = state;
 
   const handleClose = () => {
-    setState({ ...state, open: false });
+    setState({ ...state, open: false, message: "" });
   };
 
   return (
@@ -17,7 +17,7 @@ export default function PositionedSnackbar() {
         anchorOrigin={{ vertical, horizontal }}
         open={open}
         onClose={handleClose}
-        message="List Deleted Successfully"
+        message={state.message}
         key={vertical + horizontal}
       />
     </Box>

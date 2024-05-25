@@ -13,6 +13,7 @@ import React from "react";
 // eslint-disable-next-line react/prop-types
 import Typography from "@mui/material/Typography";
 import { useDroppable } from "@dnd-kit/core";
+
 const Listcolumns = ({
   list_column_id,
   setReRender,
@@ -23,6 +24,22 @@ const Listcolumns = ({
   cards,
   list_column_name,
 }) => {
+  const handleCardDelete = (card_board_id) => {
+    console.log(card_board_id, "card board iddddd");
+    fetch("http://localhost:8000/api/cards/delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        card_id: card_board_id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success === true) {
+          setReRender(!reRender);
+        }
+      });
+  };
   // useEffect(() => {
   //   const fetchCardApi = async () => {
   //     try {
@@ -118,6 +135,7 @@ const Listcolumns = ({
                           reRender={reRender}
                           setReRender={setReRender}
                           handleCardClick={handleCardClick}
+                          handleCardDelete={handleCardDelete}
                         />
                       </CardProvider>
                     </div>

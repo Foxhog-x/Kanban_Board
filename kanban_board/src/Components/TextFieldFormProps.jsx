@@ -31,7 +31,10 @@ const TextFieldFormPropss = ({ open, setCardData }) => {
             })
           }
         />
-        <Reactquill open={open} setCardData={setCardData} />
+        <Box>
+          <Reactquill open={open} setCardData={setCardData} />
+        </Box>
+
         {/* <ReactQuill setCardData={setCardData} /> */}
         {/* <TextField
           label="Description"

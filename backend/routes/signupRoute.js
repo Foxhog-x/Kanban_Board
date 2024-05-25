@@ -27,22 +27,22 @@ router.post("/", async (req, res) => {
             if (error) console.log(error);
             if (results) {
               console.log("Inserted " + results.affectedRows + " row(s)");
-              try {
-                db_con.query(
-                  " select username, user_id from User",
-                  (error, result) => {
-                    if (error) console.log(error);
-                    if (result) {
-                      res.send(result);
-                    }
-                  }
-                );
-              } catch (error) {
-                console.log(error);
-              }
-              // res.status(201).json({
-              //   message: "data saved successfully",
-              // });
+              // try {
+              //   db_con.query(
+              //     " select username, user_id from User",
+              //     (error, result) => {
+              //       if (error) console.log(error);
+              //       if (result) {
+              //         res.send(result);
+              //       }
+              //     }
+              //   );
+              // } catch (error) {
+              //   console.log(error);
+              // }
+              res.status(201).json({
+                message: "data saved successfully",
+              });
             }
           }
         );

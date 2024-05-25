@@ -12,7 +12,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme } from "@mui/material/styles";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { SnackBarContext } from "../context/SnackBarContext";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -37,7 +39,9 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export const SignInpage = ({ loginData, setLoginData }) => {
+  const navigate = useNavigate();
   const [inputData, setInputData] = useState({ email: "", password: "" });
+
   console.log(loginData, "login auth");
   const handlesubmitData = (e) => {
     e.preventDefault();
@@ -53,6 +57,12 @@ export const SignInpage = ({ loginData, setLoginData }) => {
         .then((response) => response.json())
         .then((data) => {
           localStorage.setItem("authToken", data.authToken);
+          if (data.success) {
+            navigate("/");
+            window.alert(data.message);
+          } else {
+            console.log("failed");
+          }
         });
     } catch (error) {
       console.log(error);
@@ -79,7 +89,7 @@ export const SignInpage = ({ loginData, setLoginData }) => {
         <Avatar
           sx={{ width: 150, height: 150, m: 1, bgcolor: "secondary.main" }}
         >
-          <img style={{}} src={logImage} alt="logo" />
+          <img src={logImage} alt="logo" />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in

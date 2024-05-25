@@ -15,10 +15,15 @@ import IconButton from "@mui/material/IconButton";
 import { BoardContext } from "../context/BoardContext";
 import { MeunAppWrapper } from "./helper/MeunAppWrapper";
 import CheckIcon from "@mui/icons-material/Check";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+
 const DrawerMenus = ({
+  setSettingBoard_id,
   handleBoardClick,
   handleCreateBoard,
   settingBoard_id,
+  reRender,
+  setReRender,
 }) => {
   const BoardArray = { public: [], private: [] };
   const handleButtonRef = React.useRef(null);
@@ -27,9 +32,10 @@ const DrawerMenus = ({
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
+  console.log(handleButtonRef.current, "buttonRef");
 
   const boardValues = React.useContext(BoardContext);
-  console.log(BoardArray, boardValues);
+
   const filterBoardType = () => {
     boardValues.map((values) => {
       values.status === 0
@@ -41,7 +47,34 @@ const DrawerMenus = ({
   };
   filterBoardType();
   React.useEffect(() => {}, [boardValues]);
-  console.log(settingBoard_id);
+
+  const handleBoardDeleteApi = (board_id) => {
+    if (settingBoard_id === null) {
+      alert("Please Select board First");
+    } else {
+      const result = confirm(
+        "You are about to delete this Board, Do You sure ?"
+      );
+      if (result) {
+        fetch("http://localhost:8000/api/boards/delete", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            board_idDelete: board_id,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success === true) {
+              localStorage.removeItem("Previous_board_id");
+              setSettingBoard_id(null);
+              setReRender(!reRender);
+            }
+          });
+      }
+    }
+  };
+
   const DrawerList = (
     <Box sx={{ background: "white" }} role="presentation">
       {/* //onClick={toggleDrawer(false)} */}
@@ -66,21 +99,28 @@ const DrawerMenus = ({
             return (
               <ListItem key={i} disablePadding>
                 <ListItemButton
-                  sx={{}}
                   ref={handleButtonRef}
                   onClick={() =>
-                    handleBoardClick(BoardArray.public[i + 1], "public")
+                    handleBoardClick(BoardArray?.public[i + 1], "public")
                   }
                 >
                   <ListItemIcon>
                     <SpaceDashboardIcon />
                   </ListItemIcon>
                   <ListItemText primary={text} />
-                  {settingBoard_id === BoardArray.public[i + 1] ? (
+
+                  {settingBoard_id === BoardArray?.public[i + 1] ? (
                     <CheckIcon />
                   ) : (
-                    ""
+                    console.log("something went worng")
                   )}
+                  <IconButton
+                    onClick={() =>
+                      handleBoardDeleteApi(BoardArray?.public[i + 1], "public")
+                    }
+                  >
+                    <DeleteOutlineIcon />
+                  </IconButton>
                 </ListItemButton>
               </ListItem>
             );
@@ -125,6 +165,13 @@ const DrawerMenus = ({
                     ""
                   )}
                 </ListItemButton>
+                <IconButton
+                  onClick={() =>
+                    handleBoardDeleteApi(BoardArray.private[i + 1], "private")
+                  }
+                >
+                  <DeleteOutlineIcon />
+                </IconButton>
               </ListItem>
             );
           }
