@@ -62,7 +62,7 @@ export const Cards = ({
   const style = transform
     ? {
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-        zindex: -1,
+        zindex: 9999,
       }
     : undefined;
   const bull = (
@@ -77,7 +77,7 @@ export const Cards = ({
 
   const card = (
     <>
-      <Card variant="outlined" sx={{ maxWidth: 318, zIndex: -1 }}>
+      <Card variant="outlined" sx={{ maxWidth: 318, zIndex: 100 }}>
         <StyledCardContent>
           <Stack
             ref={setNodeRef}

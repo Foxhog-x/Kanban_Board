@@ -67,12 +67,15 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
         priority: cardData.priority,
         addLabelList: labelArray,
       }),
-    });
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
     setOpen(false);
     setTimeout(() => {
       setReRender(!reRender);
     }, 300);
     clearCard(setCardData);
+    labelArray.length = 0;
   };
 
   useEffect(() => {
@@ -156,9 +159,9 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
               <Priority setCardData={setCardData} />
             </Box>
             <TextField
+              autoComplete="off"
               error={errorLable}
               onFocus={() => handleFocusFunction()}
-              helperText={helperText}
               inputRef={handleLabelInputRef}
               onChange={(e) => setSelectLable(e.target.value)}
               id="standard-basic"

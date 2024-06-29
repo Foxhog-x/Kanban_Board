@@ -4,8 +4,6 @@ import { CreateModal } from "./Components/CreateModal";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { MenuAppBar } from "./Components/MenuAppBar";
-import { SignInpage } from "./pages/SignInpage";
-import { Signuppage } from "./pages/Signuppage";
 import { Newhomepage } from "./pages/Newhomepage";
 import { ThemeProvider } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
@@ -19,6 +17,7 @@ import { Draggable_Provider } from "./context/Draggable_Context";
 import { Droppable_Provider } from "./context/Droppable_Context";
 import { IsDropped_Provider } from "./context/IsDropped_Context";
 import { SnackBarProvider } from "./context/SnackBarContext";
+import { Index } from "./pages/Calender/Index";
 
 const Apps = () => {
   // eslint-disable-next-line no-undef
@@ -37,7 +36,6 @@ const Apps = () => {
     column_id: "",
   });
 
-  const [loginData, setLoginData] = useState([]);
   const [openFormDialogBoard, setOpenFormDialogBoard] = React.useState({
     bool: false,
     board_Type: "",
@@ -192,21 +190,8 @@ const Apps = () => {
                   </BoardProvider>
                 }
               />
-              <Route
-                exact
-                path="/signup"
-                element={<Signuppage setState={setState} />}
-              ></Route>
-              <Route
-                exact
-                path="/login"
-                element={
-                  <SignInpage
-                    loginData={loginData}
-                    setLoginData={setLoginData}
-                  />
-                }
-              ></Route>
+
+              <Route exact path="/calender" element={<Index />}></Route>
             </Routes>
           </Router>
         </Paper>

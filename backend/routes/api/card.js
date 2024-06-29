@@ -1,6 +1,5 @@
 const express = require("express");
 const db_con = require("../../db");
-const extractContent = require("./test");
 const router = express.Router();
 const cardController = require("../../controllers/cardcontroller");
 
@@ -80,49 +79,87 @@ router.post("/create", (req, res) => {
     department,
     priority,
     assignee_id,
+    addLabelList,
   } = req.body;
-  // console.log(req.body, " this req body");
-
+  console.log(req.body);
   const query = `INSERT INTO assignee_members(card_id, user_id, username) values ?`;
-  // const data = extractContent(req.body.description);
   const sql = "INSERT INTO html_content (card_id, content) VALUES (?, ?)";
+
   db_con.query(
     `INSERT INTO card(title, column_id, start_date, due_date, department, priority) values("${title}", "${column_id}", "${start_date}", "${due_date}", "${department}" ,"${priority}")`,
     (error, result) => {
-      if (error) console.log(error);
+      if (error) {
+        console.error("Error inserting card:", error);
+        return res
+          .status(500)
+          .json({ success: false, message: "Error inserting card" });
+      }
+
       db_con.query("select last_insert_id()", (error, result) => {
+        if (error) {
+          console.error("Error getting last insert id:", error);
+          return res
+            .status(500)
+            .json({ success: false, message: "Error getting last insert id" });
+        }
+
         const card_id = result[0]["last_insert_id()"];
-        if (error) throw error;
-        if (assignee_id !== "") {
+
+        if (assignee_id && assignee_id.length > 0) {
           const assigneeData = assignee_id.map((assignee) => [
-            result[0]["last_insert_id()"],
+            card_id,
             assignee.user_id,
             assignee.username,
           ]);
 
-          db_con.query(query, [assigneeData], (error, results, fields) => {
+          db_con.query(query, [assigneeData], (error, results) => {
             if (error) {
-              console.error("Error inserting data: " + error.message);
-              return;
+              console.error("Error inserting assignee members:", error);
+              return res.status(500).json({
+                success: false,
+                message: "Error inserting assignee members",
+              });
             }
-            console.log("Rows inserted: " + results.affectedRows);
+            console.log("Assignee members inserted: " + results.affectedRows);
           });
+        }
+
+        if (addLabelList && addLabelList.length > 0) {
+          console.log(addLabelList);
+          const insertLabels = addLabelList.map((label) => [label, card_id]);
+          console.log(insertLabels);
+          db_con.query(
+            "INSERT INTO labels(label_name, card_id) VALUES ?",
+            [insertLabels],
+            (error, result) => {
+              if (error) {
+                console.error("Error inserting labels:", error);
+                return res
+                  .status(500)
+                  .json({ success: false, message: "Error inserting labels" });
+              }
+              console.log("Labels inserted: " + result.affectedRows);
+            }
+          );
         }
 
         const htmlContent = description;
         if (description !== "") {
-          db_con.query(
-            sql,
-            [card_id, htmlContent],
-            (error, results, fields) => {
-              if (error) {
-                console.error("Error inserting HTML content:", error);
-                return;
-              }
-              console.log("HTML content inserted successfully!");
+          db_con.query(sql, [card_id, htmlContent], (error, results) => {
+            if (error) {
+              console.error("Error inserting HTML content:", error);
+              return res.status(500).json({
+                success: false,
+                message: "Error inserting HTML content",
+              });
             }
-          );
+            console.log("HTML content inserted successfully!");
+          });
         }
+
+        res
+          .status(200)
+          .json({ success: true, message: "Card created successfully" });
       });
     }
   );

@@ -16,6 +16,8 @@ import { BoardContext } from "../context/BoardContext";
 import { MeunAppWrapper } from "./helper/MeunAppWrapper";
 import CheckIcon from "@mui/icons-material/Check";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { Link } from "react-router-dom";
 
 const DrawerMenus = ({
   setSettingBoard_id,
@@ -74,9 +76,12 @@ const DrawerMenus = ({
       }
     }
   };
+  const handleApi = () => {
+    console.log("its works");
+  };
 
   const DrawerList = (
-    <Box sx={{ background: "white" }} role="presentation">
+    <Box role="presentation">
       {/* //onClick={toggleDrawer(false)} */}
       <List>
         <div
@@ -97,9 +102,8 @@ const DrawerMenus = ({
         {BoardArray?.public?.map((text, i) => {
           if (typeof text === "string") {
             return (
-              <ListItem key={i} disablePadding>
+              <ListItem key={i} disablePadding onClick={toggleDrawer(false)}>
                 <ListItemButton
-                  ref={handleButtonRef}
                   onClick={() =>
                     handleBoardClick(BoardArray?.public[i + 1], "public")
                   }
@@ -151,14 +155,18 @@ const DrawerMenus = ({
               <ListItem key={i} disablePadding>
                 <ListItemButton
                   onClick={() =>
-                    handleBoardClick(BoardArray.private[i + 1], "private")
+                    handleBoardClick(BoardArray.private[i + 1], "private", text)
                   }
                 >
                   <ListItemIcon>
                     {/* {index % 2 === 0 ? <MailIcon /> : <InboxIcon />} */}
                     <SpaceDashboardIcon />
                   </ListItemIcon>
-                  <ListItemText primary={text} color="green" />
+                  <ListItemText
+                    primary={text}
+                    color="green"
+                    onClick={toggleDrawer(false)}
+                  />
                   {settingBoard_id === BoardArray.private[i + 1] ? (
                     <CheckIcon />
                   ) : (
@@ -190,7 +198,34 @@ const DrawerMenus = ({
         onClose={toggleDrawer(false)}
         sx={{ flexDirection: "column-reverse" }}
       >
-        {DrawerList}
+        <Box display={"flex"} flexDirection={"column-reverse"}>
+          {DrawerList}
+          <Divider sx={{ mt: 10 }} />
+          <List>
+            <Typography padding={2} variant="h5">
+              Menu Content
+            </Typography>
+            <Divider sx={{ mt: 3 }} />
+            <ListItem disablePadding>
+              <ListItemButton onClick={handleApi}>
+                <ListItemIcon>
+                  <CalendarMonthIcon />
+                </ListItemIcon>
+
+                <Link
+                  to={"/calender"}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <ListItemText
+                    primary={"Calender"}
+                    ref={handleButtonRef}
+                    onClick={toggleDrawer(false)}
+                  />
+                </Link>
+              </ListItemButton>
+            </ListItem>
+          </List>
+        </Box>
       </Drawer>
     </MeunAppWrapper>
   );
