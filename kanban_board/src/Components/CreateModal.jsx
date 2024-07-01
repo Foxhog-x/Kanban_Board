@@ -108,8 +108,8 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
     } else {
       selectLabel !== ""
         ? setLableArray((prev) => {
-            return [...prev, selectLabel];
-          })
+          return [...prev, selectLabel];
+        })
         : "";
     }
     setSelectLable("");
@@ -151,11 +151,11 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
         </IconButton>
         <DialogContent dividers>
           <TextFieldFormProps open={open} setCardData={setCardData} />
-          <Box mt={2} justifyContent={"center"}>
+          <Box mt={2} maxWidth={500} justifyContent={"center"}>
             <DueDate setCardDataDate={setCardData} />
           </Box>
-          <Stack direction={"row"} mt={2} justifyContent={"flex-start"} gap={5}>
-            <Box width={100}>
+          <Stack direction={"row"} mt={2} justifyContent={"flex-start"} gap={2}>
+            <Box width={100} marginRight={5}>
               <Priority setCardData={setCardData} />
             </Box>
             <TextField

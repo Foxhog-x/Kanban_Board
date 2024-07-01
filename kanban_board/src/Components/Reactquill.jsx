@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "../App.css";
 import "react-quill/dist/quill.snow.css";
@@ -8,6 +8,8 @@ import { modules } from "../utils/reactquillModules";
 
 export const Reactquill = ({ open, editableText, setCardData }) => {
   let newValue = editableText;
+  const quillRef = useRef(null);
+
 
   const [value, setValue] = useState("");
   const [editBool, setEditBool] = useState(false);
@@ -25,7 +27,8 @@ export const Reactquill = ({ open, editableText, setCardData }) => {
   return (
     <Paper>
       <ReactQuill
-        className="ql-container"
+        ref={quillRef}
+        className="ql-container ql-tooltip ql-editing"
         modules={modules}
         theme="snow"
         value={newValue && newValue !== "" ? newValue : !editBool ? "" : value}

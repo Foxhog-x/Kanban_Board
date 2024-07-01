@@ -1,65 +1,29 @@
- 
 .main_container {
-    padding: 3rem;
-    background-color: white;
-    display: flex;
-    border-radius: 3rem;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  }
-  
-  
-    
-  
-  
-  .left_content {
-    padding: 3rem;
-    display: flex;
-    align-items: center;
-    flex: 0.7;
-    background-image: url('../../assets/loginpage.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: 100vh;
-    border-radius: 1rem;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border: 1px;
-    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
-    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
-    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
-  }
-  
-  
-  
-  @media (max-width: 778px) {
-    /* Your CSS styles for screens smaller than 778px go here */
-  
-    .main_container{
-      flex-direction: column;
-      border-radius: none;
-    }
-    .left_content{
-      min-height: 44vh;
-      min-width:-webkit-fill-available;
-    }
-  
-  }
-  .left_content img {
-    width: 100%;
-    height: 100%;
-  }
-  .right_content {
-    color: black;
-    flex: 0.3;
-    min-height: 55vh;
-    max-height: 85vh;
-    min-width: 300px;
-    border-radius: 1rem;
-    padding: 2rem;
-    align-content: center;
-    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  }
-  
+  height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.left_inner {
+  display: flex;
+  padding: 1rem;
+  background-image: url("loginpage.jpg");
+  background-repeat: no-repeat;
+  background-clip: content-box;
+  background-size: cover;
+  background-position: center;
+
+  flex: 0.7;
+
+  min-height: 70vh;
+}
+.right_inner {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  flex: 0.3;
+  padding-left: 1rem;
+  margin-left: 2px;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

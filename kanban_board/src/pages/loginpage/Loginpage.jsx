@@ -1,131 +1,96 @@
-import { useState } from "react";
-import {
-  Box,
-  Button,
-  FormControlLabel,
-  Stack,
-  Switch,
-  TextField,
-} from "@mui/material";
-import { useForm } from "react-hook-form";
-
-import styles from "./Loginpage.module.css";
-import useBackdropStore from "../../store/useBackdropStore";
-import { useToastStore } from "../../store/useToastStore";
-import { SimpleSnackbar } from "../../components/toast/SimpleSnackbar";
-
-// Define the validation schema using Yup
-
-const Loginpage = () => {
-  const { showBackdrop, hideBackdrop } = useBackdropStore();
-  const { addToast } = useToastStore();
-  const [checked, setChecked] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm;
-
-  const fetchLoginUrl = async (url, data) => {
-    showBackdrop();
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-        }),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        hideBackdrop();
-        addToast("Login Successful", "success");
-      } else {
-        console.error(
-          `Error: Received response with status code ${response.status}`
-        );
-        if (response.status === 400) {
-          return;
-        }
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-    } catch (error) {
-      console.error("Fetch error", error);
-
-      hideBackdrop();
-    }
-  };
-  const onSubmit = async (data) => {
-    if (checked) {
-      fetchLoginUrl("http://localhost:8000/admin/login", data);
+import React, { useState } from 'react'
+import styles from './Loginpage.module.css'
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack'
+import Button from '@mui/material/Button'
+import { useNavigate } from 'react-router-dom';
+export const Loginpage = () => {
+    const navigate = useNavigate();
+    const token = localStorage.getItem('authToken')
+    if (token) {
+        console.log("token get it ")
     } else {
-      fetchLoginUrl("http://localhost:8000/member/login", data);
+        console.log("token not get it")
     }
-  };
+    const [inputStore, setInputStore] = useState({
+        email: '',
+        password: ''
+    })
+    const handleChange = (e) => {
+        setInputStore((prev) => {
+            return { ...prev, [e.target.name]: e.target.value }
+        })
 
-  return (
-    <div>
-      <div className={styles.main_container}>
-        <div className={styles.left_content}></div>
-        <div className={styles.right_content}>
-          <h2>Hi Welcome</h2>
-          <h1>Login</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Box>
-              <Stack mt={3} gap={3}>
-                <TextField
-                  autoComplete="true"
-                  id="email"
-                  label="Email"
-                  variant="outlined"
-                  {...register("email")}
-                />
-                {errors.email && (
-                  <p style={{ color: "red" }}>{errors.email.message}</p>
-                )}
-                <TextField
-                  id="password"
-                  label="Password"
-                  variant="outlined"
-                  type="password"
-                  {...register("password")}
-                />
-                {errors.password && (
-                  <p style={{ color: "red" }}>{errors.password.message}</p>
-                )}
-              </Stack>
-              <Stack
-                flexDirection={"row"}
-                mt={4}
-                justifyContent={"space-between"}
-                margin={5}
-              >
-                <FormControlLabel
-                  value="top"
-                  control={
-                    <Switch
-                      color="primary"
-                      checked={checked}
-                      onChange={() => setChecked(!checked)}
-                    />
-                  }
-                  label="Admin Login"
-                  labelPlacement="end"
-                />
+    }
 
-                <Button type="submit" variant="contained" size="large">
-                  Login
-                </Button>
-              </Stack>
-            </Box>
-          </form>
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        fetch("http://localhost:8000/login", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: inputStore.email,
+                password: inputStore.password
+            })
+        }).then((response) => response.json()).then(
+            (data) => {
+                localStorage.setItem('authToken', data.authToken)
+                if (data.success) {
+                    navigate("/");
+                    window.alert(data.message);
+                } else {
+                    console.log("failed");
+                }
+            }
+        )
+    }
+    console.log(inputStore)
+    return (
+        <div className={styles.main_container}>
+            <div className={styles.left_inner}>
+
+            </div>
+            <div className={styles.right_inner}>
+
+                <h2>Hi Welcome</h2>
+                <h1>Login</h1>
+                <Box>
+                    <Stack mt={3} gap={3}>
+                        <TextField
+                            name='email'
+                            id="email"
+                            label="Email"
+                            variant="outlined"
+                            onChange={handleChange}
+
+                        />
+
+                        <TextField
+                            name='password'
+                            id="password"
+                            label="Password"
+                            variant="outlined"
+                            type="password"
+                            onChange={handleChange}
+
+                        />
+
+                    </Stack>
+                    <Stack
+                        flexDirection={"row"}
+                        mt={4}
+                        justifyContent={"space-between"}
+                        margin={5}
+                    >
+
+
+                        <Button type="submit" variant="contained" size="large" onClick={(e) => handleSubmit(e)}>
+                            Login
+                        </Button>
+                    </Stack>
+                </Box>
+            </div>
         </div>
-        <SimpleSnackbar />
-      </div>
-    </div>
-  );
-};
-
-export default Loginpage;
+    )
+}

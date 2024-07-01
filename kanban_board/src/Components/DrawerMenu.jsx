@@ -43,12 +43,12 @@ const DrawerMenus = ({
       values.status === 0
         ? BoardArray.public.push(values.name, values.board_id)
         : values.status === 1
-        ? BoardArray.private.push(values.name, values.board_id)
-        : "";
+          ? BoardArray.private.push(values.name, values.board_id)
+          : "";
     });
   };
   filterBoardType();
-  React.useEffect(() => {}, [boardValues]);
+  React.useEffect(() => { }, [boardValues]);
 
   const handleBoardDeleteApi = (board_id) => {
     if (settingBoard_id === null) {
@@ -103,29 +103,31 @@ const DrawerMenus = ({
           if (typeof text === "string") {
             return (
               <ListItem key={i} disablePadding onClick={toggleDrawer(false)}>
-                <ListItemButton
-                  onClick={() =>
-                    handleBoardClick(BoardArray?.public[i + 1], "public")
-                  }
-                >
-                  <ListItemIcon>
-                    <SpaceDashboardIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-
-                  {settingBoard_id === BoardArray?.public[i + 1] ? (
-                    <CheckIcon />
-                  ) : (
-                    console.log("something went worng")
-                  )}
-                  <IconButton
+                <Link to={`boards/public/${text}`}>
+                  <ListItemButton
                     onClick={() =>
-                      handleBoardDeleteApi(BoardArray?.public[i + 1], "public")
+                      handleBoardClick(BoardArray?.public[i + 1], "public")
                     }
                   >
-                    <DeleteOutlineIcon />
-                  </IconButton>
-                </ListItemButton>
+                    <ListItemIcon>
+                      <SpaceDashboardIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+
+                    {settingBoard_id === BoardArray?.public[i + 1] ? (
+                      <CheckIcon />
+                    ) : (
+                      console.log("something went worng")
+                    )}
+                    <IconButton
+                      onClick={() =>
+                        handleBoardDeleteApi(BoardArray?.public[i + 1], "public")
+                      }
+                    >
+                      <DeleteOutlineIcon />
+                    </IconButton>
+                  </ListItemButton>
+                </Link>
               </ListItem>
             );
           }
@@ -206,7 +208,7 @@ const DrawerMenus = ({
               Menu Content
             </Typography>
             <Divider sx={{ mt: 3 }} />
-            <ListItem disablePadding>
+            {/* <ListItem disablePadding>
               <ListItemButton onClick={handleApi}>
                 <ListItemIcon>
                   <CalendarMonthIcon />
@@ -223,7 +225,7 @@ const DrawerMenus = ({
                   />
                 </Link>
               </ListItemButton>
-            </ListItem>
+            </ListItem> */}
           </List>
         </Box>
       </Drawer>

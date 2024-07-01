@@ -18,6 +18,7 @@ import { Droppable_Provider } from "./context/Droppable_Context";
 import { IsDropped_Provider } from "./context/IsDropped_Context";
 import { SnackBarProvider } from "./context/SnackBarContext";
 import { Index } from "./pages/Calender/Index";
+import { Loginpage } from "./pages/loginpage/Loginpage";
 
 const Apps = () => {
   // eslint-disable-next-line no-undef
@@ -43,7 +44,7 @@ const Apps = () => {
   });
   const [settingBoard_id, setSettingBoard_id] = React.useState(
     localStorage.getItem("Previous_board_id") &&
-      parseInt(localStorage.getItem("Previous_board_id") || null)
+    parseInt(localStorage.getItem("Previous_board_id") || null)
   );
   const [reRender, setReRender] = useState(false);
   const [switchTheme, setSwitchTheme] = useState(false);
@@ -174,6 +175,7 @@ const Apps = () => {
                               value={[isDropped, setIsDropped]}
                             >
                               <SnackBarProvider value={[state, setState]}>
+
                                 <Newhomepage
                                   reRender={reRender}
                                   setReRender={setReRender}
@@ -181,6 +183,7 @@ const Apps = () => {
                                   setOpen={setOpen}
                                   settingBoard_id={settingBoard_id}
                                 />
+
                               </SnackBarProvider>
                             </IsDropped_Provider>
                           </Droppable_Provider>
@@ -192,6 +195,8 @@ const Apps = () => {
               />
 
               <Route exact path="/calender" element={<Index />}></Route>
+              <Route exact path="/login" element={<Loginpage />} />
+
             </Routes>
           </Router>
         </Paper>
