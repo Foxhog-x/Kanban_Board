@@ -9,49 +9,27 @@ const path = require("path");
 // const { error } = require("console");
 
 router.post("/", async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
-  const username = firstName + "_" + lastName;
-
-  const salt = await bcrypt.genSalt(10);
-  const secretPassword = await bcrypt.hash(password, salt);
-
-  const sql = `SELECT *   FROM user WHERE email = "${email}"`;
-
-  db_con.query(sql, (error, results) => {
-    if (error) res.status(401);
-    if (results) {
-      if (results.length === 0) {
-        db_con.query(
-          `INSERT INTO user (username, email, password, role, first_name, last_name) values ("${username}", "${email}", "${secretPassword}","${"Regular User"}", "${firstName}", "${lastName}")`,
-          (error, results) => {
-            if (error) console.log(error);
-            if (results) {
-              console.log("Inserted " + results.affectedRows + " row(s)");
-              // try {
-              //   db_con.query(
-              //     " select username, user_id from User",
-              //     (error, result) => {
-              //       if (error) console.log(error);
-              //       if (result) {
-              //         res.send(result);
-              //       }
-              //     }
-              //   );
-              // } catch (error) {
-              //   console.log(error);
-              // }
-              res.status(201).json({
-                message: "data saved successfully",
-              });
-            }
-          }
-        );
-      } else {
-        console.log("user already existed");
-        res.status(401).json({ message: "user already existed" });
+  try {
+    const { firstName, lastName, email, password } = req.body;
+    const username = firstName + "_" + lastName;
+    console.log(req.body);
+    const salt = await bcrypt.genSalt(10);
+    const secretPassword = await bcrypt.hash(password, salt);
+    console.log(username);
+    const query =
+      "INSERT INTO user (username, password, email, first_name, last_name) VALUES (?, ?, ?, ?, ?)";
+    db_con.query(
+      query,
+      [username, secretPassword, email, firstName, lastName],
+      (error, results) => {
+        if (error) res.status(500).json({ success: false, message: error });
+        res.status(201).json({ success: true, message: "succesfully Created" });
       }
-    }
-  });
+    );
+  } catch (error) {
+    console.error("Error during signup process:", error);
+    res.status(500).send("Internal server error.");
+  }
 });
 
 module.exports = router;

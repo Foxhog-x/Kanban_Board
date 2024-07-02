@@ -22,7 +22,7 @@ export const useFetchList_Col = (reRender) => {
 
     const list_Col_Json = await list_Col_Data.json();
 
-    setList_Col(list_Col_Json);
+    setList_Col(list_Col_Json.data);
 
     if (list_Col_Json.length == 0) {
       setCreateListPostApi({

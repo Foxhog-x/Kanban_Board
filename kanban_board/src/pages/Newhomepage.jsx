@@ -32,7 +32,7 @@ export const Newhomepage = ({
     createListModel,
     setCreateListModel,
   } = useCreateList(reRender, setReRender, createListPostApi, settingBoard_id);
-
+  console.log(list_Col, "listcol");
   return (
     <>
       <PositionedSnackbar />
@@ -76,7 +76,7 @@ export const Newhomepage = ({
       >
         <div className="main_container">
           <div className="horizontal_grid">
-            {list_Col.length !== 0 ? (
+            {list_Col?.length !== 0 ? (
               list_Col?.map((value, i) => {
                 // eslint-disable-next-line react/jsx-key
                 return (

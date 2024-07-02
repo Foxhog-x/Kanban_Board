@@ -1,0 +1,30 @@
+.main_container {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+  }
+  
+  .left_inner {
+    display: flex;
+    padding: 1rem;
+    background-image: url("loginpage.jpg");
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    background-size: cover;
+    background-position: center;
+  
+    flex: 0.7;
+  
+    min-height: 70vh;
+  }
+  .right_inner {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    flex: 0.3;
+    padding-left: 1rem;
+    margin-left: 2px;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  

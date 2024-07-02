@@ -10,9 +10,11 @@ export const useCreateList = (
   const [createListModel, setCreateListModel] = useState(false);
   const addListTextFieldRef = useRef(null);
   const boards = useContext(BoardContext);
-
+  console.log(boards, "boardsddsfnsdljflsjl");
   const handleCreateListPostapi = (e) => {
-    if (boards.length === 0) {
+    if (boards === undefined) alert("board_id is empty");
+    if (boards === undefined || boards.length === 0) {
+      console.log("alert");
       alert("Please Create a atleast one board");
     } else if (settingBoard_id === null) {
       alert("You did not select any Board ");

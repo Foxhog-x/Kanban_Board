@@ -3,13 +3,11 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const db_con = require("../db");
 const secret = "mysecret";
-
 const jwt = require("jsonwebtoken");
 router.post("/", (req, res) => {
   let email = req.body.email;
   const textPass = req.body.password;
   console.log(email);
-
   try {
     db_con.query(
       `select * from user where email = '${email}'`,
@@ -18,8 +16,6 @@ router.post("/", (req, res) => {
         if (results) {
           let password = results[0]?.password;
           let user_id = results[0]?.user_id;
-
-          // Hash a password
 
           bcrypt.compare(textPass, password).then((error, result) => {
             if (error) console.log(error);

@@ -19,6 +19,7 @@ import { IsDropped_Provider } from "./context/IsDropped_Context";
 import { SnackBarProvider } from "./context/SnackBarContext";
 import { Index } from "./pages/Calender/Index";
 import { Loginpage } from "./pages/loginpage/Loginpage";
+import { Signuppage } from "./pages/signuppage/Signuppage";
 
 const Apps = () => {
   // eslint-disable-next-line no-undef
@@ -44,7 +45,7 @@ const Apps = () => {
   });
   const [settingBoard_id, setSettingBoard_id] = React.useState(
     localStorage.getItem("Previous_board_id") &&
-    parseInt(localStorage.getItem("Previous_board_id") || null)
+      parseInt(localStorage.getItem("Previous_board_id") || null)
   );
   const [reRender, setReRender] = useState(false);
   const [switchTheme, setSwitchTheme] = useState(false);
@@ -61,7 +62,7 @@ const Apps = () => {
       );
       const fetchBoardJson = await fetchBoardResponse.json();
       console.log(fetchBoardJson, "this fetch board json");
-      setBoard(fetchBoardJson.results);
+      setBoard(fetchBoardJson.data);
     };
 
     fetchBoard();
@@ -71,9 +72,7 @@ const Apps = () => {
     setSettingBoard_id(board_id);
     localStorage.setItem("Previous_board_id", board_id);
   };
-  board.map((val) => {
-    console.log(val.board_id);
-  });
+
   const handleCreateBoard = (board_Type) => {
     setOpenFormDialogBoard((prev) => {
       return { ...prev, bool: true, board_Type: board_Type };
@@ -151,8 +150,7 @@ const Apps = () => {
             <Routes>
               {/* <Route exact path="/" element={<Homepage setOpen={setOpen} />} /> */}
               <Route
-                exact
-                path="/"
+                path="/boards/public/:boardName"
                 element={
                   <BoardProvider value={board}>
                     <Board_idProvider
@@ -175,7 +173,6 @@ const Apps = () => {
                               value={[isDropped, setIsDropped]}
                             >
                               <SnackBarProvider value={[state, setState]}>
-
                                 <Newhomepage
                                   reRender={reRender}
                                   setReRender={setReRender}
@@ -183,7 +180,6 @@ const Apps = () => {
                                   setOpen={setOpen}
                                   settingBoard_id={settingBoard_id}
                                 />
-
                               </SnackBarProvider>
                             </IsDropped_Provider>
                           </Droppable_Provider>
@@ -196,7 +192,7 @@ const Apps = () => {
 
               <Route exact path="/calender" element={<Index />}></Route>
               <Route exact path="/login" element={<Loginpage />} />
-
+              <Route exact path="/signup" element={<Signuppage />} />
             </Routes>
           </Router>
         </Paper>

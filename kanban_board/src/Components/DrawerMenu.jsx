@@ -39,45 +39,44 @@ const DrawerMenus = ({
   const boardValues = React.useContext(BoardContext);
 
   const filterBoardType = () => {
-    boardValues.map((values) => {
+    boardValues?.map((values) => {
       values.status === 0
         ? BoardArray.public.push(values.name, values.board_id)
         : values.status === 1
-          ? BoardArray.private.push(values.name, values.board_id)
-          : "";
+        ? BoardArray.private.push(values.name, values.board_id)
+        : "";
     });
   };
   filterBoardType();
-  React.useEffect(() => { }, [boardValues]);
+  React.useEffect(() => {}, [boardValues]);
 
   const handleBoardDeleteApi = (board_id) => {
-    if (settingBoard_id === null) {
-      alert("Please Select board First");
-    } else {
-      const result = confirm(
-        "You are about to delete this Board, Do You sure ?"
-      );
-      if (result) {
-        fetch("http://localhost:8000/api/boards/delete", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            board_idDelete: board_id,
-          }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.success === true) {
-              localStorage.removeItem("Previous_board_id");
-              setSettingBoard_id(null);
-              setReRender(!reRender);
-            }
-          });
+    if (board_id) {
+      if (settingBoard_id === null) {
+        alert("Please Select board First");
+      } else {
+        const result = confirm(
+          "You are about to delete this Board, Do You sure ?"
+        );
+        if (result) {
+          fetch("http://localhost:8000/api/boards/delete", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              board_idDelete: board_id,
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success === true) {
+                localStorage.removeItem("Previous_board_id");
+                setSettingBoard_id(null);
+                setReRender(!reRender);
+              }
+            });
+        }
       }
     }
-  };
-  const handleApi = () => {
-    console.log("its works");
   };
 
   const DrawerList = (
@@ -121,7 +120,10 @@ const DrawerMenus = ({
                     )}
                     <IconButton
                       onClick={() =>
-                        handleBoardDeleteApi(BoardArray?.public[i + 1], "public")
+                        handleBoardDeleteApi(
+                          BoardArray?.public[i + 1],
+                          "public"
+                        )
                       }
                     >
                       <DeleteOutlineIcon />
@@ -200,15 +202,16 @@ const DrawerMenus = ({
         onClose={toggleDrawer(false)}
         sx={{ flexDirection: "column-reverse" }}
       >
-        <Box display={"flex"} flexDirection={"column-reverse"}>
-          {DrawerList}
-          <Divider sx={{ mt: 10 }} />
+        {DrawerList}
+        {/* <Box display={"flex"} flexDirection={"column-reverse"}>
+          {DrawerList} */}
+        {/* <Divider sx={{ mt: 10 }} />
           <List>
             <Typography padding={2} variant="h5">
-              Menu Content
+         
             </Typography>
-            <Divider sx={{ mt: 3 }} />
-            {/* <ListItem disablePadding>
+            <Divider sx={{ mt: 3 }} /> */}
+        {/* <ListItem disablePadding>
               <ListItemButton onClick={handleApi}>
                 <ListItemIcon>
                   <CalendarMonthIcon />
@@ -226,8 +229,8 @@ const DrawerMenus = ({
                 </Link>
               </ListItemButton>
             </ListItem> */}
-          </List>
-        </Box>
+        {/* /* </List>
+        </Box> */}
       </Drawer>
     </MeunAppWrapper>
   );
