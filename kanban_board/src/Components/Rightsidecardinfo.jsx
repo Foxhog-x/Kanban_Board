@@ -18,8 +18,19 @@ import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { dateTimeConverter } from "../utils/dateTime";
 import { Reactquill } from "./Reactquill";
+import SaveIcon from '@mui/icons-material/Save';
+import { useFetchCards } from "../hooks/useFetchCards";
+const Rightsidecardinfos = ({ reRender, setReRender, infoRightCard, state, setState }) => {
+  const [editBool, setEditBool] = React.useState(false);
+  const [handleEditSave, setHandleEditSave] = React.useState(false);
+  const [checkIfEdit, setCheckIfEdit] = React.useState(false);
 
-const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
+  const handleSave = () => {
+    setHandleEditSave(true)
+    setCheckIfEdit(true)
+
+  }
+
   const StyledChip = styled(Chip)(({ theme }) => ({
     borderRadius: theme.shape.borderRadius - 2, // Use theme's default (4px)
     fontSize: theme.typography.fontSize - 2, // Adjust font size (optional)
@@ -27,6 +38,11 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
   }));
   console.log(infoRightCard, "inforightside card");
   const toggleDrawer = (anchor, open) => (event) => {
+    if (checkIfEdit) {
+      setCheckIfEdit(false)
+      setReRender(!reRender)
+
+    }
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
@@ -72,8 +88,9 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
           padding={3}
         >
           <Divider />
-          <IconButton>
-            <EditIcon />
+          <IconButton onClick={() => setEditBool(true)}>
+            {editBool ? <IconButton onClick={() => handleSave()}><SaveIcon /> </IconButton>
+              : <EditIcon />}
           </IconButton>
 
           <DeleteForeverIcon />
@@ -134,10 +151,10 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
                 infoRightCard?.priority === "Low"
                   ? "success"
                   : infoRightCard?.priority === "Medium"
-                  ? "warning"
-                  : infoRightCard?.priority === "High"
-                  ? "error"
-                  : "default"
+                    ? "warning"
+                    : infoRightCard?.priority === "High"
+                      ? "error"
+                      : "default"
               }
               // label={cardValue?.priority}
               label={infoRightCard.priority}
@@ -150,7 +167,7 @@ const Rightsidecardinfos = ({ infoRightCard, state, setState }) => {
             <Typography>Description</Typography>
           </Stack>
         </Stack>
-        <Reactquill editableText={infoRightCard?.html_content} />
+        <Reactquill card_id={infoRightCard?.card_id} editableText={infoRightCard?.html_content} editBool={editBool} setEditBool={setEditBool} setHandleEditSave={setHandleEditSave} handleEditSave={handleEditSave} />
       </Stack>
     </Box>
   );

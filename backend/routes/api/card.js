@@ -68,7 +68,15 @@ router.post("/", cardController.getAllCards);
 //     res.send(error);
 //   }
 // });
+router.put("/update", (req, res) => {
+  const { card_id, data } = req.body
+  const updateHtmlContentQuery = `UPDATE html_content SET content = ? WHERE card_id = ? `
+  db_con.query(updateHtmlContentQuery, [data, card_id], (error, response) => {
+    if (error) { res.status(500).json({ data: error.message }) }
+    res.status(200).json({ success: true })
+  })
 
+})
 router.post("/create", (req, res) => {
   const {
     title,

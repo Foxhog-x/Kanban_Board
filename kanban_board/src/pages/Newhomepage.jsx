@@ -45,6 +45,8 @@ export const Newhomepage = ({
         addListTextFieldRef={addListTextFieldRef}
       />
       <Rightsidecardinfo
+        reRender={reRender}
+        setReRender={setReRender}
         infoRightCard={infoRightCard}
         state={state}
         setState={setState}
