@@ -1,4 +1,4 @@
-const db_con = require("../db");
+const db_con = require('../db')
 
 const getAllBoard = (req, res) => {
     db_con.query("SELECT * FROM board", (error, results) => {

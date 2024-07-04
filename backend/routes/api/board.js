@@ -1,8 +1,7 @@
 const express = require("express");
-const db_con = require("../../db");
 const user_idMiddlewere = require("../../user_idMiddlewere");
 const router = express.Router();
-const boardController = require('../../controllers/boardcontroller')
+const boardController = require('../../controllers/boardController')
 
 router.post("/", boardController.getAllBoard);
 
