@@ -61,9 +61,9 @@ export const Cards = ({
   });
   const style = transform
     ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-        zindex: 9999,
-      }
+      transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+      zindex: 9999,
+    }
     : undefined;
   const bull = (
     <Box
@@ -94,10 +94,10 @@ export const Cards = ({
                 cardValues?.priority === "Low"
                   ? "success"
                   : cardValues?.priority === "Medium"
-                  ? "warning"
-                  : cardValues?.priority === "High"
-                  ? "error"
-                  : "default"
+                    ? "warning"
+                    : cardValues?.priority === "High"
+                      ? "error"
+                      : "default"
               }
               label={cardValues?.priority}
             />
@@ -172,8 +172,8 @@ export const Cards = ({
               </Badge>
               <AccessTimeOutlinedIcon fontSize="small" />
               <small>{timeLeftFromNow(cardValues.due_date)}</small>
-              <IconButton>
-                <DeleteOutlineIcon onClick={() => handleCardDelete(id)} />
+              <IconButton onClick={() => handleCardDelete(id)}>
+                <DeleteOutlineIcon />
               </IconButton>
             </Stack>
           </Stack>
