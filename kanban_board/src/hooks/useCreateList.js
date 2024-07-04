@@ -10,7 +10,7 @@ export const useCreateList = (
   const [createListModel, setCreateListModel] = useState(false);
   const addListTextFieldRef = useRef(null);
   const boards = useContext(BoardContext);
-  console.log(boards, "boardsddsfnsdljflsjl");
+
   const handleCreateListPostapi = (e) => {
     if (boards === undefined) alert("board_id is empty");
     if (boards === undefined || boards.length === 0) {

@@ -34,7 +34,7 @@ const DrawerMenus = ({
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
-  console.log(handleButtonRef.current, "buttonRef");
+
 
   const boardValues = React.useContext(BoardContext);
 
@@ -43,12 +43,12 @@ const DrawerMenus = ({
       values.status === 0
         ? BoardArray.public.push(values.name, values.board_id)
         : values.status === 1
-        ? BoardArray.private.push(values.name, values.board_id)
-        : "";
+          ? BoardArray.private.push(values.name, values.board_id)
+          : "";
     });
   };
   filterBoardType();
-  React.useEffect(() => {}, [boardValues]);
+  React.useEffect(() => { }, [boardValues]);
 
   const handleBoardDeleteApi = (board_id) => {
     if (board_id) {

@@ -45,7 +45,7 @@ const Apps = () => {
   });
   const [settingBoard_id, setSettingBoard_id] = React.useState(
     localStorage.getItem("Previous_board_id") &&
-      parseInt(localStorage.getItem("Previous_board_id") || null)
+    parseInt(localStorage.getItem("Previous_board_id") || null)
   );
   const [reRender, setReRender] = useState(false);
   const [switchTheme, setSwitchTheme] = useState(false);
@@ -61,7 +61,7 @@ const Apps = () => {
         }
       );
       const fetchBoardJson = await fetchBoardResponse.json();
-      console.log(fetchBoardJson, "this fetch board json");
+
       setBoard(fetchBoardJson.data);
     };
 
@@ -113,11 +113,11 @@ const Apps = () => {
       const droppable_item_id = over.id;
       setDroppable_Position_id(droppable_item_id);
       setIsDropped(true);
-      console.log(isDropped, "dropped boolean");
+
     }
   };
 
-  console.log(settingBoard_id, "iddsfsdfsdf");
+
 
   return (
     <>

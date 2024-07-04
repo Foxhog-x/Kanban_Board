@@ -41,7 +41,7 @@ export const Signuppage = () => {
         }
       });
   };
-  console.log(inputStore);
+
   return (
     <div className={styles.main_container}>
       <div className={styles.left_inner}></div>

@@ -41,7 +41,7 @@ const createCard = (req, res) => {
     assignee_id,
     addLabelList,
   } = req.body;
-  console.log(req.body);
+
   const queryAssign = `INSERT INTO assignee_members(card_id, user_id, username) values ?`;
   const queryHtml = "INSERT INTO html_content (card_id, content) VALUES (?, ?)";
   const queryCard = `INSERT INTO card(title, column_id, start_date, due_date, department, priority) values(?,?,?,?,?,?)`
@@ -72,7 +72,7 @@ const createCard = (req, res) => {
             assignee.username,
           ]);
 
-          db_con.query(query, [assigneeData], (error, results) => {
+          db_con.query(queryAssign, [assigneeData], (error, results) => {
             if (error) {
               console.error("Error inserting assignee members:", error);
               return res.status(500).json({
@@ -87,7 +87,7 @@ const createCard = (req, res) => {
         if (addLabelList && addLabelList.length > 0) {
           console.log(addLabelList);
           const insertLabels = addLabelList.map((label) => [label, card_id]);
-          console.log(insertLabels);
+
           db_con.query(
             "INSERT INTO labels(label_name, card_id) VALUES ?",
             [insertLabels],
@@ -135,7 +135,7 @@ const updateCard = (req, res) => {
 
 const deleteSingleCard = (req, res) => {
   const { card_id } = req.body;
-  console.log(card_id);
+
   db_con.query(
     `delete from card where card_id = ${card_id}`,
     (error, results) => {

@@ -25,7 +25,7 @@ const Listcolumns = ({
   list_column_name,
 }) => {
   const handleCardDelete = (card_board_id) => {
-    console.log(card_board_id, "card board iddddd");
+
     fetch("http://localhost:8000/api/cards/delete", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

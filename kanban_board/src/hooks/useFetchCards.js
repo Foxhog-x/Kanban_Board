@@ -8,7 +8,7 @@ export const useFetchCards = (reRender) => {
       headers: { "Content-Type": "application/json" },
     });
     const cardData_Json = await cardsData.json();
-    console.log(cardData_Json, "card data");
+
     setCards(cardData_Json);
   };
 

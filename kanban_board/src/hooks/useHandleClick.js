@@ -11,7 +11,7 @@ export const useHandleClick = () => {
       return { ...prev, right: true };
     });
     setInfoRightCard(cardInfovalue);
-    console.log("its works");
+
   };
 
   return { handleCardClick, infoRightCard, state, setState };

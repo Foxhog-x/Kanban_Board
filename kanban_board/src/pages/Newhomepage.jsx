@@ -22,7 +22,7 @@ export const Newhomepage = ({
     useFetchList_Col(reRender);
 
   const [cards, setCards] = useFetchCards(reRender);
-  console.log(cards, "this is cards")
+
   const { handleCardClick, infoRightCard, state, setState } = useHandleClick();
 
   useUpdateCards(cards, setCards);
