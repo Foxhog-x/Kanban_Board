@@ -1,77 +1,15 @@
 const express = require("express");
 const db_con = require("../../db");
 const user_idMiddlewere = require("../../user_idMiddlewere");
-// const { route } = require("./card");
 const router = express.Router();
-const secret = "mysecret";
-var jwt = require("jsonwebtoken");
+const boardController = require('../../controllers/boardcontroller')
 
-router.post("/", (req, res) => {
-  db_con.query("SELECT * FROM board", (error, results) => {
-    if (error) {
-      return res.status(500).json({ message: error.message });
-    }
-    console.log(results);
-    res.status(200).json({ success: true, data: results });
-  });
-});
+router.post("/", boardController.getAllBoard);
 
-router.post("/create", user_idMiddlewere, (req, res) => {
-  const { board_name, board_Type } = req.body;
-  console.log(req.user_id.id, "userid");
-  const board_Type_checked = board_Type === "Public" ? 0 : 1;
-  const createQuery =
-    "Insert into board (name, creator_id, status) values(?,?,?)";
-  db_con.query(
-    createQuery,
-    [board_name, req.user_id.id, board_Type_checked],
-    (error, results) => {
-      if (error) res.status(500).json({ error });
-      if (results) {
-        db_con.query("select last_insert_id()", (error, result) => {
-          if (error) throw error;
-          const board_id = result[0]["last_insert_id()"];
-          console.log(board_id, "board_id got from the last insert sql");
-          console.log("board Rows inserted: " + results.affectedRows);
-          res.status(201).json({
-            success: true,
-            message: "successfully Created",
-            latest_board_id: board_id,
-          });
-        });
-      }
-    }
-  );
+router.post("/create", user_idMiddlewere, boardController.createBoard);
 
-  // db_con.query(createQuery, [board_name, req.user]);
-  // db_con.query(
-  //   `Insert into board (name, creator_id, status) values ("${board_name}", "${req.user_id.id}", "${board_Type_checked}")`,
-  //   (error, results) => {
-  //     if (error) {
-  //       console.error("Error inserting HTML content:", error);
-  //       return;
-  //     }
-  //     if (results) {
-  //
-  //     }
-  //   }
-  // );
-});
+router.post("/delete", boardController.deleteBoard);
 
-router.post("/delete", (req, res) => {
-  const { board_idDelete } = req.body;
-  console.log(board_idDelete, "board_id");
-  db_con.query(
-    ` delete from board where board_id = ${board_idDelete}`,
-    (error, results) => {
-      if (error) console.log(error);
-      if (results) {
-        console.log("successfully deleted");
-        res
-          .status(201)
-          .json({ success: true, message: "successfully Deleted" });
-      }
-    }
-  );
-});
+
+
 module.exports = router;
