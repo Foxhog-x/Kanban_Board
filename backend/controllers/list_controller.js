@@ -4,7 +4,7 @@ let positionArr = [];
 
 const getListCol = async (req, res) => {
     let { board_id } = req.body;
-    console.log(board_id, "boardis");
+
     board_id = isNaN(board_id) ? null : board_id;
 
     if (board_id === null) {
@@ -32,9 +32,9 @@ const getListCol = async (req, res) => {
 
 const createListCol = (req, res) => {
     const { createList_Obj } = req.body;
-    console.log(createList_Obj, "createList api");
+
     const { name, board_id } = createList_Obj;
-    console.log(name, board_id, "board_id");
+
     const query = `INSERT INTO list_column (name, board_id, position)values(?,?,?)`;
     db_con.query(
         `SELECT position From list_column where board_id = ${board_id}`,
@@ -46,7 +46,7 @@ const createListCol = (req, res) => {
                     positionArr.push(position);
                 }
                 let newPostionInsert = positionArr.length + 1;
-                console.log(newPostionInsert, "newposition");
+
                 db_con.query(
                     query,
                     [name, board_id, newPostionInsert],
