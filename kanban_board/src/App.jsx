@@ -2,13 +2,13 @@
 
 import { CreateModal } from "./Components/CreateModal";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { MenuAppBar } from "./Components/MenuAppBar";
 import { Newhomepage } from "./pages/Newhomepage";
 import { ThemeProvider } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { darkTheme, whiteTheme } from "./utils/themeMode";
-import { BoardContext, BoardProvider } from "./context/BoardContext";
+import { BoardProvider } from "./context/BoardContext";
 import React from "react";
 import { Board_idProvider } from "./context/Board_idContext";
 import FormDialog from "./Components/FormDialog";
@@ -51,7 +51,6 @@ const Apps = () => {
   const [reRender, setReRender] = useState(false);
   const [switchTheme, setSwitchTheme] = useState(false);
   const [board, setBoard] = useState([]);
-  const boardValues = React.useContext(BoardContext);
   useEffect(() => {
     const fetchBoard = async () => {
       const fetchBoardResponse = await fetch(
