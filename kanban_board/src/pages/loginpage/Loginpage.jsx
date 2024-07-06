@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Loginpage.module.css";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import { BackdropContext } from "../../context/BackdropContext";
 export const Loginpage = () => {
+  const [showBackdrop, setShowBackdrop] = useContext(BackdropContext)
+
+
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
   if (token) {
@@ -23,7 +27,15 @@ export const Loginpage = () => {
     });
   };
 
+  const setUserToLocalStorage = (users) => {
+    const userName = users[0];
+    console.log(userName, "usersksadfkjsd")
+    localStorage.setItem('userData', JSON.stringify(userName))
+  }
+
+
   const handleSubmit = (e) => {
+    setShowBackdrop(true)
     e.preventDefault();
     fetch("http://localhost:8000/login", {
       method: "POST",
@@ -35,10 +47,12 @@ export const Loginpage = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        localStorage.setItem("authToken", data.authToken);
+        setShowBackdrop(false)
+        localStorage.setItem("authToken", data?.authToken);
+
         if (data.success) {
+          setUserToLocalStorage(data.users)
           navigate("/");
-          window.alert(data.message);
         } else {
           console.log("failed");
         }

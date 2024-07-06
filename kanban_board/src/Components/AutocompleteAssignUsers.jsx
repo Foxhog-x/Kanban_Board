@@ -1,18 +1,24 @@
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
+
 export default function AutocompleteAssignUser({ setCardDataAssign }) {
+
+
+
   return (
     // <Stack  spacing={3} sx={{ minWidth: 250 }}>
     <Autocomplete
       multiple
       onChange={(e, value) => {
+        console.log(value, "value")
         setCardDataAssign((prev) => {
+
           return { ...prev, assignee_id: value };
         });
       }}
       id="tags-outlined"
-      options={users_List}
+      options={users}
       getOptionLabel={(option) => option.username}
       filterSelectedOptions
       renderInput={(params) => (
@@ -22,13 +28,12 @@ export default function AutocompleteAssignUser({ setCardDataAssign }) {
     // </Stack>
   );
 }
+const parsedData = JSON.parse(localStorage.getItem("userData"));
+const users = Array.isArray(parsedData) ? parsedData : [parsedData];
+console.log(users)
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-// const users_List = [
-//   { user_id: 1, username: "black_mamba" },
-//   { user_id: 2, username: "test_user" },
-//   { user_id: 3, username: "see_me" },
-// ];
-const userdata = JSON.parse(localStorage.getItem("userData"));
 
-const users_List = userdata ? userdata : [{}];
+
+
+

@@ -21,9 +21,12 @@ import { Index } from "./pages/Calender/Index";
 import { Loginpage } from "./pages/loginpage/Loginpage";
 import { Signuppage } from "./pages/signuppage/Signuppage";
 import { Hompage } from "./pages/homepage/Hompage";
+import { Backdrop_Provider } from "./context/BackdropContext";
+import SimpleBackdrop from "./Components/SimpleBackdrop";
 
 const Apps = () => {
   // eslint-disable-next-line no-undef
+  const [showBackdrop, setShowBackdrop] = React.useState(false);
   const [state, setState] = React.useState({
     open: false,
     vertical: "bottom",
@@ -46,7 +49,7 @@ const Apps = () => {
   });
   const [settingBoard_id, setSettingBoard_id] = React.useState(
     localStorage.getItem("Previous_board_id") &&
-      parseInt(localStorage.getItem("Previous_board_id") || null)
+    parseInt(localStorage.getItem("Previous_board_id") || null)
   );
   const [reRender, setReRender] = useState(false);
   const [switchTheme, setSwitchTheme] = useState(false);
@@ -120,78 +123,81 @@ const Apps = () => {
     <>
       <ThemeProvider theme={switchTheme ? darkTheme : whiteTheme}>
         <Paper>
-          <Router>
-            <FormDialog
-              openFormDialogBoard={openFormDialogBoard}
-              setOpenFormDialogBoard={setOpenFormDialogBoard}
-              handleCreateBoardApi={handleCreateBoardApi}
-            />
-            <BoardProvider value={board && board}>
-              <MenuAppBar
-                setSwitchTheme={setSwitchTheme}
-                handleBoardClick={handleBoardClick}
-                handleCreateBoard={handleCreateBoard}
-                setSettingBoard_id={setSettingBoard_id}
-                settingBoard_id={settingBoard_id}
-                setReRender={setReRender}
-                reRender={reRender}
+          <Backdrop_Provider value={[showBackdrop, setShowBackdrop]}>
+            <Router>
+              <SimpleBackdrop />
+              <FormDialog
+                openFormDialogBoard={openFormDialogBoard}
+                setOpenFormDialogBoard={setOpenFormDialogBoard}
+                handleCreateBoardApi={handleCreateBoardApi}
               />
-            </BoardProvider>
+              <BoardProvider value={board && board}>
+                <MenuAppBar
+                  setSwitchTheme={setSwitchTheme}
+                  handleBoardClick={handleBoardClick}
+                  handleCreateBoard={handleCreateBoard}
+                  setSettingBoard_id={setSettingBoard_id}
+                  settingBoard_id={settingBoard_id}
+                  setReRender={setReRender}
+                  reRender={reRender}
+                />
+              </BoardProvider>
 
-            <CreateModal
-              reRender={reRender}
-              setReRender={setReRender}
-              open={open}
-              setOpen={setOpen}
-            />
-            <Routes>
-              {/* <Route exact path="/" element={<Homepage setOpen={setOpen} />} /> */}
-              <Route
-                path="/boards/public/:boardName"
-                element={
-                  <BoardProvider value={board}>
-                    <Board_idProvider
-                      value={
-                        settingBoard_id ||
-                        localStorage.getItem("Previous_board_id")
-                      }
-                    >
-                      <DndContext onDragEnd={handleDragFunction}>
-                        <Draggable_Provider
-                          value={[draggable_id, setDraggable_id]}
-                        >
-                          <Droppable_Provider
-                            value={[
-                              droppable_Position_id,
-                              setDroppable_Position_id,
-                            ]}
-                          >
-                            <IsDropped_Provider
-                              value={[isDropped, setIsDropped]}
-                            >
-                              <SnackBarProvider value={[state, setState]}>
-                                <Newhomepage
-                                  reRender={reRender}
-                                  setReRender={setReRender}
-                                  open={open}
-                                  setOpen={setOpen}
-                                  settingBoard_id={settingBoard_id}
-                                />
-                              </SnackBarProvider>
-                            </IsDropped_Provider>
-                          </Droppable_Provider>
-                        </Draggable_Provider>
-                      </DndContext>
-                    </Board_idProvider>
-                  </BoardProvider>
-                }
+              <CreateModal
+                reRender={reRender}
+                setReRender={setReRender}
+                open={open}
+                setOpen={setOpen}
               />
-              <Route exact path="/" element={<Hompage />} />
-              <Route exact path="/calender" element={<Index />}></Route>
-              <Route exact path="/login" element={<Loginpage />} />
-              <Route exact path="/signup" element={<Signuppage />} />
-            </Routes>
-          </Router>
+              <Routes>
+                {/* <Route exact path="/" element={<Homepage setOpen={setOpen} />} /> */}
+                <Route
+                  path="/boards/public/:boardName"
+                  element={
+                    <BoardProvider value={board}>
+                      <Board_idProvider
+                        value={
+                          settingBoard_id ||
+                          localStorage.getItem("Previous_board_id")
+                        }
+                      >
+                        <DndContext onDragEnd={handleDragFunction}>
+                          <Draggable_Provider
+                            value={[draggable_id, setDraggable_id]}
+                          >
+                            <Droppable_Provider
+                              value={[
+                                droppable_Position_id,
+                                setDroppable_Position_id,
+                              ]}
+                            >
+                              <IsDropped_Provider
+                                value={[isDropped, setIsDropped]}
+                              >
+                                <SnackBarProvider value={[state, setState]}>
+                                  <Newhomepage
+                                    reRender={reRender}
+                                    setReRender={setReRender}
+                                    open={open}
+                                    setOpen={setOpen}
+                                    settingBoard_id={settingBoard_id}
+                                  />
+                                </SnackBarProvider>
+                              </IsDropped_Provider>
+                            </Droppable_Provider>
+                          </Draggable_Provider>
+                        </DndContext>
+                      </Board_idProvider>
+                    </BoardProvider>
+                  }
+                />
+                <Route exact path="/" element={<Hompage />} />
+                <Route exact path="/calender" element={<Index />}></Route>
+                <Route exact path="/login" element={<Loginpage />} />
+                <Route exact path="/signup" element={<Signuppage />} />
+              </Routes>
+            </Router>
+          </Backdrop_Provider>
         </Paper>
       </ThemeProvider>
     </>

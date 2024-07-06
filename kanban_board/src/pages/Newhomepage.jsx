@@ -10,6 +10,7 @@ import { useHandleClick } from "../hooks/useHandleClick";
 
 import { useUpdateCards } from "../hooks/useUpdateCards.js";
 import PositionedSnackbar from "../Components/PositionedSnackbar.jsx";
+
 // eslint-disable-next-line react/prop-types
 export const Newhomepage = ({
   open,
@@ -18,6 +19,7 @@ export const Newhomepage = ({
   setReRender,
   settingBoard_id,
 }) => {
+
   const [list_Col, createListPostApi, setCreateListPostApi] =
     useFetchList_Col(reRender);
 

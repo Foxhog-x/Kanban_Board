@@ -44,13 +44,13 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
     description: "",
     start_date: "",
     due_date: "",
-    assignee_id: "",
+    assignee_id: [],
     priority: "",
     colorSchemes_id: "",
     department: "",
     status: "",
   });
-
+  console.log(cardData)
   const handleCreateTaskApi = async (e) => {
     e.preventDefault();
     fetch("http://localhost:8000/api/cards/create", {
