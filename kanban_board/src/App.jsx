@@ -2,13 +2,13 @@
 
 import { CreateModal } from "./Components/CreateModal";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { MenuAppBar } from "./Components/MenuAppBar";
 import { Newhomepage } from "./pages/Newhomepage";
 import { ThemeProvider } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { darkTheme, whiteTheme } from "./utils/themeMode";
-import { BoardProvider } from "./context/BoardContext";
+import { BoardContext, BoardProvider } from "./context/BoardContext";
 import React from "react";
 import { Board_idProvider } from "./context/Board_idContext";
 import FormDialog from "./Components/FormDialog";
@@ -20,6 +20,7 @@ import { SnackBarProvider } from "./context/SnackBarContext";
 import { Index } from "./pages/Calender/Index";
 import { Loginpage } from "./pages/loginpage/Loginpage";
 import { Signuppage } from "./pages/signuppage/Signuppage";
+import { Hompage } from "./pages/homepage/Hompage";
 
 const Apps = () => {
   // eslint-disable-next-line no-undef
@@ -45,12 +46,12 @@ const Apps = () => {
   });
   const [settingBoard_id, setSettingBoard_id] = React.useState(
     localStorage.getItem("Previous_board_id") &&
-    parseInt(localStorage.getItem("Previous_board_id") || null)
+      parseInt(localStorage.getItem("Previous_board_id") || null)
   );
   const [reRender, setReRender] = useState(false);
   const [switchTheme, setSwitchTheme] = useState(false);
   const [board, setBoard] = useState([]);
-
+  const boardValues = React.useContext(BoardContext);
   useEffect(() => {
     const fetchBoard = async () => {
       const fetchBoardResponse = await fetch(
@@ -113,11 +114,8 @@ const Apps = () => {
       const droppable_item_id = over.id;
       setDroppable_Position_id(droppable_item_id);
       setIsDropped(true);
-
     }
   };
-
-
 
   return (
     <>
@@ -189,7 +187,7 @@ const Apps = () => {
                   </BoardProvider>
                 }
               />
-
+              <Route exact path="/" element={<Hompage />} />
               <Route exact path="/calender" element={<Index />}></Route>
               <Route exact path="/login" element={<Loginpage />} />
               <Route exact path="/signup" element={<Signuppage />} />

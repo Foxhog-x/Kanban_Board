@@ -17,7 +17,7 @@ import { MeunAppWrapper } from "./helper/MeunAppWrapper";
 import CheckIcon from "@mui/icons-material/Check";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const DrawerMenus = ({
   setSettingBoard_id,
@@ -28,13 +28,11 @@ const DrawerMenus = ({
   setReRender,
 }) => {
   const BoardArray = { public: [], private: [] };
-  const handleButtonRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
-
 
   const boardValues = React.useContext(BoardContext);
 
@@ -43,12 +41,11 @@ const DrawerMenus = ({
       values.status === 0
         ? BoardArray.public.push(values.name, values.board_id)
         : values.status === 1
-          ? BoardArray.private.push(values.name, values.board_id)
-          : "";
+        ? BoardArray.private.push(values.name, values.board_id)
+        : "";
     });
   };
   filterBoardType();
-  React.useEffect(() => { }, [boardValues]);
 
   const handleBoardDeleteApi = (board_id) => {
     if (board_id) {
