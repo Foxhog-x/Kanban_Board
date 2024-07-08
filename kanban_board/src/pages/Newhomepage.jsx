@@ -26,15 +26,16 @@ export const Newhomepage = ({
   const [cards, setCards] = useFetchCards(reRender);
 
   const { handleCardClick, infoRightCard, state, setState } = useHandleClick();
-
   useUpdateCards(cards, setCards);
+
+
   const {
     handleCreateListPostapi,
     addListTextFieldRef,
     createListModel,
     setCreateListModel,
   } = useCreateList(reRender, setReRender, createListPostApi, settingBoard_id);
-  console.log(list_Col, "listcol");
+
   return (
     <>
       <PositionedSnackbar />

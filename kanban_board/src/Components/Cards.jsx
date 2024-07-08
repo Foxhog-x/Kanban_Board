@@ -30,11 +30,12 @@ import {
 } from "../context/CardContext";
 import { MemoGroupavatar } from "./Groupavatars";
 import { labelChipArrayString } from "../utils/labelChipArrayString";
+import { minHeight } from "@mui/system";
 
 const StyledChip = styled(Chip)(({ theme }) => ({
-  borderRadius: theme.shape.borderRadius - 4,
-  fontSize: theme.typography.fontSize - 2,
-  padding: theme.spacing(0.5, 1),
+
+  fontSize: theme.typography.fontSize - 3,
+  padding: theme.spacing(0.5, 0.5),
 }));
 
 const StyledCardContent = styled(CardContent)(({ theme }) => ({
@@ -77,7 +78,7 @@ export const Cards = ({
 
   const card = (
     <>
-      <Card variant="outlined" sx={{ maxWidth: 318, zIndex: 100 }}>
+      <Card variant="outlined" sx={{ minHeight: 200, maxWidth: 318, zIndex: 100 }}>
         <StyledCardContent>
           <Stack
             ref={setNodeRef}
@@ -108,24 +109,26 @@ export const Cards = ({
           <Box
             ml={1}
             mt={1}
+            minHeight={30}
             display={"flex"}
             justifyContent={"start"}
             flexWrap={"wrap"}
             mb={2}
           >
-            <>
-              {labelChip &&
-                labelChip.map((value) => {
-                  return (
-                    <StylelabelStyleChip
-                      variant="outlined"
-                      size="small"
-                      key={value}
-                      label={<small>{value}</small>}
-                    />
-                  );
-                })}
-            </>
+
+            {labelChip &&
+              labelChip.map((value) => {
+                return (
+                  <StylelabelStyleChip
+                    sx={{ minHeight: 20 }}
+                    variant="outlined"
+                    size="small"
+                    key={value}
+                    label={<small>{value}</small>}
+                  />
+                );
+              })}
+
           </Box>
 
           <Box onClick={() => handleCardClick(cardValues)}>
@@ -151,7 +154,7 @@ export const Cards = ({
         </StyledCardContent>
 
         <Divider />
-        <Box sx={{ p: 1 }}>
+        <Box sx={{ p: 1, }}>
           <Stack
             direction="row"
             justifyContent={"space-between"}
