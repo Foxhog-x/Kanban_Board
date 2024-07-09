@@ -23,7 +23,8 @@ import { Signuppage } from "./pages/signuppage/Signuppage";
 import { Hompage } from "./pages/homepage/Hompage";
 import { Backdrop_Provider } from "./context/BackdropContext";
 import SimpleBackdrop from "./Components/SimpleBackdrop";
-
+import { ProtectedRoute } from "./pages/ProtectedRoute";
+import Profilepage from './pages/profilepage'
 const Apps = () => {
   // eslint-disable-next-line no-undef
   const [showBackdrop, setShowBackdrop] = React.useState(false);
@@ -56,11 +57,15 @@ const Apps = () => {
   const [board, setBoard] = useState([]);
   useEffect(() => {
     const fetchBoard = async () => {
+      const creator_id = JSON.parse(localStorage.getItem('creator_id'))
       const fetchBoardResponse = await fetch(
         "http://localhost:8000/api/boards",
         {
           method: "POST",
-          headers: { "Content-Type": "application-json" },
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            creator_id: creator_id
+          })
         }
       );
       const fetchBoardJson = await fetchBoardResponse.json();
@@ -123,6 +128,7 @@ const Apps = () => {
     <>
       <ThemeProvider theme={switchTheme ? darkTheme : whiteTheme}>
         <Paper>
+
           <Backdrop_Provider value={[showBackdrop, setShowBackdrop]}>
             <Router>
               <SimpleBackdrop />
@@ -151,53 +157,60 @@ const Apps = () => {
               />
               <Routes>
                 {/* <Route exact path="/" element={<Homepage setOpen={setOpen} />} /> */}
+
                 <Route
-                  path="/boards/public/:boardName"
+                  path="/boards/:type/:boardName"
                   element={
-                    <BoardProvider value={board}>
-                      <Board_idProvider
-                        value={
-                          settingBoard_id ||
-                          localStorage.getItem("Previous_board_id")
-                        }
-                      >
-                        <DndContext onDragEnd={handleDragFunction}>
-                          <Draggable_Provider
-                            value={[draggable_id, setDraggable_id]}
-                          >
-                            <Droppable_Provider
-                              value={[
-                                droppable_Position_id,
-                                setDroppable_Position_id,
-                              ]}
+                    <ProtectedRoute>
+                      <BoardProvider value={board}>
+                        <Board_idProvider
+                          value={
+                            settingBoard_id ||
+                            localStorage.getItem("Previous_board_id")
+                          }
+                        >
+                          <DndContext onDragEnd={handleDragFunction}>
+                            <Draggable_Provider
+                              value={[draggable_id, setDraggable_id]}
                             >
-                              <IsDropped_Provider
-                                value={[isDropped, setIsDropped]}
+                              <Droppable_Provider
+                                value={[
+                                  droppable_Position_id,
+                                  setDroppable_Position_id,
+                                ]}
                               >
-                                <SnackBarProvider value={[state, setState]}>
-                                  <Newhomepage
-                                    reRender={reRender}
-                                    setReRender={setReRender}
-                                    open={open}
-                                    setOpen={setOpen}
-                                    settingBoard_id={settingBoard_id}
-                                  />
-                                </SnackBarProvider>
-                              </IsDropped_Provider>
-                            </Droppable_Provider>
-                          </Draggable_Provider>
-                        </DndContext>
-                      </Board_idProvider>
-                    </BoardProvider>
+                                <IsDropped_Provider
+                                  value={[isDropped, setIsDropped]}
+                                >
+                                  <SnackBarProvider value={[state, setState]}>
+                                    <Newhomepage
+                                      reRender={reRender}
+                                      setReRender={setReRender}
+                                      open={open}
+                                      setOpen={setOpen}
+                                      settingBoard_id={settingBoard_id}
+                                    />
+                                  </SnackBarProvider>
+                                </IsDropped_Provider>
+                              </Droppable_Provider>
+                            </Draggable_Provider>
+                          </DndContext>
+                        </Board_idProvider>
+                      </BoardProvider>
+                    </ProtectedRoute>
                   }
                 />
+
                 <Route exact path="/" element={<Hompage />} />
                 <Route exact path="/calender" element={<Index />}></Route>
                 <Route exact path="/login" element={<Loginpage />} />
                 <Route exact path="/signup" element={<Signuppage />} />
+                <Route exact path="/profile" element={<Profilepage />} />
               </Routes>
             </Router>
           </Backdrop_Provider>
+
+
         </Paper>
       </ThemeProvider>
     </>

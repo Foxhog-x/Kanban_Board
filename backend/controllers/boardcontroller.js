@@ -1,7 +1,11 @@
 const db_con = require('../db')
 
 const getAllBoard = (req, res) => {
-    db_con.query("SELECT * FROM board", (error, results) => {
+    const { creator_id } = req.body;
+
+    db_con.query(`SELECT * FROM board WHERE status = 1 AND creator_id = ? UNION SELECT *
+FROM board
+WHERE status = 0;`, [creator_id], (error, results) => {
         if (error) {
             return res.status(500).json({ message: error.message });
         }

@@ -18,6 +18,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Stack } from "@mui/system";
 
 const DrawerMenus = ({
   setSettingBoard_id,
@@ -37,12 +38,12 @@ const DrawerMenus = ({
   const boardValues = React.useContext(BoardContext);
 
   const filterBoardType = () => {
-    boardValues?.map((values) => {
+    boardValues && boardValues?.map((values) => {
       values.status === 0
         ? BoardArray.public.push(values.name, values.board_id)
         : values.status === 1
-        ? BoardArray.private.push(values.name, values.board_id)
-        : "";
+          ? BoardArray.private.push(values.name, values.board_id)
+          : "";
     });
   };
   filterBoardType();
@@ -78,7 +79,7 @@ const DrawerMenus = ({
 
   const DrawerList = (
     <Box role="presentation">
-      {/* //onClick={toggleDrawer(false)} */}
+
       <List>
         <div
           style={{
@@ -98,8 +99,11 @@ const DrawerMenus = ({
         {BoardArray?.public?.map((text, i) => {
           if (typeof text === "string") {
             return (
-              <ListItem key={i} disablePadding onClick={toggleDrawer(false)}>
+
+              <ListItem sx={{ display: "block" }} key={i} disablePadding onClick={toggleDrawer(false)}>
+
                 <Link to={`boards/public/${text}`}>
+
                   <ListItemButton
                     onClick={() =>
                       handleBoardClick(BoardArray?.public[i + 1], "public")
@@ -113,7 +117,7 @@ const DrawerMenus = ({
                     {settingBoard_id === BoardArray?.public[i + 1] ? (
                       <CheckIcon />
                     ) : (
-                      console.log("something went worng")
+                      ''
                     )}
                     <IconButton
                       onClick={() =>
@@ -126,8 +130,12 @@ const DrawerMenus = ({
                       <DeleteOutlineIcon />
                     </IconButton>
                   </ListItemButton>
+
+
                 </Link>
+
               </ListItem>
+
             );
           }
         })}
@@ -153,34 +161,37 @@ const DrawerMenus = ({
         {BoardArray.private?.map((text, i) => {
           if (typeof text === "string") {
             return (
-              <ListItem key={i} disablePadding>
-                <ListItemButton
-                  onClick={() =>
-                    handleBoardClick(BoardArray.private[i + 1], "private", text)
-                  }
-                >
-                  <ListItemIcon>
-                    {/* {index % 2 === 0 ? <MailIcon /> : <InboxIcon />} */}
-                    <SpaceDashboardIcon />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={text}
-                    color="green"
-                    onClick={toggleDrawer(false)}
-                  />
-                  {settingBoard_id === BoardArray.private[i + 1] ? (
-                    <CheckIcon />
-                  ) : (
-                    ""
-                  )}
-                </ListItemButton>
-                <IconButton
-                  onClick={() =>
-                    handleBoardDeleteApi(BoardArray.private[i + 1], "private")
-                  }
-                >
-                  <DeleteOutlineIcon />
-                </IconButton>
+              <ListItem sx={{ display: "block" }} key={i} disablePadding>
+                <Link to={`boards/private/${text}`}>
+                  <ListItemButton
+                    onClick={() =>
+                      handleBoardClick(BoardArray?.private[i + 1], "private", text)
+                    }
+                  >
+                    <ListItemIcon>
+
+                      <SpaceDashboardIcon />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={text}
+                      color="green"
+                      onClick={toggleDrawer(false)}
+                    />
+                    {settingBoard_id === BoardArray?.private[i + 1] ? (
+                      <CheckIcon />
+                    ) : (
+                      ""
+                    )}
+                    <IconButton
+                      onClick={() =>
+                        handleBoardDeleteApi(BoardArray?.private[i + 1], "private")
+                      }
+                    >
+                      <DeleteOutlineIcon />
+                    </IconButton>
+                  </ListItemButton>
+                </Link>
+
               </ListItem>
             );
           }

@@ -1,0 +1,81 @@
+.profile_container {
+  padding: 0.5rem;
+  max-width: 1280px;
+  margin: auto;
+  min-height: 92vh;
+}
+
+.profile_heading {
+  font-size: 28px;
+  margin-left: 10px;
+}
+
+.fields {
+  display: flex;
+  /* gap: 6rem; */
+  justify-content: flex-start;
+  gap: 1.5rem;
+  max-width: 525px;
+}
+
+.fields input {
+  min-width: 218px;
+}
+.label_filed {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .fields {
+    display: flex;
+    flex-direction: column;
+  }
+  .fields input {
+    min-width: auto;
+    max-width: 768px;
+  }
+  .label_email input {
+    max-width: 768px;
+  }
+}
+
+.label_email {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label_email input {
+  max-width: 510px;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.submit_container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin-top: 50px;
+}
+input[type="text"],
+textarea {
+  font-size: 20px;
+}
+
+input,
+textarea {
+  border-radius: 10px;
+  padding: 1.5rem;
+  border: 1px solid black;
+}

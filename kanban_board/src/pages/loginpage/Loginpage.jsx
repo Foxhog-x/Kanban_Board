@@ -49,6 +49,7 @@ export const Loginpage = () => {
       .then((data) => {
         setShowBackdrop(false)
         localStorage.setItem("authToken", data?.authToken);
+        localStorage.setItem("creator_id", data?.user_id)
 
         if (data.success) {
           setUserToLocalStorage(data.users)

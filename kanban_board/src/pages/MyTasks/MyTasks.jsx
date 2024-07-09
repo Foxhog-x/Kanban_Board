@@ -1,6 +1,6 @@
 
 export const MyTasks = () => {
     return (
-        <div>MyTasks</div>
+        <div> </div>
     )
 }

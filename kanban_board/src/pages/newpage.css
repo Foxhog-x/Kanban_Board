@@ -1,32 +1,28 @@
-
-.background_color_main_conatin{
- background: rgba(255, 255, 255, 0.04);
- overflow-x: auto;
- box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
- backdrop-filter: blur(2.4px);
- -webkit-backdrop-filter: blur(2.4px);
- margin: 0  12px 0 12px;
- 
-} 
+.background_color_main_conatin {
+  background: rgba(255, 255, 255, 0.04);
+  overflow-x: auto;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2.4px);
+  -webkit-backdrop-filter: blur(2.4px);
+  margin: 0 12px 0 12px;
+}
 
 .todo {
   min-width: 275px;
   min-height: 20px;
-  text-align: center; 
+  text-align: center;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  border-radius: 5px; 
+  border-radius: 5px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.17); 
-  border-radius: 8px; 
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 8px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.19); 
+  border: 1px solid rgba(255, 255, 255, 0.19);
   margin-top: 20px;
   margin-right: 5px;
   padding: 10px;
-  
-  
 }
 
 .create_Button {
@@ -42,36 +38,34 @@
 }
 
 .main_container {
-  max-width: 1920px;
   margin: 10px 5px;
   height: 87vh;
 }
 
 .horizontal_grid {
   display: flex;
- 
 }
- 
-@media screen and (max-width: 475px) { 
-  .todo{
+
+@media screen and (max-width: 475px) {
+  .todo {
     height: 90vh;
   }
-  .horizontal_grid{
+  .horizontal_grid {
     flex-direction: column;
     gap: 20px;
     align-items: center;
-  
   }
-  body{
-    overflow-y: scroll;   
+  body {
+    overflow-y: scroll;
   }
- }
+}
 
-.list_column_names{
-  width: 300PX;
+.list_column_names {
+  width: 300px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 7px;
 }

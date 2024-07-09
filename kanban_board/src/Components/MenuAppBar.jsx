@@ -14,6 +14,7 @@ import Stack from "@mui/material/Stack";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import { DrawerMenu } from "./DrawerMenu";
 import { getContrastRatio } from "@mui/system";
+import { Link, useNavigate } from "react-router-dom";
 
 export const MenuAppBar = ({
   children,
@@ -29,6 +30,7 @@ export const MenuAppBar = ({
   // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [changeDarkIcon, setChangeDarkIcon] = React.useState(false);
+  const navigate = useNavigate()
   const handleChecked = (event) => {
     setSwitchTheme(event.target.checked);
     setChangeDarkIcon(event.target.checked);
@@ -42,7 +44,12 @@ export const MenuAppBar = ({
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const handleLogOut = () => {
+    localStorage.removeItem("authToken")
+    localStorage.removeItem("creator_id")
+    localStorage.removeItem('Previous_board_id')
+    navigate('/login')
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <FormGroup>
@@ -115,8 +122,8 @@ export const MenuAppBar = ({
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>{" "}
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}><Link to={'/profile'}>Profile</Link></MenuItem>
+                <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
               </Menu>
             </div>
           </Stack>

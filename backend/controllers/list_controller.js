@@ -19,7 +19,6 @@ const getListCol = async (req, res) => {
                 (error, result) => {
                     if (error) res.status(500).json({ message: error });
                     if (result) {
-                        console.log(result);
                         res.status(200).json({ data: result });
                     }
                 }
@@ -64,8 +63,9 @@ const createListCol = (req, res) => {
 }
 
 
-const deleteListCol = () => {
+const deleteListCol = (req, res) => {
     const { column_id } = req.body;
+    console.log(column_id, "col id")
     db_con.query(
         `DELETE FROM list_column 
     WHERE column_id = ${column_id};`,
