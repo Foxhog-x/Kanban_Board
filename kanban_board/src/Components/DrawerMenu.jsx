@@ -57,7 +57,7 @@ const DrawerMenus = ({
           "You are about to delete this Board, Do You sure ?"
         );
         if (result) {
-          fetch("http://localhost:8000/api/boards/delete", {
+          fetch("https://agile-board-pi.vercel.app/api/boards/delete", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

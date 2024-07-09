@@ -21,7 +21,7 @@ export const Signuppage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:8000/signup", {
+    fetch("https://agile-board-pi.vercel.app/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -9,7 +9,7 @@ import { modules } from "../utils/reactquillModules";
 
 export const EditorReactquill = ({ setUpdatedText, card_id, newValue, handleEditSave, setEditBool, setHandleEditSave }) => {
     const [editorContent, setEditorContent] = useState(newValue);
-    const handleEditorChange = (content, delta, source, editor) => {
+    const handleEditorChange = (content) => {
         setEditorContent(content)
     }
 
@@ -17,7 +17,7 @@ export const EditorReactquill = ({ setUpdatedText, card_id, newValue, handleEdit
         setEditBool(false)
         setHandleEditSave(false)
         setUpdatedText(editorContent)
-        fetch('http://localhost:8000/api/cards/update', {
+        fetch('https://agile-board-pi.vercel.app/api/cards/update', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

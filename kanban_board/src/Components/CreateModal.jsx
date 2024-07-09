@@ -53,7 +53,7 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
   console.log(cardData)
   const handleCreateTaskApi = async (e) => {
     e.preventDefault();
-    fetch("http://localhost:8000/api/cards/create", {
+    fetch("https://agile-board-pi.vercel.app/api/cards/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

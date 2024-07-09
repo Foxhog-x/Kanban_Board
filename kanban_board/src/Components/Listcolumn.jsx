@@ -26,7 +26,7 @@ const Listcolumns = ({
 }) => {
   const handleCardDelete = (card_board_id) => {
 
-    fetch("http://localhost:8000/api/cards/delete", {
+    fetch("https://agile-board-pi.vercel.app/api/cards/delete", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -37,8 +37,9 @@ export const Loginpage = () => {
   const handleSubmit = (e) => {
     setShowBackdrop(true)
     e.preventDefault();
-    fetch("http://localhost:8000/login", {
+    fetch("https://agile-board-pi.vercel.app/login", {
       method: "POST",
+      mode: 'no-cors',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: inputStore.email,
