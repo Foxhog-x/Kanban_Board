@@ -20,7 +20,7 @@ export const MuiMenu = ({ list_column_id, reRender, setReRender }) => {
   };
   // console.log(list_column_id, "col");
   const handleDeleteApi = () => {
-    fetch("https://agile-board-pi.vercel.app/api/list_column/delete", {
+    fetch("https://agile-boardnew.vercel.app/api/list_column/delete", {
       method: "POST",
       headers: { "Content-Type": "Application/json" },
       body: JSON.stringify({

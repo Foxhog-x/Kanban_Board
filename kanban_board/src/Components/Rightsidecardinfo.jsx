@@ -19,7 +19,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import { dateTimeConverter } from "../utils/dateTime";
 import { Reactquill } from "./Reactquill";
 import SaveIcon from "@mui/icons-material/Save";
-import { useFetchCards } from "../hooks/useFetchCards";
+
 const Rightsidecardinfos = ({
   reRender,
   setReRender,
@@ -160,10 +160,10 @@ const Rightsidecardinfos = ({
                 infoRightCard?.priority === "Low"
                   ? "success"
                   : infoRightCard?.priority === "Medium"
-                  ? "warning"
-                  : infoRightCard?.priority === "High"
-                  ? "error"
-                  : "default"
+                    ? "warning"
+                    : infoRightCard?.priority === "High"
+                      ? "error"
+                      : "default"
               }
               // label={cardValue?.priority}
               label={infoRightCard.priority}

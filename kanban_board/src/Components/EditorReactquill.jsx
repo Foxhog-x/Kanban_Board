@@ -17,7 +17,7 @@ export const EditorReactquill = ({ setUpdatedText, card_id, newValue, handleEdit
         setEditBool(false)
         setHandleEditSave(false)
         setUpdatedText(editorContent)
-        fetch('https://agile-board-pi.vercel.app/api/cards/update', {
+        fetch('https://agile-boardnew.vercel.app/api/cards/update', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

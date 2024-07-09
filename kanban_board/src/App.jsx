@@ -59,7 +59,7 @@ const Apps = () => {
     const fetchBoard = async () => {
       const creator_id = JSON.parse(localStorage.getItem('creator_id'))
       const fetchBoardResponse = await fetch(
-        "https://agile-board-pi.vercel.app/api/boards",
+        "https://agile-boardnew.vercel.app/api/boards",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -90,7 +90,7 @@ const Apps = () => {
   const handleCreateBoardApi = (e) => {
     const authToken = localStorage.getItem("authToken");
     e.preventDefault();
-    fetch("https://agile-board-pi.vercel.app/boards/create", {
+    fetch("https://agile-boardnew.vercel.app/boards/create", {
       method: "POST",
       mode: "no-cors",
       headers: { "Content-Type": "application/json" },

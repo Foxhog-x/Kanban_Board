@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const cardController = require("../../controllers/cardcontroller");
+const cardcontroller = require("../../controllers/cardcontroller");
 
-router.post("/", cardController.getAllCards);
-router.put("/update", cardController.updateCard)
-router.post("/create", cardController.createCard);
-router.post("/delete", cardController.deleteSingleCard);
+router.post("/", cardcontroller.getAllCards);
+router.put("/update", cardcontroller.updateCard)
+router.post("/create", cardcontroller.createCard);
+router.post("/delete", cardcontroller.deleteSingleCard);
 
 
 
