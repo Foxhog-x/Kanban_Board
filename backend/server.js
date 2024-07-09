@@ -13,6 +13,10 @@ app.use(cors({
 // Handle preflight requests
 app.options('*', cors());
 app.use(bodyParser.json({ limit: "50mb" }));
+app.get('/', (req, res) => {
+    res.send("Hello its a server")
+
+})
 app.use("/signup", require("./routes/signupRoute"));
 app.use("/login", require("./routes/loginRoute"));
 app.use("/api/boards", require("./routes/api/board"));
