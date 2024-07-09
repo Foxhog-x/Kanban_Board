@@ -4,13 +4,14 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 app.use(cors({
-    origin: 'https://harmonious-eclair-e79ee9.netlify.app',
+    origin: 'http://localhost:5173',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true,
 }));
 
-
+// Handle preflight requests
+app.options('*', cors());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use("/signup", require("./routes/signupRoute"));
 app.use("/login", require("./routes/loginRoute"));
