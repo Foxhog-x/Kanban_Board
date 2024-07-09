@@ -3,11 +3,12 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-app.use(
-    cors({
-        origin: "*", //for the testing later i will setup
-    })
-);
+app.use(cors({
+    origin: 'https://harmonious-eclair-e79ee9.netlify.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+    credentials: true,
+}));
 
 
 app.use(bodyParser.json({ limit: "50mb" }));
