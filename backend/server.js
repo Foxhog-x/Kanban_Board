@@ -3,12 +3,13 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const corsOptions = {
-    origin: "http://localhost:5173",
-    optionsSuccessStatus: 200,
-};
+app.use(
+    cors({
+        origin: "*", //for the testing later i will setup
+    })
+);
 
-app.use(cors(corsOptions));
+
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use("/signup", require("./routes/signupRoute"));
 app.use("/login", require("./routes/loginRoute"));
