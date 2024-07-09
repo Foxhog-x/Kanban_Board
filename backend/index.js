@@ -3,15 +3,11 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-app.use(cors({
-    origin: 'http://localhost:5173',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: 'Content-Type, Authorization',
-    credentials: true,
-}));
-
-// Handle preflight requests
-app.options('*', cors());
+app.use(
+    cors({
+        origin: "*",
+    })
+);
 app.use(bodyParser.json({ limit: "50mb" }));
 app.get('/', (req, res) => {
     res.send("Hello its a server")
