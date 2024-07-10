@@ -1,16 +1,16 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export const ProtectedRoute = ({ children }) => {
-    const navigate = useNavigate()
-    const authToken = localStorage.getItem('authToken')
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
     if (authToken) {
-        return (
-            <div>{children}</div>
-        )
+      return;
     } else {
-        navigate('/login')
-
+      navigate("/login");
     }
-
-}
+  });
+  return <div>{children}</div>;
+};

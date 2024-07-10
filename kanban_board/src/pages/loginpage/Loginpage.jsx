@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Loginpage.module.css";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -6,17 +6,11 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { BackdropContext } from "../../context/BackdropContext";
-export const Loginpage = () => {
-  const [showBackdrop, setShowBackdrop] = useContext(BackdropContext)
-
+export const Loginpage = ({ board }) => {
+  const [showBackdrop, setShowBackdrop] = useContext(BackdropContext);
 
   const navigate = useNavigate();
-  const token = localStorage.getItem("authToken");
-  if (token) {
-    console.log("token get it ");
-  } else {
-    console.log("token not get it");
-  }
+
   const [inputStore, setInputStore] = useState({
     email: "",
     password: "",
@@ -29,17 +23,22 @@ export const Loginpage = () => {
 
   const setUserToLocalStorage = (users) => {
     const userName = users[0];
-    console.log(userName, "usersksadfkjsd")
-    localStorage.setItem('userData', JSON.stringify(userName))
-  }
+    localStorage.setItem("userData", JSON.stringify(userName));
+  };
 
-
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    if ((authToken !== null) | undefined | "") {
+      console.log(board, "boradsss");
+    } else {
+      console.log("token not get it");
+    }
+  });
   const handleSubmit = (e) => {
-    setShowBackdrop(true)
+    setShowBackdrop(true);
     e.preventDefault();
     fetch("https://agile-boardnew.vercel.app/api/login", {
       method: "POST",
-      mode: 'no-cors',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: inputStore.email,
@@ -48,19 +47,19 @@ export const Loginpage = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setShowBackdrop(false)
+        setShowBackdrop(false);
         localStorage.setItem("authToken", data?.authToken);
-        localStorage.setItem("creator_id", data?.user_id)
+        localStorage.setItem("creator_id", data?.user_id);
 
         if (data.success) {
-          setUserToLocalStorage(data.users)
+          setUserToLocalStorage(data.users);
           navigate("/");
         } else {
           console.log("failed");
         }
       });
   };
-  console.log(inputStore);
+
   return (
     <div className={styles.main_container}>
       <div className={styles.left_inner}></div>

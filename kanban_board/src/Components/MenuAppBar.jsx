@@ -13,7 +13,6 @@ import Menu from "@mui/material/Menu";
 import Stack from "@mui/material/Stack";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import { DrawerMenu } from "./DrawerMenu";
-import { getContrastRatio } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
 
 export const MenuAppBar = ({
@@ -30,7 +29,7 @@ export const MenuAppBar = ({
   // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [changeDarkIcon, setChangeDarkIcon] = React.useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleChecked = (event) => {
     setSwitchTheme(event.target.checked);
     setChangeDarkIcon(event.target.checked);
@@ -45,11 +44,11 @@ export const MenuAppBar = ({
     setAnchorEl(null);
   };
   const handleLogOut = () => {
-    localStorage.removeItem("authToken")
-    localStorage.removeItem("creator_id")
-    localStorage.removeItem('Previous_board_id')
-    navigate('/login')
-  }
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("creator_id");
+    localStorage.removeItem("Previous_board_id");
+    navigate("/login");
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <FormGroup>
@@ -66,24 +65,27 @@ export const MenuAppBar = ({
       </FormGroup>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <DrawerMenu
-              setSettingBoard_id={setSettingBoard_id}
-              handleBoardClick={handleBoardClick}
-              handleCreateBoard={handleCreateBoard}
-              setOpenFormDialogBoard={setOpenFormDialogBoard}
-              settingBoard_id={settingBoard_id}
-              setReRender={setReRender}
-              reRender={reRender}
-            />
-          </IconButton>
-
+          {(localStorage.getItem("authToken") !== null) | undefined | "" ? (
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              <DrawerMenu
+                setSettingBoard_id={setSettingBoard_id}
+                handleBoardClick={handleBoardClick}
+                handleCreateBoard={handleCreateBoard}
+                setOpenFormDialogBoard={setOpenFormDialogBoard}
+                settingBoard_id={settingBoard_id}
+                setReRender={setReRender}
+                reRender={reRender}
+              />
+            </IconButton>
+          ) : (
+            ""
+          )}
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Team-Board
           </Typography>
@@ -122,8 +124,16 @@ export const MenuAppBar = ({
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}><Link to={'/profile'}>Profile</Link></MenuItem>
-                <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link to={"/profile"}>Profile</Link>
+                </MenuItem>
+                {(localStorage.getItem("authToken") !== null) |
+                undefined |
+                "" ? (
+                  <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+                ) : (
+                  ""
+                )}
               </Menu>
             </div>
           </Stack>

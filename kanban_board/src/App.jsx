@@ -24,7 +24,7 @@ import { Hompage } from "./pages/homepage/Hompage";
 import { Backdrop_Provider } from "./context/BackdropContext";
 import SimpleBackdrop from "./Components/SimpleBackdrop";
 import { ProtectedRoute } from "./pages/ProtectedRoute";
-import Profilepage from './pages/profilepage'
+import Profilepage from "./pages/profilepage";
 const Apps = () => {
   // eslint-disable-next-line no-undef
   const [showBackdrop, setShowBackdrop] = React.useState(false);
@@ -50,22 +50,22 @@ const Apps = () => {
   });
   const [settingBoard_id, setSettingBoard_id] = React.useState(
     localStorage.getItem("Previous_board_id") &&
-    parseInt(localStorage.getItem("Previous_board_id") || null)
+      parseInt(localStorage.getItem("Previous_board_id") || null)
   );
   const [reRender, setReRender] = useState(false);
   const [switchTheme, setSwitchTheme] = useState(false);
   const [board, setBoard] = useState([]);
   useEffect(() => {
     const fetchBoard = async () => {
-      const creator_id = JSON.parse(localStorage.getItem('creator_id'))
+      const creator_id = JSON.parse(localStorage.getItem("creator_id"));
       const fetchBoardResponse = await fetch(
         "https://agile-boardnew.vercel.app/api/boards",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            creator_id: creator_id
-          })
+            creator_id: creator_id,
+          }),
         }
       );
       const fetchBoardJson = await fetchBoardResponse.json();
@@ -129,7 +129,6 @@ const Apps = () => {
     <>
       <ThemeProvider theme={switchTheme ? darkTheme : whiteTheme}>
         <Paper>
-
           <Backdrop_Provider value={[showBackdrop, setShowBackdrop]}>
             <Router>
               <SimpleBackdrop />
@@ -204,14 +203,16 @@ const Apps = () => {
 
                 <Route exact path="/" element={<Hompage />} />
                 <Route exact path="/calender" element={<Index />}></Route>
-                <Route exact path="/login" element={<Loginpage />} />
+                <Route
+                  exact
+                  path="/login"
+                  element={<Loginpage board={board} />}
+                />
                 <Route exact path="/signup" element={<Signuppage />} />
                 <Route exact path="/profile" element={<Profilepage />} />
               </Routes>
             </Router>
           </Backdrop_Provider>
-
-
         </Paper>
       </ThemeProvider>
     </>
