@@ -22,6 +22,7 @@ import TextField from "@mui/material/TextField";
 import { useRef } from "react";
 import Chip from "@mui/material/Chip";
 import { clearCard } from "../utils/clearCardFields";
+import apiUrl from "../utils/urls";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -50,10 +51,10 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
     department: "",
     status: "",
   });
-  console.log(cardData)
+  console.log(cardData);
   const handleCreateTaskApi = async (e) => {
     e.preventDefault();
-    fetch("https://agile-boardnew.vercel.app/api/cards/create", {
+    fetch(apiUrl.createCard, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -108,8 +109,8 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
     } else {
       selectLabel !== ""
         ? setLableArray((prev) => {
-          return [...prev, selectLabel];
-        })
+            return [...prev, selectLabel];
+          })
         : "";
     }
     setSelectLable("");

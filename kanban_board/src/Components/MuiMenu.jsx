@@ -5,6 +5,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { SnackBarContext } from "../context/SnackBarContext";
+import apiUrl from "../utils/urls";
 
 export const MuiMenu = ({ list_column_id, reRender, setReRender }) => {
   const [state, setState] = React.useContext(SnackBarContext);
@@ -20,7 +21,7 @@ export const MuiMenu = ({ list_column_id, reRender, setReRender }) => {
   };
   // console.log(list_column_id, "col");
   const handleDeleteApi = () => {
-    fetch("https://agile-boardnew.vercel.app/api/list_column/delete", {
+    fetch(apiUrl.deleteList, {
       method: "POST",
       headers: { "Content-Type": "Application/json" },
       body: JSON.stringify({

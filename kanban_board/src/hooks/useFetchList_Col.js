@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 
 import { Board_idContext } from "../context/Board_idContext";
+import apiUrl from "../utils/urls";
 
 export const useFetchList_Col = (reRender) => {
   const [list_Col, setList_Col] = useState([]);
@@ -12,7 +13,7 @@ export const useFetchList_Col = (reRender) => {
   const board_id = useContext(Board_idContext);
   console.log(board_id, "board_id");
   const fetchList_Col = async () => {
-    const list_Col_Data = await fetch("http://localhost:8000/api/list_column", {
+    const list_Col_Data = await fetch(apiUrl.getLists, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

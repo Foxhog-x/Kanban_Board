@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { BackdropContext } from "../context/BackdropContext";
+import apiUrl from "../utils/urls";
 
 export const useFetchCards = (reRender) => {
-  const [showBackdrop, setShowBackdrop] = useContext(BackdropContext)
+  const [showBackdrop, setShowBackdrop] = useContext(BackdropContext);
   const [cards, setCards] = useState([]);
   const fetchCards = async () => {
-    setShowBackdrop(true)
-    const cardsData = await fetch("http://localhost:8000/api/cards", {
+    setShowBackdrop(true);
+    const cardsData = await fetch(apiUrl.getCards, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     });

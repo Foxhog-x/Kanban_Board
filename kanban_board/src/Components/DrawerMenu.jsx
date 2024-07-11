@@ -19,6 +19,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Stack } from "@mui/system";
+import apiUrl from "../utils/urls";
 
 const DrawerMenus = ({
   setSettingBoard_id,
@@ -58,7 +59,7 @@ const DrawerMenus = ({
           "You are about to delete this Board, Do You sure ?"
         );
         if (result) {
-          fetch("https://agile-boardnew.vercel.app/api/boards/delete", {
+          fetch(apiUrl.deleteBoard, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

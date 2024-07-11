@@ -13,6 +13,7 @@ import React from "react";
 // eslint-disable-next-line react/prop-types
 import Typography from "@mui/material/Typography";
 import { useDroppable } from "@dnd-kit/core";
+import apiUrl from "../utils/urls";
 
 const Listcolumns = ({
   list_column_id,
@@ -25,8 +26,7 @@ const Listcolumns = ({
   list_column_name,
 }) => {
   const handleCardDelete = (card_board_id) => {
-
-    fetch("https://agile-boardnew.vercel.app/api/cards/delete", {
+    fetch(apiUrl.deleteCard, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

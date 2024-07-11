@@ -1,5 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { BoardContext } from "../context/BoardContext";
+import apiUrl from "../utils/urls";
 
 export const useCreateList = (
   reRender,
@@ -25,7 +26,7 @@ export const useCreateList = (
     } else if (addListTextFieldRef.current.value.length >= 18) {
       alert("please enter less than 18 characters");
     } else {
-      fetch("http://localhost:8000/api/list_column/create", {
+      fetch(apiUrl.createList, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
