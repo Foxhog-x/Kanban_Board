@@ -6,6 +6,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { BackdropContext } from "../../context/BackdropContext";
+
 import apiUrl from "../../utils/urls";
 export const Loginpage = ({ board }) => {
   const [showBackdrop, setShowBackdrop] = useContext(BackdropContext);
@@ -65,7 +66,12 @@ export const Loginpage = ({ board }) => {
 
   return (
     <div className={styles.main_container}>
-      <div className={styles.left_inner}></div>
+      <img
+        className={styles.left_inner}
+        src="loginpage.jpg"
+        alt="login image"
+        height={600}
+      />
       <div className={styles.right_inner}>
         <h2>Hi Welcome</h2>
         <h1>Login</h1>
