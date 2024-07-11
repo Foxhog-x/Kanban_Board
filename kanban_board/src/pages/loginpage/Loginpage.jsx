@@ -33,7 +33,7 @@ export const Loginpage = ({ board }) => {
     } else {
       console.log("token not get it");
     }
-  });
+  },[]);
   const handleSubmit = (e) => {
     setShowBackdrop(true);
     e.preventDefault();
