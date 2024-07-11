@@ -7,11 +7,20 @@ import Paper from "@mui/material/Paper";
 import { modules } from "../utils/reactquillModules";
 import { EditorReactquill } from "./EditorReactquill";
 
-export const Reactquill = ({ card_id, open, editableText, setCardData, editBool, setEditBool, setHandleEditSave, handleEditSave }) => {
+export const Reactquill = ({
+  card_id,
+  open,
+  editableText,
+  setCardData,
+  editBool,
+  setEditBool,
+  setHandleEditSave,
+  handleEditSave,
+}) => {
   let newValue = editableText;
   const quillRef = useRef(null);
 
-  const [updatedText, setUpdatedText] = useState(newValue)
+  const [updatedText, setUpdatedText] = useState(newValue);
 
   const handleChange = (el) => {
     if (open) {
@@ -23,7 +32,16 @@ export const Reactquill = ({ card_id, open, editableText, setCardData, editBool,
 
   return (
     <Paper>
-      {editBool ? <EditorReactquill setUpdatedText={setUpdatedText} card_id={card_id} newValue={updatedText} setHandleEditSave={setHandleEditSave} setEditBool={setEditBool} handleEditSave={handleEditSave} /> :
+      {editBool ? (
+        <EditorReactquill
+          setUpdatedText={setUpdatedText}
+          card_id={card_id}
+          newValue={updatedText}
+          setHandleEditSave={setHandleEditSave}
+          setEditBool={setEditBool}
+          handleEditSave={handleEditSave}
+        />
+      ) : (
         <ReactQuill
           ref={quillRef}
           className="ql-container ql-tooltip ql-editing"
@@ -31,7 +49,8 @@ export const Reactquill = ({ card_id, open, editableText, setCardData, editBool,
           theme="snow"
           value={updatedText}
           onChange={handleChange}
-        />}
+        />
+      )}
     </Paper>
   );
 };

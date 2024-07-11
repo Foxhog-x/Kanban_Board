@@ -16,7 +16,7 @@ export const EditorReactquill = ({
   setHandleEditSave,
 }) => {
   const [editorContent, setEditorContent] = useState(newValue);
-  const handleEditorChange = (content) => {
+  const handleEditorChange = (content, delta, source, editor) => {
     setEditorContent(content);
   };
 

@@ -7,9 +7,7 @@ import { useFetchList_Col } from "../hooks/useFetchList_Col";
 import { useFetchCards } from "../hooks/useFetchCards";
 import { useCreateList } from "../hooks/useCreateList";
 import { useHandleClick } from "../hooks/useHandleClick";
-
 import { useUpdateCards } from "../hooks/useUpdateCards.js";
-import PositionedSnackbar from "../Components/PositionedSnackbar.jsx";
 
 // eslint-disable-next-line react/prop-types
 export const Newhomepage = ({
@@ -19,7 +17,6 @@ export const Newhomepage = ({
   setReRender,
   settingBoard_id,
 }) => {
-
   const [list_Col, createListPostApi, setCreateListPostApi] =
     useFetchList_Col(reRender);
 
@@ -27,7 +24,6 @@ export const Newhomepage = ({
 
   const { handleCardClick, infoRightCard, state, setState } = useHandleClick();
   useUpdateCards(cards, setCards);
-
 
   const {
     handleCreateListPostapi,
@@ -38,7 +34,6 @@ export const Newhomepage = ({
 
   return (
     <>
-      <PositionedSnackbar />
       <CreateListModel
         createListModel={createListModel}
         setCreateListModel={setCreateListModel}

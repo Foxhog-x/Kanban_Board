@@ -41,7 +41,7 @@ const createCard = (req, res) => {
     assignee_id,
     addLabelList,
   } = req.body;
-
+  console.log(req.body);
   const queryAssign = `INSERT INTO assignee_members(card_id, user_id, username) values ?`;
   const queryHtml = "INSERT INTO html_content (card_id, content) VALUES (?, ?)";
   const queryCard = `INSERT INTO card(title, column_id, start_date, due_date, department, priority) values(?,?,?,?,?,?)`;

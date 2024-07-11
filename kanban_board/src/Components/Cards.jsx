@@ -14,7 +14,7 @@ import { MuiMenu } from "./MuiMenu";
 import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { timeLeftFromNow } from "../utils/dateTime";
 import { priorityColor } from "../utils/priorityColor";
 import Badge from "@mui/material/Badge";
@@ -33,7 +33,6 @@ import { labelChipArrayString } from "../utils/labelChipArrayString";
 import { minHeight } from "@mui/system";
 
 const StyledChip = styled(Chip)(({ theme }) => ({
-
   fontSize: theme.typography.fontSize - 3,
   padding: theme.spacing(0.5, 0.5),
 }));
@@ -62,9 +61,9 @@ export const Cards = ({
   });
   const style = transform
     ? {
-      transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      zindex: 9999,
-    }
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+        zindex: 9999,
+      }
     : undefined;
   const bull = (
     <Box
@@ -78,7 +77,10 @@ export const Cards = ({
 
   const card = (
     <>
-      <Card variant="outlined" sx={{ minHeight: 200, maxWidth: 318, zIndex: 100 }}>
+      <Card
+        variant="outlined"
+        sx={{ minHeight: 200, maxWidth: 318, zIndex: 100 }}
+      >
         <StyledCardContent>
           <Stack
             ref={setNodeRef}
@@ -95,10 +97,10 @@ export const Cards = ({
                 cardValues?.priority === "Low"
                   ? "success"
                   : cardValues?.priority === "Medium"
-                    ? "warning"
-                    : cardValues?.priority === "High"
-                      ? "error"
-                      : "default"
+                  ? "warning"
+                  : cardValues?.priority === "High"
+                  ? "error"
+                  : "default"
               }
               label={cardValues?.priority}
             />
@@ -115,7 +117,6 @@ export const Cards = ({
             flexWrap={"wrap"}
             mb={2}
           >
-
             {labelChip &&
               labelChip.map((value) => {
                 return (
@@ -128,7 +129,6 @@ export const Cards = ({
                   />
                 );
               })}
-
           </Box>
 
           <Box onClick={() => handleCardClick(cardValues)}>
@@ -154,7 +154,7 @@ export const Cards = ({
         </StyledCardContent>
 
         <Divider />
-        <Box sx={{ p: 1, }}>
+        <Box sx={{ p: 1 }}>
           <Stack
             direction="row"
             justifyContent={"space-between"}

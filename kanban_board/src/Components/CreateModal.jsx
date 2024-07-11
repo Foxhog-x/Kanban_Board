@@ -51,7 +51,7 @@ const CreateModals = ({ open, setOpen, setReRender, reRender }) => {
     department: "",
     status: "",
   });
-  console.log(cardData);
+  console.log(cardData.description, "description");
   const handleCreateTaskApi = async (e) => {
     e.preventDefault();
     fetch(apiUrl.createCard, {
